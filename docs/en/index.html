@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="A Mac app that turns your family photos into one album for every weekend. Made by Baryon Labs.">
+<meta property="og:title" content="Weekend Album">
+<meta property="og:description" content="Every Saturday and Sunday you shot becomes an album — free Mac app download">
+<meta property="og:image" content="https://baryonlabs.github.io/weekend-album-releases/illus/hero.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://baryonlabs.github.io/weekend-album-releases/en/">
+<meta property="og:locale" content="en_US">
+<link rel="canonical" href="https://baryonlabs.github.io/weekend-album-releases/en/">
+<link rel="alternate" hreflang="ko" href="https://baryonlabs.github.io/weekend-album-releases/">
+<link rel="alternate" hreflang="en" href="https://baryonlabs.github.io/weekend-album-releases/en/">
+<link rel="alternate" hreflang="ja" href="https://baryonlabs.github.io/weekend-album-releases/ja/">
+<link rel="alternate" hreflang="x-default" href="https://baryonlabs.github.io/weekend-album-releases/">
+<style>html{color-scheme:light dark}body{margin:0;-webkit-font-smoothing:antialiased}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Weekend Album</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  /* Layout: 한국 달력의 토(파랑)·일(빨강)을 축으로 — 주간 달력 띠 히어로 → 기능 → 설치 순서 → 연결 → 데이터 안내 */
+  :root {
+    --bg: #f7f8fb; --paper: #ffffff; --ink: #1c2233; --muted: #626b80; --line: #dfe3ec;
+    --sat: #2f5bd3; --sun: #d9443a; --sat-soft: #e6ecfb; --sun-soft: #fbe9e7; --code: #eef1f7;
+    --display: "Do Hyeon", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    --body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #12151d; --paper: #1a1f2b; --ink: #e9ecf4; --muted: #9aa3b8; --line: #2b3242;
+      --sat: #7d9cff; --sun: #ff7a6e; --sat-soft: #1f2a4a; --sun-soft: #3a2020; --code: #222838; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #12151d; --paper: #1a1f2b; --ink: #e9ecf4; --muted: #9aa3b8; --line: #2b3242;
+    --sat: #7d9cff; --sun: #ff7a6e; --sat-soft: #1f2a4a; --sun-soft: #3a2020; --code: #222838; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.7 var(--body); padding-inline: 20px; }
+  .wrap { max-width: 980px; margin: 0 auto; padding-block: 40px 56px; display: grid; gap: 72px; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 400; text-wrap: balance; margin: 0; line-height: 1.2; }
+  h1 { font-size: clamp(44px, 8vw, 76px); letter-spacing: -0.01em; }
+  h2 { font-size: clamp(28px, 4.4vw, 38px); }
+  h3 { font-size: 22px; }
+  p { margin: 0; }
+  a { color: var(--sat); }
+  .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  .muted { color: var(--muted); }
+  code, .mono { font-family: var(--mono); font-size: .9em; }
+  :focus-visible { outline: 3px solid var(--sat); outline-offset: 3px; border-radius: 6px; }
+
+  /* Hero */
+  .hero { display: grid; gap: 28px; }
+  /* 언어 전환 */
+  .langs { justify-self: end; display: flex; align-items: center; gap: 2px; font-size: 13px; color: var(--muted); margin-bottom: -12px; }
+  .langs a { color: var(--muted); text-decoration: none; padding: 3px 10px; border-radius: 999px; border: 1px solid transparent; }
+  .langs a:hover { color: var(--ink); border-color: var(--line); }
+  .langs a[aria-current="page"] { color: var(--ink); background: var(--paper); border-color: var(--line); font-weight: 500; }
+
+  .brand { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .brand b { font-family: var(--display); font-weight: 400; font-size: 20px; }
+  .hero h1 .sat { color: var(--sat); } .hero h1 .sun { color: var(--sun); }
+  .lede { font-size: 19px; max-width: 34em; color: var(--muted); }
+  .lede strong { color: var(--ink); font-weight: 500; }
+
+  .week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; max-width: 560px; }
+  .day { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 8px 6px 10px; text-align: center; min-width: 0; }
+  .day span { display: block; font-size: 12px; color: var(--muted); }
+  .day b { font-family: var(--display); font-weight: 400; font-size: 26px; font-variant-numeric: tabular-nums; }
+  .day.sat { background: var(--sat-soft); border-color: transparent; } .day.sat b, .day.sat span { color: var(--sat); }
+  .day.sun { background: var(--sun-soft); border-color: transparent; } .day.sun b, .day.sun span { color: var(--sun); }
+  .folder { font-family: var(--mono); font-size: 13px; color: var(--muted); overflow-x: auto; white-space: nowrap; }
+  .folder em { font-style: normal; color: var(--ink); }
+
+  .get { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; background: var(--sat); color: var(--paper); text-decoration: none;
+    font-weight: 700; font-size: 18px; padding: 15px 24px; border-radius: 14px; box-shadow: 0 6px 20px color-mix(in srgb, var(--sat) 30%, transparent); }
+  .btn:hover { filter: brightness(1.06); }
+  .btn svg { width: 20px; height: 20px; }
+  .get small { color: var(--muted); font-size: 14px; line-height: 1.5; }
+
+  /* Features */
+  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px 32px; }
+  .feature { display: grid; gap: 6px; padding-top: 14px; border-top: 2px solid var(--line); min-width: 0; }
+  .feature:nth-child(3n+1) { border-top-color: var(--sat); }
+  .feature:nth-child(3n+2) { border-top-color: var(--sun); }
+  .feature p { color: var(--muted); font-size: 15px; }
+  .section { display: grid; gap: 26px; }
+  .section > header { display: grid; gap: 8px; max-width: 40em; }
+
+  /* Install steps */
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; counter-reset: s; }
+  .steps li { counter-increment: s; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 4px 14px; background: var(--paper);
+    border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+  .steps li::before { content: counter(s); grid-row: span 3; font-family: var(--display); font-size: 30px; color: var(--sat); line-height: 1; }
+  .steps li > * { min-width: 0; }
+  .steps p { color: var(--muted); font-size: 15px; }
+  .cmd { display: flex; gap: 8px; align-items: stretch; margin-top: 8px; }
+  .cmd pre { flex: 1; min-width: 0; margin: 0; background: var(--code); border-radius: 10px; padding: 10px 12px; font: 13px/1.5 var(--mono); overflow-x: auto; white-space: pre; }
+  .copy { font: 500 13px var(--body); border: 1px solid var(--line); background: var(--paper); color: var(--ink); border-radius: 10px; padding: 0 12px; cursor: pointer; white-space: nowrap; }
+  .copy:hover { border-color: var(--sat); }
+
+  /* Google connect */
+  .connect { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 28px; align-items: start; }
+  .flow { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+  .flow li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 12px; align-items: baseline; }
+  .flow li span { font-family: var(--mono); font-size: 12px; color: var(--sun); border: 1px solid currentColor; border-radius: 999px; padding: 1px 8px; }
+  .mail { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 20px; display: grid; gap: 10px; }
+  .mail .addr { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .mail .addr b { font-family: var(--mono); font-size: 18px; font-weight: 500; user-select: all; }
+
+  /* Optional tools + data */
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th, td { text-align: left; padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-weight: 500; color: var(--muted); font-size: 13px; }
+  td:first-child { font-weight: 500; white-space: nowrap; }
+  .data { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .data div { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; display: grid; gap: 6px; min-width: 0; }
+  .data b { font-weight: 700; }
+  .data p { color: var(--muted); font-size: 14px; }
+
+  /* Screenshots */
+  .shots { display: grid; gap: 18px; }
+  .shots figure { margin: 0; display: grid; gap: 8px; min-width: 0; }
+  .shots img { width: 100%; height: auto; display: block; border-radius: 12px; border: 1px solid var(--line);
+    box-shadow: 0 18px 40px -24px color-mix(in srgb, var(--ink) 45%, transparent); background: var(--paper); }
+  .shots figcaption { font-size: 14px; color: var(--muted); }
+  .shots figcaption b { color: var(--ink); font-weight: 500; }
+  .shot-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px 18px; }
+  .demo-note { font-size: 13px; color: var(--muted); }
+
+  /* Comics & stories */
+  .comic { margin: 0; display: grid; gap: 8px; }
+  .comic img { width: 100%; height: auto; display: block; border-radius: 18px; border: 1px solid var(--line); background: var(--paper); }
+  .comic-wide { max-width: 760px; }
+  .comic figcaption { font-size: 14px; color: var(--muted); }
+  .stories { display: grid; gap: 40px; }
+  .story { display: grid; grid-template-columns: minmax(200px, 340px) minmax(0, 1fr); gap: 28px; align-items: center; }
+  .story.flip { grid-template-columns: minmax(0, 1fr) minmax(200px, 340px); }
+  .story.flip img { order: 2; }
+  .story img { width: 100%; height: auto; display: block; border-radius: 20px; border: 1px solid var(--line); background: var(--paper);
+    box-shadow: 0 18px 40px -26px color-mix(in srgb, var(--ink) 50%, transparent); transform: rotate(-1deg); }
+  .story.flip img { transform: rotate(1deg); }
+  .story > div { display: grid; gap: 10px; min-width: 0; }
+  .story p { color: var(--muted); } .story p b { color: var(--ink); font-weight: 500; }
+  .story ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 15px; }
+  .tag { justify-self: start; font-size: 13px; font-weight: 700; border-radius: 999px; padding: 3px 12px; }
+  .tag.sat { background: var(--sat-soft); color: var(--sat); } .tag.sun { background: var(--sun-soft); color: var(--sun); }
+  @media (max-width: 720px) {
+    .story, .story.flip { grid-template-columns: 1fr; gap: 16px; }
+    .story img, .story.flip img { order: 0; max-width: 300px; transform: none; }
+  }
+  @media (prefers-reduced-motion: no-preference) { .story img { transition: transform .3s ease; } .story img:hover { transform: rotate(0) scale(1.02); } }
+
+  /* 대상별로 바뀌는 첫 문장 */
+  .rotator { display: grid; }
+  .rotator .slide { grid-area: 1 / 1; display: grid; gap: 18px; align-content: start; opacity: 0; visibility: hidden; transform: translateY(6px);
+    transition: opacity .7s ease, transform .7s ease, visibility 0s linear .7s; }
+  .rotator .slide.on { opacity: 1; visibility: visible; transform: none; transition: opacity .7s ease, transform .7s ease; }
+  .who { justify-self: start; font-size: 13px; font-weight: 700; color: var(--sun); background: var(--sun-soft); border-radius: 999px; padding: 4px 12px; }
+  .slide[data-who="travel"] .who { color: var(--sat); background: var(--sat-soft); }
+  .slide[data-who="space"] .who { color: var(--ink); background: var(--line); }
+  .who-dots { display: flex; gap: 8px; margin-top: -8px; }
+  .who-dots button { width: 28px; height: 6px; border-radius: 999px; border: 0; background: var(--line); cursor: pointer; padding: 0; }
+  .who-dots button.on { background: var(--ink); }
+  @media (prefers-reduced-motion: reduce) { .rotator .slide { transition: none; } }
+
+  footer { border-top: 1px solid var(--line); padding-top: 22px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; font-size: 14px; color: var(--muted); }
+  footer b { color: var(--ink); }
+
+  @media (max-width: 720px) {
+    .connect { grid-template-columns: 1fr; }
+    .wrap { gap: 56px; padding-block: 24px 40px; }
+    .day b { font-size: 20px; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .day.sat, .day.sun { animation: lift .6s ease-out both; }
+    .day.sun { animation-delay: .12s; }
+    @keyframes lift { from { transform: translateY(6px); } to { transform: none; } }
+  }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <nav class="langs" aria-label="Language">
+      <a href="../" lang="ko" hreflang="ko">한국어</a><span aria-hidden="true">·</span><a href="./" lang="en" aria-current="page">English</a><span aria-hidden="true">·</span><a href="../ja/" lang="ja" hreflang="ja">日本語</a>
+    </nav>
+    <div class="brand">
+      <b>Weekend Album</b>
+      <span class="eyebrow">Mac app · v1.10.0 · Made by Baryon Labs</span>
+    </div>
+
+    <div class="rotator" id="rotator" aria-live="polite">
+      <div class="slide on" data-who="family">
+        <span class="who">For families with little ones</span>
+        <h1>They grow up on <span class="sat">Saturdays</span> &amp; <span class="sun">Sundays</span>.<br>Keep every chapter.</h1>
+        <p class="lede">All those weekend photos of the kids piling up on your phone become <strong>one album per weekend</strong>. It writes the story of where you went and what you did, <strong>place names and times included</strong>, and turns it into a PDF for Grandma with one click.</p>
+      </div>
+      <div class="slide" data-who="travel">
+        <span class="who">For travelers and photo lovers</span>
+        <h1>Camera, phone, dashcam.<br>One trip, one book.</h1>
+        <p class="lede">Move SD card and phone photos to your external drive, <strong>reading every copy back to check it</strong>, then flip through a travel book that <strong>turns the page with a little map</strong> each time the scenery changes.</p>
+      </div>
+      <div class="slide" data-who="space">
+        <span class="who">For a Mac that's running out of room</span>
+        <h1>A lighter Mac.<br>Every memory kept.</h1>
+        <p class="lede">Originals go to your external drive; your Mac keeps the previews. It <strong>tells you what's safe to delete</strong>, logs every move, and lets you <strong>undo at any time</strong>. And the AI that picks your best shots works right on your Mac.</p>
+      </div>
+    </div>
+    <div class="who-dots" role="tablist" aria-label="Who is it for?">
+      <button type="button" role="tab" data-go="0" aria-label="Families with kids"></button>
+      <button type="button" role="tab" data-go="1" aria-label="Travelers and photo lovers"></button>
+      <button type="button" role="tab" data-go="2" aria-label="Short on Mac storage"></button>
+    </div>
+
+    <div class="week" aria-label="The days Weekend Album gathers: Saturday and Sunday">
+      <div class="day"><span>Mon</span><b>10</b></div>
+      <div class="day"><span>Tue</span><b>11</b></div>
+      <div class="day"><span>Wed</span><b>12</b></div>
+      <div class="day"><span>Thu</span><b>13</b></div>
+      <div class="day"><span>Fri</span><b>14</b></div>
+      <div class="day sat"><span>Sat</span><b>15</b></div>
+      <div class="day sun"><span>Sun</span><b>16</b></div>
+    </div>
+    <p class="folder">~/Pictures/주말 사진첩/<em>2026-08 3째주 (8.15~8.16)</em>/20260815_101530_IMG_1234.HEIC</p>
+
+    <div class="get">
+      <a class="btn" href="https://github.com/baryonlabs/weekend-album-releases/releases/latest/download/WeekendAlbum-1.10.0.dmg">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+        Download for Mac
+      </a>
+      <small>WeekendAlbum-1.10.0.dmg · about 700 MB (includes on-Mac AI models)<br>Apple Silicon (M1 or later) · macOS 15 or later · Available in English and Japanese ·
+        <a href="https://github.com/baryonlabs/weekend-album-releases/releases/tag/v1.10.0">Release notes</a></small>
+    </div>
+      <figure class="comic comic-wide">
+      <img src="../illus/hero.jpg" width="1500" height="1000" alt="A three-panel comic: a family's weekend photos fly into a laptop and come out as a single photo album">
+      <figcaption>Shoot on the weekend → the app gathers → one album to keep</figcaption>
+    </figure>
+  </section>
+
+
+  <section class="section" id="screens">
+    <header>
+      <span class="eyebrow">Take a look</span>
+      <h2>Here's what it looks like</h2>
+      <p class="demo-note">The screens show a demo album made with sample images (Unsplash, Lorem Picsum). The app itself speaks English, Korean, and Japanese.</p>
+    </header>
+    <div class="shots">
+      <figure>
+        <img src="../shots/home.jpg" width="1600" height="1075" alt="Weekend Album home screen: cards for weekend, weekday, and trip albums, grouped by month">
+        <figcaption><b>Home</b> · Each month's weekend albums, weekdays, and trips, laid out as cards.</figcaption>
+      </figure>
+      <div class="shot-grid">
+        <figure>
+          <img src="../shots/album.jpg" width="1600" height="1075" alt="One weekend's album: intro story, notes, photos by day, and favorites marked with hearts" loading="lazy">
+          <figcaption><b>One weekend, one album</b> · A short story, private notes, and the favorites you hearted</figcaption>
+        </figure>
+        <figure>
+          <img src="../shots/book.jpg" width="1600" height="1075" alt="Photo book view: a large cover photo with the story's title on top" loading="lazy">
+          <figcaption><b>Photo book</b> · Your favorites and story in one book, shareable as a PDF</figcaption>
+        </figure>
+        <figure>
+          <img src="../shots/insta.jpg" width="1600" height="1075" alt="My Insta: a profile and a grid of posts, one per weekend" loading="lazy">
+          <figcaption><b>My Insta</b> · Each weekend's best shots, as a private feed</figcaption>
+        </figure>
+        <figure>
+          <img src="../shots/post.jpg" width="1600" height="1075" alt="A My Insta post: photo carousel, caption, hashtags, and a suggested song with a volume slider" loading="lazy">
+          <figcaption><b>Posts</b> · Captions, hashtags, and a different soundtrack for every post</figcaption>
+        </figure>
+        <figure>
+          <img src="../shots/notes.jpg" width="1600" height="1075" alt="Notes: a list of to-dos and notes linked to albums" loading="lazy">
+          <figcaption><b>Notes</b> · Stories you want in the album, and things to do</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section" id="stories">
+    <header>
+      <span class="eyebrow">Beyond albums</span>
+      <h2>More photos, more worries. We'll take some off your plate.</h2>
+      <p class="muted">Camera cards, phones, external drives, a Mac that's full. Nothing gets deleted <b>until it's been checked</b>, and everything can be undone.</p>
+    </header>
+    <div class="stories">
+      <article class="story">
+        <img src="../illus/sdcard.jpg" width="900" height="900" loading="lazy" alt="Comic: photos from camera and dashcam SD cards travel through a laptop to an external drive, and a green check appears">
+        <div>
+          <span class="tag sat">SD Card Backup</span>
+          <h3>Pop in a card. It'll tell you when it's safe to erase.</h3>
+          <p>Insert a camera or dashcam SD card and pick an external drive. The card's folders are copied as-is, then <b>read back from the drive to make sure they match the originals</b>. When everything checks out: <b>“✅ This card is safe to erase.”</b></p>
+          <ul>
+            <li>One card = one folder. Next time, the same card only adds new files</li>
+            <li>Hidden folders and the card's trash, too. Nothing left behind</li>
+            <li>Back up a stack of cards in a row with “Eject and back up next card”</li>
+          </ul>
+        </div>
+      </article>
+      <article class="story flip">
+        <img src="../illus/phone.jpg" width="900" height="900" loading="lazy" alt="Comic: photos and documents slide from an Android phone down a cable to an external drive, and the phone looks relieved">
+        <div>
+          <span class="tag sun">Phone Backup</span>
+          <h3>Downloads and chat files off your phone, space back on it</h3>
+          <p>Plug in an Android phone and choose folders (Downloads, Camera, files from chat apps) to move to your external drive. Both sides are compared, and if you like, <b>only the verified files</b> are removed from the phone. New photos <b>drop into your Weekend Album automatically</b>, while the originals stay on the drive, so they barely touch your Mac's storage.</p>
+          <ul>
+            <li>Files that changed after copying are never deleted</li>
+            <li>Just turn on “USB debugging” on the phone, once</li>
+            <li>On iPhone? Bring photos in with the Mac's Image Capture app</li>
+          </ul>
+        </div>
+      </article>
+      <article class="story">
+        <img src="../illus/clean.jpg" width="900" height="900" loading="lazy" alt="Before-and-after comic: a cluttered cabinet full of duplicate photos becomes tidy shelves with an undo box">
+        <div>
+          <span class="tag sat">Drive Cleanup</span>
+          <h3>Messy external drive? You get a report first.</h3>
+          <p>It scans the drive and shows you <b>duplicates, junk files, empty folders, and how much space each folder takes</b>, before anything moves. Pick what to keep and the rest goes to a holding folder; stray photos and videos get sorted into <b>year/month folders</b>.</p>
+          <ul>
+            <li>Only files that are identical byte for byte count as duplicates</li>
+            <li>Every cleanup undoes with one button</li>
+            <li>SD card backup folders and Time Machine disks are left alone</li>
+          </ul>
+        </div>
+      </article>
+      <article class="story flip">
+        <img src="../illus/mac.jpg" width="900" height="900" loading="lazy" alt="Comic: a laptop groaning under photos and videos finds its big folders with a magnifying glass, moves them to an external drive, and feels light again">
+        <div>
+          <span class="tag sun">Backup &amp; Free Up Space</span>
+          <h3>Mac full? Keep your albums, lose the bulk.</h3>
+          <p>Back up your albums to an external drive, then hit <b>Free up Mac space</b>. Only verified originals are cleared from the Mac, and <b>the previews stay put</b>. Originals and videos open right up whenever the drive is connected. You can also pick big photo and video folders in your home folder and move them to the drive.</p>
+          <ul>
+            <li>The drive copy is read back one more time right before deleting</li>
+            <li>“Bring back to Mac” whenever you want</li>
+            <li>Photos library, code projects, and album folders are never moved</li>
+            <li>Undoable until you empty the Trash</li>
+            <li>Back up to Google Drive and tidy up in the same go</li>
+          </ul>
+        </div>
+      </article>
+      <article class="story">
+        <img src="../illus/log.jpg" width="900" height="900" loading="lazy" alt="Comic: a child checks the pages of a padlock-linked logbook with a magnifying glass, and green check marks appear">
+        <div>
+          <span class="tag sat">Activity Log</span>
+          <h3>What went where? Still answerable months later.</h3>
+          <p>Every move and delete is recorded, <b>down to each file</b>. Later, tap <b>check results again</b> to see that everything is still on the drive, and to confirm the log itself hasn't been edited or had entries go missing.</p>
+          <ul>
+            <li>Original location, new location, size, and MD5 for every file</li>
+            <li>Entries are chained by hashes, so tampering or gaps show up</li>
+            <li>The log is stored only on your Mac</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <header>
+      <span class="eyebrow">Making albums</span>
+      <h2>You just pick the photos</h2>
+    </header>
+    <div class="features">
+      <div class="feature"><h3>One album every weekend</h3><p>Saturday and Sunday photos are grouped by weekend (“Aug, week 3”), weekday photos by month (“Sep weekdays”). Trips and events can get albums of their own, too.</p></div>
+      <div class="feature"><h3>From wherever they came</h3><p>Pick from Google Photos, or drag in photos a friend sent you. The app reads the date taken and files each one in the right place. You can even note who took it.</p></div>
+      <div class="feature"><h3>A story with the when and where</h3><p>Neighborhood names, dates, time of day, holidays, even words on shop signs: it pieces together how the day went, and Claude drafts it like a diary entry when you ask. Then make it yours.</p></div>
+      <div class="feature"><h3>Photo books and PDFs</h3><p>Pick a few favorites and you've got a photo book. Bundle several weekends into a single PDF to send the family.</p></div>
+      <div class="feature"><h3>My Insta · AI on your Mac</h3><p><b>AI that runs on your Mac</b> (Apple Vision · Laya) picks best shots, hashtags, and a fitting song in seconds, without sending your photos anywhere. The song plays softly as a 30-second preview.</p></div>
+      <div class="feature"><h3>Fewer duplicates, more space</h3><p>Finds the same photo you got twice in a chat and moves the extra to the Trash, then tidies backed-up originals to free up space on your Mac.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="install">
+    <header>
+      <span class="eyebrow">Install</span>
+      <h2>Three steps, done</h2>
+      <p class="muted">It's not from the App Store, so your Mac asks you to confirm once, the first time only.</p>
+    </header>
+    <ol class="steps">
+      <li>
+        <h3>Download and open the DMG</h3>
+        <p>Click <b>Download for Mac</b> above, then double-click the file you downloaded.</p>
+      </li>
+      <li>
+        <h3>Drag it into Applications</h3>
+        <p>In the window that opens, drag the Weekend Album icon (its name shows as “주말 사진첩”) onto the Applications folder next to it.</p>
+      </li>
+      <li>
+        <h3>The first time, “Open Anyway”</h3>
+        <p>If macOS says it can't verify the app or its developer, go to <b>System Settings → Privacy &amp; Security</b>, scroll to the bottom, and click <b>Open Anyway</b>.
+          If it says the app “is damaged and can't be opened,” paste the line below into Terminal and open the app again.</p>
+        <div class="cmd">
+          <pre id="xattrCmd">xattr -dr com.apple.quarantine "/Applications/주말 사진첩.app"</pre>
+          <button class="copy" type="button" data-copy="xattrCmd">Copy</button>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="section" id="google">
+    <div class="connect">
+      <div style="display:grid;gap:16px;min-width:0">
+        <span class="eyebrow">Google Photos (optional)</span>
+        <h2>Want Google Photos? Send us one email.</h2>
+        <p class="muted">The app is still in Google's testing phase, so only registered accounts can connect to Google Photos. Dragging photos in works right away, no connection needed.</p>
+        <ul class="flow">
+          <li><span>You</span><p>Email us the Gmail address you use for Google Photos.</p></li>
+          <li><span>Baryon Labs</span><p>We register your account and reply with an app connection file (.json).</p></li>
+          <li><span>You</span><p>In the app's <b>Backup &amp; Free Up Space</b> tab, use <b>Choose downloaded JSON</b> to pick that file. Connected.</p></li>
+        </ul>
+      </div>
+      <div class="mail">
+        <span class="eyebrow">Send to</span>
+        <div class="addr"><b id="mailAddr">hello@baryon.ai</b><button class="copy" type="button" data-copy="mailAddr">Copy address</button></div>
+        <p class="muted" style="font-size:14px">Subject, e.g.: Weekend Album Google connection request<br>Body: the Gmail address you use for Google Photos</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="extras">
+    <header>
+      <span class="eyebrow">Nice to have</span>
+      <h2>The app opens without them</h2>
+      <p class="muted">If these are on your Mac, the matching features switch on. If not, only those features stay off.</p>
+    </header>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Program</th><th>What it turns on</th><th>Install</th></tr></thead>
+        <tbody>
+          <tr><td>Google Chrome</td><td>Google Photos picker window, making PDFs</td><td><a href="https://www.google.com/chrome/">google.com/chrome</a></td></tr>
+          <tr><td>ffmpeg</td><td>Reading video dates, clipping segments, saving a frame as a photo</td><td><code>brew install ffmpeg</code></td></tr>
+          <tr><td>adb (Android tools)</td><td>Phone Backup: reading and moving files on an Android phone</td><td><code>brew install --cask android-platform-tools</code></td></tr>
+          <tr><td>Claude Code</td><td>Drafting and rewriting album stories, writing My Insta captions (uses your own Claude account). Photo picking and songs work without it</td><td><a href="https://claude.com/claude-code">claude.com/claude-code</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <section class="section" id="feedback">
+    <div class="connect">
+      <div style="display:grid;gap:14px;min-width:0">
+        <span class="eyebrow">Feedback</span>
+        <h2>Something bugging you? Something you wish it did?</h2>
+        <p class="muted">Click <b>💬 Send Feedback</b> at the top of the app and an email opens with the subject and a simple template filled in. No app yet? The button below works too. A board where you can post with just email verification, no sign-up, is coming soon.</p>
+      </div>
+      <div class="mail">
+        <span class="eyebrow">Send to</span>
+        <div class="addr"><b id="fbAddr">hello@baryon.ai</b><button class="copy" type="button" data-copy="fbAddr">Copy address</button></div>
+        <a class="btn" style="justify-self:start;font-size:16px;padding:11px 18px" href="mailto:hello@baryon.ai?subject=%5BWeekend%20Album%20feedback%5D%20&body=%E2%96%A0%20Type%3A%20%28problem%2Fbug%20%2F%20feature%20idea%20%2F%20kudos%2Fother%29%0A%0A%E2%96%A0%20Details%0A%0A%0A%E2%96%A0%20App%20version%20%C2%B7%20Mac%3A%20">Email us your feedback</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="privacy">
+    <header>
+      <span class="eyebrow">Photos &amp; privacy</span>
+      <h2>Your albums live on your Mac</h2>
+    </header>
+    <div class="data">
+      <div><b>Nothing goes to our servers</b><p>Albums are made in your Mac's Pictures folder. Baryon Labs never receives your photos, stories, or notes. Photos leave your Mac only when you choose to, like backing up to your own Google Drive.</p></div>
+      <div><b>Mostly on your Mac</b><p>Photo picking, tags, and songs are handled by AI on your Mac. Only when you ask for writing do a few chosen photos and a “when &amp; where” summary (down to the neighborhood) go to your Claude account. Originals, file names, and GPS coordinates are not sent.</p></div>
+      <div><b>Every action is logged</b><p>The location, size, and MD5 of every file moved or deleted is kept on this Mac only, so you can check later that everything is still intact.</p></div>
+      <div><b>Anonymous usage counts only</b><p>Baryon Labs receives only anonymous counts of which features were used how often. You can see exactly what would be sent, and turn it off, under “ⓘ Info” in the app.</p></div>
+    </div>
+    <p class="muted" style="font-size:14px">For details, see “ⓘ Info” in the app → data &amp; AI notes, Terms of Use, and Privacy Policy. Weekend Album is meant for personal and family, non-commercial use.</p>
+  </section>
+
+  <footer>
+    <span>Made by <b>Baryon Labs</b> · © 2026 Baryon Labs. All rights reserved.</span>
+    <span>Contact <span class="mono" style="user-select:all">hello@baryon.ai</span> · <a href="https://github.com/baryonlabs/weekend-album-releases/releases">All versions</a></span>
+  </footer>
+</div>
+
+<script>
+  document.querySelectorAll("[data-copy]").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const el = document.getElementById(btn.dataset.copy);
+      const text = el.textContent.trim();
+      const label = btn.textContent;
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.textContent = "Copied!";
+      } catch {
+        const range = document.createRange();
+        range.selectNodeContents(el);
+        const sel = window.getSelection();
+        sel.removeAllRanges(); sel.addRange(range);
+        btn.textContent = "Selected · ⌘C";
+      }
+      setTimeout(() => { btn.textContent = label; }, 1800);
+    });
+  });
+
+  // Audience-specific headline: random on each visit, then rotates every few seconds (fixed when Reduce Motion is on)
+  (() => {
+    const slides = [...document.querySelectorAll("#rotator .slide")];
+    const dots = [...document.querySelectorAll(".who-dots button")];
+    if (!slides.length) return;
+    let i = Math.floor(Math.random() * slides.length), timer = 0, paused = false;
+    const show = (n) => { i = (n + slides.length) % slides.length;
+      slides.forEach((s, k) => { s.classList.toggle("on", k === i); s.setAttribute("aria-hidden", k !== i); });
+      dots.forEach((d, k) => { d.classList.toggle("on", k === i); d.setAttribute("aria-selected", k === i); }); };
+    const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const tick = () => { clearTimeout(timer); if (!calm) timer = setTimeout(() => { if (!paused && !document.hidden) show(i + 1); tick(); }, 5500); };
+    dots.forEach((d, k) => d.addEventListener("click", () => { show(k); tick(); }));
+    const box = document.getElementById("rotator");
+    box.addEventListener("mouseenter", () => { paused = true; });
+    box.addEventListener("mouseleave", () => { paused = false; });
+    show(i); tick();
+  })();
+</script>
+
+</body>
+</html>
