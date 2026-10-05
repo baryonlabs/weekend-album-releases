@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="가족 사진을 주말마다 한 권씩 정리해 주는 Mac 앱. Made by Baryon Labs.">
+<meta property="og:title" content="폰 사진 가져오기 (폰·컴퓨터별) · 주말 사진첩">
+<meta property="og:description" content="찍어 둔 토·일이 한 권의 사진첩이 됩니다 — Mac 앱 무료 다운로드">
+<meta property="og:image" content="https://baryonlabs.github.io/weekend-album-releases/illus/hero.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://baryonlabs.github.io/weekend-album-releases/guide/">
+<meta property="og:locale" content="ko_KR">
+<link rel="canonical" href="https://baryonlabs.github.io/weekend-album-releases/guide/">
+<link rel="alternate" hreflang="ko" href="https://baryonlabs.github.io/weekend-album-releases/guide/">
+<link rel="alternate" hreflang="en" href="https://baryonlabs.github.io/weekend-album-releases/en/">
+<link rel="alternate" hreflang="ja" href="https://baryonlabs.github.io/weekend-album-releases/ja/">
+<link rel="alternate" hreflang="x-default" href="https://baryonlabs.github.io/weekend-album-releases/guide/">
+<style>html{color-scheme:light dark}body{margin:0;-webkit-font-smoothing:antialiased}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<style>
+  :root { --bg:#faf6ef; --paper:#fffdf8; --ink:#2b2620; --muted:#8a7f72; --line:#ece4d6; --accent:#d9734e; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#1b1916; --paper:#24211d; --ink:#f1ebe2; --muted:#a39887; --line:#36312a; --accent:#ee8a63; } }
+  body { background:var(--bg); color:var(--ink); font:16px/1.65 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Hiragino Sans",sans-serif; }
+  .g { max-width:860px; margin:0 auto; padding:28px 16px 64px; }
+  .g a.back { color:var(--muted); text-decoration:none; font-size:14px; }
+  .g h1 { font-size:clamp(26px,4vw,34px); margin:12px 0 6px; letter-spacing:-.02em; }
+  .g .lead { color:var(--muted); margin:0 0 14px; }
+  .toc { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 8px; }
+  .toc a { border:1px solid var(--line); background:var(--paper); border-radius:999px; padding:4px 12px; font-size:13px; color:var(--ink); text-decoration:none; }
+  h2.os { margin:30px 0 10px; font-size:20px; }
+  .note { color:var(--muted); font-size:14px; margin:-4px 0 10px; }
+  .card { display:grid; grid-template-columns:200px 1fr; gap:18px; background:var(--paper); border:1px solid var(--line);
+          border-radius:16px; padding:16px; margin:0 0 14px; box-shadow:0 1px 2px rgba(60,40,20,.06),0 8px 24px rgba(60,40,20,.06); }
+  .card img { width:200px; height:200px; border-radius:12px; object-fit:cover; }
+  .card h3 { margin:2px 0 6px; font-size:18px; }
+  .card ol { margin:0 0 8px; padding-left:20px; }
+  .card li { margin:3px 0; }
+  .tip { background:var(--bg); border-radius:10px; padding:8px 12px; font-size:14px; margin:0; }
+  .tip .tl { color:var(--accent); font-weight:700; margin-right:6px; }
+  code { font-size:13px; background:var(--bg); border-radius:6px; padding:1px 5px; word-break:break-all; }
+  @media (max-width:640px) { .card { grid-template-columns:1fr; } .card img { width:140px; height:140px; } }
+</style>
+<div class="g">
+  <a class="back" href="../">← 소개로</a>
+  <h1>폰 사진 가져오기 (폰·컴퓨터별)</h1>
+  <p class="lead">폰과 컴퓨터에 따라 방법이 다릅니다. 내 경우를 찾아 따라 하세요. 가져온 폴더는 주말 사진첩의 <b>받은 사진 올리기</b>로 넣으면 날짜별로 정리됩니다.</p>
+  <nav class="toc"><a href="#iphone-mac">아이폰 → Mac (케이블)</a><a href="#iphone-icloud">아이폰 · iCloud 사진 → Mac</a><a href="#android-mac">안드로이드 → Mac</a><a href="#google-photos">Google 포토에 올려 둔 사진 (아이폰·안드로이드 모두)</a><a href="#iphone-windows">아이폰 → Windows PC</a><a href="#android-windows">안드로이드 → Windows PC</a></nav>
+  <h2 class="os">Mac</h2><article class="card" id="iphone-mac">
+  <img src="../howto/iphone-mac.jpg" alt="아이폰 → Mac (케이블)" width="200" height="200" loading="lazy">
+  <div><h3>아이폰 → Mac (케이블)</h3><ol><li>케이블로 연결하고 아이폰 잠금을 풀어 <b>이 컴퓨터를 신뢰</b> → 신뢰를 누릅니다.</li><li>Mac의 <b>이미지 캡처</b> 앱(또는 <b>사진</b> 앱 → 가져오기)에서 아이폰을 고릅니다.</li><li>받을 폴더를 정하고 <b>모두 다운로드</b>.</li><li>주말 사진첩에서 <b>받은 사진 올리기</b>로 그 폴더를 넣습니다.</li></ol><p class="tip"><span class="tl">팁</span> 아이폰 설정 → 사진 → &#x27;Mac 또는 PC로 전송&#x27;을 <b>원본 유지</b>로 하면 HEIC 그대로 옵니다 (&#x27;자동&#x27;은 JPG로 바꿈). Live Photo는 사진·동영상 두 파일로 옵니다.</p></div>
+</article><article class="card" id="iphone-icloud">
+  <img src="../howto/iphone-icloud.jpg" alt="아이폰 · iCloud 사진 → Mac" width="200" height="200" loading="lazy">
+  <div><h3>아이폰 · iCloud 사진 → Mac</h3><ol><li>iCloud 사진에서 <b>iPhone 저장 공간 최적화</b>가 켜져 있으면 폰에는 작은 사본만 있어요. 원본은 iCloud에 있습니다.</li><li>Mac의 <b>시스템 설정 → Apple 계정 → iCloud → 사진</b>을 켜고(같은 Apple 계정), <b>사진</b> 앱에서 사진을 고릅니다.</li><li>파일 → 내보내기 → <b>수정되지 않은 원본 내보내기</b> 로 폴더에 꺼냅니다.</li><li>그 폴더를 <b>받은 사진 올리기</b>로 넣습니다.</li></ol><p class="tip"><span class="tl">팁</span> Mac 공간이 부족하면 iCloud.com → 사진에서 골라 내려받아도 됩니다.</p></div>
+</article><article class="card" id="android-mac">
+  <img src="../howto/android-mac.jpg" alt="안드로이드 → Mac" width="200" height="200" loading="lazy">
+  <div><h3>안드로이드 → Mac</h3><ol><li>처음 한 번: 터미널에서 <code>brew install --cask android-platform-tools</code>, 폰에서 개발자 옵션 → <b>USB 디버깅</b> 켜기.</li><li>케이블로 연결하고 폰의 <b>USB 디버깅 허용</b>을 누릅니다.</li><li>주말 사진첩 <b>폰 백업</b> 탭에서 폴더(카메라·다운로드·카톡 등)를 고르고 옮깁니다 — 새로 찍은 사진은 사진첩에 자동으로 들어가요.</li><li>원하면 확인된 파일만 <b>폰에서 지우기</b>.</li></ol><p class="tip"><span class="tl">팁</span> 사진만 필요하면: 폰 알림의 USB 모드를 <b>사진 전송(PTP)</b> 으로 하고 Mac의 이미지 캡처로 가져와도 됩니다.</p></div>
+</article><article class="card" id="google-photos">
+  <img src="../howto/google-photos.jpg" alt="Google 포토에 올려 둔 사진 (아이폰·안드로이드 모두)" width="200" height="200" loading="lazy">
+  <div><h3>Google 포토에 올려 둔 사진 (아이폰·안드로이드 모두)</h3><ol><li>주말 사진첩의 <b>Google 포토에서 사진 가져오기</b>를 누릅니다.</li><li>열린 Google 포토 창에서 가져올 사진을 고릅니다.</li><li>고른 사진만 내려받아 날짜별 사진첩으로 정리됩니다.</li></ol><p class="tip"><span class="tl">팁</span> Google 정책상 외부 앱은 사람이 고른 사진만 받을 수 있어요. 아주 많은 양은 Google 테이크아웃으로 내려받으세요.</p></div>
+</article><h2 class="os">Windows PC</h2><p class="note">주말 사진첩은 지금 Mac용입니다 (Windows판 준비 중). Windows에서는 사진을 먼저 PC로 가져와 두세요.</p><article class="card" id="iphone-windows">
+  <img src="../howto/iphone-windows.jpg" alt="아이폰 → Windows PC" width="200" height="200" loading="lazy">
+  <div><h3>아이폰 → Windows PC</h3><ol><li>Microsoft Store에서 <b>Apple Devices</b> 앱을 설치합니다 (아이폰 연결 드라이버).</li><li>케이블로 연결하고 아이폰에서 <b>신뢰</b>를 누릅니다.</li><li>Windows <b>사진</b> 앱 → 가져오기 → 휴대폰, 또는 파일 탐색기 → Apple iPhone → Internal Storage → <b>DCIM</b> 에서 복사합니다.</li></ol><p class="tip"><span class="tl">팁</span> iCloud 사진을 쓴다면 <b>Windows용 iCloud</b>로 원본을 받으세요. HEIC가 안 열리면 Microsoft Store의 &#x27;HEIF 이미지 확장&#x27;을 설치하거나 아이폰 전송 설정을 &#x27;자동&#x27;(JPG)으로.</p></div>
+</article><article class="card" id="android-windows">
+  <img src="../howto/android-windows.jpg" alt="안드로이드 → Windows PC" width="200" height="200" loading="lazy">
+  <div><h3>안드로이드 → Windows PC</h3><ol><li>케이블로 연결하고 폰 알림의 USB 모드에서 <b>파일 전송(MTP)</b> 을 고릅니다.</li><li>파일 탐색기 → 폰 이름 → 내부 저장소로 들어갑니다.</li><li><b>DCIM/Camera</b>(사진), <b>Pictures/KakaoTalk</b>(카톡), <b>Download</b>(다운로드)를 PC로 복사합니다.</li></ol><p class="tip"><span class="tl">팁</span> Windows <b>사진</b> 앱의 가져오기나 <b>휴대폰과 연결(Phone Link)</b>, 삼성 폰은 <b>Smart Switch</b>도 쓸 수 있어요.</p></div>
+</article>
+</div>
+</body>
+</html>

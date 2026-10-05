@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="A Mac app that turns your family photos into one album for every weekend. Made by Baryon Labs.">
+<meta property="og:title" content="Getting photos off your phone · Weekend Album">
+<meta property="og:description" content="Every Saturday and Sunday you shot becomes an album — free Mac app download">
+<meta property="og:image" content="https://baryonlabs.github.io/weekend-album-releases/illus/hero.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://baryonlabs.github.io/weekend-album-releases/en/guide/">
+<meta property="og:locale" content="en_US">
+<link rel="canonical" href="https://baryonlabs.github.io/weekend-album-releases/en/guide/">
+<link rel="alternate" hreflang="ko" href="https://baryonlabs.github.io/weekend-album-releases/">
+<link rel="alternate" hreflang="en" href="https://baryonlabs.github.io/weekend-album-releases/en/guide/">
+<link rel="alternate" hreflang="ja" href="https://baryonlabs.github.io/weekend-album-releases/ja/">
+<link rel="alternate" hreflang="x-default" href="https://baryonlabs.github.io/weekend-album-releases/">
+<style>html{color-scheme:light dark}body{margin:0;-webkit-font-smoothing:antialiased}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<style>
+  :root { --bg:#faf6ef; --paper:#fffdf8; --ink:#2b2620; --muted:#8a7f72; --line:#ece4d6; --accent:#d9734e; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#1b1916; --paper:#24211d; --ink:#f1ebe2; --muted:#a39887; --line:#36312a; --accent:#ee8a63; } }
+  body { background:var(--bg); color:var(--ink); font:16px/1.65 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Hiragino Sans",sans-serif; }
+  .g { max-width:860px; margin:0 auto; padding:28px 16px 64px; }
+  .g a.back { color:var(--muted); text-decoration:none; font-size:14px; }
+  .g h1 { font-size:clamp(26px,4vw,34px); margin:12px 0 6px; letter-spacing:-.02em; }
+  .g .lead { color:var(--muted); margin:0 0 14px; }
+  .toc { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 8px; }
+  .toc a { border:1px solid var(--line); background:var(--paper); border-radius:999px; padding:4px 12px; font-size:13px; color:var(--ink); text-decoration:none; }
+  h2.os { margin:30px 0 10px; font-size:20px; }
+  .note { color:var(--muted); font-size:14px; margin:-4px 0 10px; }
+  .card { display:grid; grid-template-columns:200px 1fr; gap:18px; background:var(--paper); border:1px solid var(--line);
+          border-radius:16px; padding:16px; margin:0 0 14px; box-shadow:0 1px 2px rgba(60,40,20,.06),0 8px 24px rgba(60,40,20,.06); }
+  .card img { width:200px; height:200px; border-radius:12px; object-fit:cover; }
+  .card h3 { margin:2px 0 6px; font-size:18px; }
+  .card ol { margin:0 0 8px; padding-left:20px; }
+  .card li { margin:3px 0; }
+  .tip { background:var(--bg); border-radius:10px; padding:8px 12px; font-size:14px; margin:0; }
+  .tip .tl { color:var(--accent); font-weight:700; margin-right:6px; }
+  code { font-size:13px; background:var(--bg); border-radius:6px; padding:1px 5px; word-break:break-all; }
+  @media (max-width:640px) { .card { grid-template-columns:1fr; } .card img { width:140px; height:140px; } }
+</style>
+<div class="g">
+  <a class="back" href="../">← Back</a>
+  <h1>Getting photos off your phone</h1>
+  <p class="lead">The method depends on your phone and computer. Find your case and follow along. Add the imported folder with <b>Upload received photos</b> in Weekend Album and it&#x27;s sorted by date.</p>
+  <nav class="toc"><a href="#iphone-mac">iPhone → Mac (cable)</a><a href="#iphone-icloud">iPhone · iCloud Photos → Mac</a><a href="#android-mac">Android → Mac</a><a href="#google-photos">Photos in Google Photos (iPhone &amp; Android)</a><a href="#iphone-windows">iPhone → Windows PC</a><a href="#android-windows">Android → Windows PC</a></nav>
+  <h2 class="os">Mac</h2><article class="card" id="iphone-mac">
+  <img src="../../howto/iphone-mac.jpg" alt="iPhone → Mac (cable)" width="200" height="200" loading="lazy">
+  <div><h3>iPhone → Mac (cable)</h3><ol><li>Connect by cable, unlock the iPhone and tap <b>Trust</b> on &quot;Trust This Computer?&quot;.</li><li>Open the Mac&#x27;s <b>Image Capture</b> app (or <b>Photos</b> → Import) and pick the iPhone.</li><li>Choose a folder and click <b>Download All</b>.</li><li>In Weekend Album, add that folder with <b>Upload received photos</b>.</li></ol><p class="tip"><span class="tl">Tip</span> iPhone Settings → Photos → &quot;Transfer to Mac or PC&quot;: <b>Keep Originals</b> keeps HEIC (&quot;Automatic&quot; converts to JPG). A Live Photo arrives as a photo + a short video.</p></div>
+</article><article class="card" id="iphone-icloud">
+  <img src="../../howto/iphone-icloud.jpg" alt="iPhone · iCloud Photos → Mac" width="200" height="200" loading="lazy">
+  <div><h3>iPhone · iCloud Photos → Mac</h3><ol><li>With <b>Optimize iPhone Storage</b> on, the phone keeps only small copies — the originals are in iCloud.</li><li>On the Mac, turn on <b>System Settings → Apple Account → iCloud → Photos</b> (same Apple Account) and select photos in the <b>Photos</b> app.</li><li>File → Export → <b>Export Unmodified Original</b> to a folder.</li><li>Add that folder with <b>Upload received photos</b>.</li></ol><p class="tip"><span class="tl">Tip</span> Short on Mac space? You can also pick and download from iCloud.com → Photos.</p></div>
+</article><article class="card" id="android-mac">
+  <img src="../../howto/android-mac.jpg" alt="Android → Mac" width="200" height="200" loading="lazy">
+  <div><h3>Android → Mac</h3><ol><li>First time only: run <code>brew install --cask android-platform-tools</code> in Terminal, and turn on <b>USB debugging</b> in the phone&#x27;s Developer options.</li><li>Connect by cable and tap <b>Allow USB debugging</b> on the phone.</li><li>In Weekend Album&#x27;s <b>Phone Backup</b> tab, pick folders (camera, downloads, messengers…) and move them — new photos go into your albums automatically.</li><li>Optionally <b>delete from the phone</b> — only verified files.</li></ol><p class="tip"><span class="tl">Tip</span> Photos only? Set the phone&#x27;s USB mode to <b>Transfer photos (PTP)</b> and use the Mac&#x27;s Image Capture.</p></div>
+</article><article class="card" id="google-photos">
+  <img src="../../howto/google-photos.jpg" alt="Photos in Google Photos (iPhone &amp; Android)" width="200" height="200" loading="lazy">
+  <div><h3>Photos in Google Photos (iPhone &amp; Android)</h3><ol><li>Click <b>Import photos from Google Photos</b> in Weekend Album.</li><li>Pick photos in the Google Photos window that opens.</li><li>Only the photos you picked are downloaded and sorted into albums by date.</li></ol><p class="tip"><span class="tl">Tip</span> By Google&#x27;s policy, apps only receive photos you pick. For very large amounts, use Google Takeout.</p></div>
+</article><h2 class="os">Windows PC</h2><p class="note">Weekend Album is Mac-only for now (a Windows version is in the works). On Windows, bring photos to the PC first.</p><article class="card" id="iphone-windows">
+  <img src="../../howto/iphone-windows.jpg" alt="iPhone → Windows PC" width="200" height="200" loading="lazy">
+  <div><h3>iPhone → Windows PC</h3><ol><li>Install the <b>Apple Devices</b> app from the Microsoft Store (iPhone connection drivers).</li><li>Connect by cable and tap <b>Trust</b> on the iPhone.</li><li>Windows <b>Photos</b> app → Import → phone, or File Explorer → Apple iPhone → Internal Storage → <b>DCIM</b> and copy.</li></ol><p class="tip"><span class="tl">Tip</span> Using iCloud Photos? Get originals with <b>iCloud for Windows</b>. If HEIC won&#x27;t open, install &quot;HEIF Image Extensions&quot; from the Microsoft Store, or set the iPhone transfer option to &quot;Automatic&quot; (JPG).</p></div>
+</article><article class="card" id="android-windows">
+  <img src="../../howto/android-windows.jpg" alt="Android → Windows PC" width="200" height="200" loading="lazy">
+  <div><h3>Android → Windows PC</h3><ol><li>Connect by cable and choose <b>File transfer (MTP)</b> in the phone&#x27;s USB notification.</li><li>File Explorer → your phone → Internal storage.</li><li>Copy <b>DCIM/Camera</b> (photos), messenger folders under <b>Pictures</b>, and <b>Download</b> to the PC.</li></ol><p class="tip"><span class="tl">Tip</span> You can also use the Windows <b>Photos</b> app&#x27;s Import, <b>Phone Link</b>, or <b>Smart Switch</b> on Samsung phones.</p></div>
+</article>
+</div>
+</body>
+</html>
