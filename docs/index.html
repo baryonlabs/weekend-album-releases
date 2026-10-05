@@ -144,6 +144,19 @@
   }
   @media (prefers-reduced-motion: no-preference) { .story img { transition: transform .3s ease; } .story img:hover { transform: rotate(0) scale(1.02); } }
 
+  /* 대상별로 바뀌는 첫 문장 */
+  .rotator { display: grid; }
+  .rotator .slide { grid-area: 1 / 1; display: grid; gap: 18px; align-content: start; opacity: 0; visibility: hidden; transform: translateY(6px);
+    transition: opacity .7s ease, transform .7s ease, visibility 0s linear .7s; }
+  .rotator .slide.on { opacity: 1; visibility: visible; transform: none; transition: opacity .7s ease, transform .7s ease; }
+  .who { justify-self: start; font-size: 13px; font-weight: 700; color: var(--sun); background: var(--sun-soft); border-radius: 999px; padding: 4px 12px; }
+  .slide[data-who="travel"] .who { color: var(--sat); background: var(--sat-soft); }
+  .slide[data-who="space"] .who { color: var(--ink); background: var(--line); }
+  .who-dots { display: flex; gap: 8px; margin-top: -8px; }
+  .who-dots button { width: 28px; height: 6px; border-radius: 999px; border: 0; background: var(--line); cursor: pointer; padding: 0; }
+  .who-dots button.on { background: var(--ink); }
+  @media (prefers-reduced-motion: reduce) { .rotator .slide { transition: none; } }
+
   footer { border-top: 1px solid var(--line); padding-top: 22px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; font-size: 14px; color: var(--muted); }
   footer b { color: var(--ink); }
 
@@ -165,13 +178,31 @@
   <section class="hero">
     <div class="brand">
       <b>주말 사진첩</b>
-      <span class="eyebrow">Mac 앱 · v1.6.0 · Made by Baryon Labs</span>
+      <span class="eyebrow">Mac 앱 · v1.8.0 · Made by Baryon Labs</span>
     </div>
 
-    <h1>찍어 둔 <span class="sat">토</span>·<span class="sun">일</span>이<br>한 권의 사진첩이 됩니다</h1>
-
-    <p class="lede">휴대폰과 Google 포토에 흩어진 가족 사진을 <strong>주말마다 한 권씩</strong> 정리해 주는 Mac 앱입니다.
-      평일 사진은 달마다 모으고, 사진을 보며 소개 글 초안을 써 주고, 포토북과 PDF로 나눌 수 있어요.</p>
+    <div class="rotator" id="rotator" aria-live="polite">
+      <div class="slide on" data-who="family">
+        <span class="who">아이 키우는 집이라면</span>
+        <h1>아이가 자라는 <span class="sat">토</span>·<span class="sun">일</span>,<br>한 권씩 쌓여 갑니다</h1>
+        <p class="lede">주말마다 폰에 쌓이는 아이 사진을 <strong>주말별 사진첩</strong>으로. 어디서 무엇을 했는지 <strong>지명과 시간까지</strong> 담아 이야기를 써 주고, 할머니께 보낼 PDF도 버튼 하나로 만들어요.</p>
+      </div>
+      <div class="slide" data-who="travel">
+        <span class="who">여행·사진을 좋아한다면</span>
+        <h1>카메라, 폰, 블랙박스.<br>흩어진 여행이 한 권으로</h1>
+        <p class="lede">SD 카드와 폰 사진을 외장하드로 <strong>다시 읽어 확인하며</strong> 옮기고, 장소가 바뀔 때마다 <strong>작은 지도와 함께 넘어가는</strong> 여행 책을 만들어요.</p>
+      </div>
+      <div class="slide" data-who="space">
+        <span class="who">Mac 용량이 걱정이라면</span>
+        <h1>Mac은 가볍게,<br>추억은 그대로</h1>
+        <p class="lede">원본은 외장하드로, Mac에는 미리보기만. <strong>지워도 되는지 확인</strong>해 주고, 모든 작업이 기록으로 남아 <strong>언제든 되돌릴 수</strong> 있어요. 사진을 고르는 AI도 Mac 안에서만 일해요.</p>
+      </div>
+    </div>
+    <div class="who-dots" role="tablist" aria-label="누구를 위한 앱인지 보기">
+      <button type="button" role="tab" data-go="0" aria-label="아이 키우는 집"></button>
+      <button type="button" role="tab" data-go="1" aria-label="여행·사진을 좋아하는 사람"></button>
+      <button type="button" role="tab" data-go="2" aria-label="Mac 용량이 걱정인 사람"></button>
+    </div>
 
     <div class="week" aria-label="주말 사진첩이 묶는 날: 토요일과 일요일">
       <div class="day"><span>월</span><b>10</b></div>
@@ -185,12 +216,12 @@
     <p class="folder">~/Pictures/주말 사진첩/<em>2026-08 3째주 (8.15~8.16)</em>/20260815_101530_IMG_1234.HEIC</p>
 
     <div class="get">
-      <a class="btn" href="https://github.com/baryonlabs/weekend-album-releases/releases/latest/download/WeekendAlbum-1.6.0.dmg">
+      <a class="btn" href="https://github.com/baryonlabs/weekend-album-releases/releases/latest/download/WeekendAlbum-1.8.0.dmg">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
         Mac용 다운로드
       </a>
-      <small>WeekendAlbum-1.6.0.dmg · 약 700MB (Mac 안 AI 모델 포함)<br>Apple Silicon(M1 이상) · macOS 15 이상 ·
-        <a href="https://github.com/baryonlabs/weekend-album-releases/releases/tag/v1.6.0">릴리스 페이지</a></small>
+      <small>WeekendAlbum-1.8.0.dmg · 약 700MB (Mac 안 AI 모델 포함)<br>Apple Silicon(M1 이상) · macOS 15 이상 ·
+        <a href="https://github.com/baryonlabs/weekend-album-releases/releases/tag/v1.8.0">릴리스 페이지</a></small>
     </div>
       <figure class="comic comic-wide">
       <img src="illus/hero.jpg" width="1500" height="1000" alt="주말에 가족이 찍은 사진이 노트북으로 날아가 한 권의 사진첩이 되는 세 컷 만화">
@@ -449,6 +480,24 @@
       setTimeout(() => { btn.textContent = label; }, 1800);
     });
   });
+
+  // 대상별 첫 문장: 들어올 때마다 무작위로 하나, 몇 초마다 다음으로 (움직임 줄이기 설정이면 고정)
+  (() => {
+    const slides = [...document.querySelectorAll("#rotator .slide")];
+    const dots = [...document.querySelectorAll(".who-dots button")];
+    if (!slides.length) return;
+    let i = Math.floor(Math.random() * slides.length), timer = 0, paused = false;
+    const show = (n) => { i = (n + slides.length) % slides.length;
+      slides.forEach((s, k) => { s.classList.toggle("on", k === i); s.setAttribute("aria-hidden", k !== i); });
+      dots.forEach((d, k) => { d.classList.toggle("on", k === i); d.setAttribute("aria-selected", k === i); }); };
+    const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const tick = () => { clearTimeout(timer); if (!calm) timer = setTimeout(() => { if (!paused && !document.hidden) show(i + 1); tick(); }, 5500); };
+    dots.forEach((d, k) => d.addEventListener("click", () => { show(k); tick(); }));
+    const box = document.getElementById("rotator");
+    box.addEventListener("mouseenter", () => { paused = true; });
+    box.addEventListener("mouseleave", () => { paused = false; });
+    show(i); tick();
+  })();
 </script>
 
 </body>
