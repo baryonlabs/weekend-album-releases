@@ -14,6 +14,9 @@
 <link rel="alternate" hreflang="ko" href="https://baryonlabs.github.io/weekend-album-releases/">
 <link rel="alternate" hreflang="en" href="https://baryonlabs.github.io/weekend-album-releases/en/">
 <link rel="alternate" hreflang="ja" href="https://baryonlabs.github.io/weekend-album-releases/ja/">
+<link rel="alternate" hreflang="id" href="https://baryonlabs.github.io/weekend-album-releases/id/">
+<link rel="alternate" hreflang="th" href="https://baryonlabs.github.io/weekend-album-releases/th/">
+<link rel="alternate" hreflang="vi" href="https://baryonlabs.github.io/weekend-album-releases/vi/">
 <link rel="alternate" hreflang="x-default" href="https://baryonlabs.github.io/weekend-album-releases/">
 <style>html{color-scheme:light dark}body{margin:0;-webkit-font-smoothing:antialiased}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>週末アルバム</title>
@@ -56,10 +59,12 @@
   /* Hero */
   .hero { display: grid; gap: 28px; }
   /* 언어 전환 */
-  .langs { justify-self: end; display: flex; align-items: center; gap: 2px; font-size: 13px; color: var(--muted); margin-bottom: -12px; }
-  .langs a { color: var(--muted); text-decoration: none; padding: 3px 10px; border-radius: 999px; border: 1px solid transparent; }
+  .langs { justify-self: end; display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 4px 2px; max-width: 100%;
+    font-size: 13px; color: var(--muted); margin-bottom: -12px; }
+  .langs a { color: var(--muted); text-decoration: none; padding: 3px 10px; border-radius: 999px; border: 1px solid transparent; white-space: nowrap; }
   .langs a:hover { color: var(--ink); border-color: var(--line); }
   .langs a[aria-current="page"] { color: var(--ink); background: var(--paper); border-color: var(--line); font-weight: 500; }
+  @media (max-width: 560px) { .langs { justify-self: stretch; justify-content: flex-start; margin-bottom: -4px; } .langs a { padding: 3px 8px; } }
 
   .brand { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
   .brand b { font-family: var(--display); font-weight: 700; font-size: 20px; }
@@ -189,12 +194,12 @@
 <body>
 <div class="wrap">
   <section class="hero">
-    <nav class="langs" aria-label="Language">
-      <a href="../" lang="ko" hreflang="ko">한국어</a><span aria-hidden="true">·</span><a href="../en/" lang="en" hreflang="en">English</a><span aria-hidden="true">·</span><a href="./" lang="ja" aria-current="page">日本語</a>
+    <nav class="langs" aria-label="言語">
+      <a href="../" lang="ko" hreflang="ko">한국어</a><a href="../en/" lang="en" hreflang="en">English</a><a href="./" lang="ja" aria-current="page">日本語</a><a href="../id/" lang="id" hreflang="id">Bahasa Indonesia</a><a href="../th/" lang="th" hreflang="th">ไทย</a><a href="../vi/" lang="vi" hreflang="vi">Tiếng Việt</a>
     </nav>
     <div class="brand">
       <b>週末アルバム</b>
-      <span class="eyebrow">Mac アプリ · v1.11.0 · Made by Baryon Labs</span>
+      <span class="eyebrow">Mac アプリ · v1.13.0 · Made by Baryon Labs</span>
     </div>
 
     <div class="rotator" id="rotator" aria-live="polite">
@@ -232,12 +237,12 @@
     <p class="folder">~/Pictures/주말 사진첩/<em>2026-08 3째주 (8.15~8.16)</em>/20260815_101530_IMG_1234.HEIC</p>
 
     <div class="get">
-      <a class="btn" href="https://github.com/baryonlabs/weekend-album-releases/releases/latest/download/WeekendAlbum-1.11.0.dmg">
+      <a class="btn" href="https://github.com/baryonlabs/weekend-album-releases/releases/latest/download/WeekendAlbum-1.13.0.dmg">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
         Mac 版をダウンロード
       </a>
-      <small>WeekendAlbum-1.11.0.dmg · 約700MB（Mac 内で動く AI モデルを含む）<br>Apple シリコン（M1 以降）· macOS 15 以降 · 日本語・英語に対応 ·
-        <a href="https://github.com/baryonlabs/weekend-album-releases/releases/tag/v1.11.0">リリースページ</a></small>
+      <small>WeekendAlbum-1.13.0.dmg · 約700MB（Mac 内で動く AI モデルを含む）<br>Apple シリコン（M1 以降）· macOS 15 以降 · 日本語・英語・インドネシア語・タイ語・ベトナム語に対応 ·
+        <a href="https://github.com/baryonlabs/weekend-album-releases/releases/tag/v1.13.0">リリースページ</a></small>
     </div>
       <figure class="comic comic-wide">
       <img src="../illus/hero.jpg" width="1500" height="1000" alt="週末に家族が撮った写真がノートパソコンに飛んでいき、1冊のアルバムになる3コマ漫画">
@@ -250,7 +255,7 @@
     <header>
       <span class="eyebrow">見てみる</span>
       <h2>こんな画面です</h2>
-      <p class="demo-note">画面内の写真は、サンプル画像（Unsplash、Lorem Picsum）で作ったデモアルバムです。アプリは日本語・英語・韓国語で使えます。</p>
+      <p class="demo-note">画面内の写真は、サンプル画像（Unsplash、Lorem Picsum）で作ったデモアルバムです。アプリは日本語・英語・韓国語・インドネシア語・タイ語・ベトナム語で使えます。</p>
     </header>
     <div class="shots">
       <figure>

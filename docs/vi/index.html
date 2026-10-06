@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Ứng dụng Mac made in Korea gom ảnh gia đình thành mỗi cuối tuần một album, kèm nhạc nền K-pop. Made by Baryon Labs.">
+<meta property="og:title" content="Album Cuối Tuần">
+<meta property="og:description" content="Cuối tuần của cả nhà, đẹp như phim Hàn — tải miễn phí ứng dụng Mac, có tiếng Việt">
+<meta property="og:image" content="https://baryonlabs.github.io/weekend-album-releases/illus/hero.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://baryonlabs.github.io/weekend-album-releases/vi/">
+<meta property="og:locale" content="vi_VN">
+<link rel="canonical" href="https://baryonlabs.github.io/weekend-album-releases/vi/">
+<link rel="alternate" hreflang="ko" href="https://baryonlabs.github.io/weekend-album-releases/">
+<link rel="alternate" hreflang="en" href="https://baryonlabs.github.io/weekend-album-releases/en/">
+<link rel="alternate" hreflang="ja" href="https://baryonlabs.github.io/weekend-album-releases/ja/">
+<link rel="alternate" hreflang="id" href="https://baryonlabs.github.io/weekend-album-releases/id/">
+<link rel="alternate" hreflang="th" href="https://baryonlabs.github.io/weekend-album-releases/th/">
+<link rel="alternate" hreflang="vi" href="https://baryonlabs.github.io/weekend-album-releases/vi/">
+<link rel="alternate" hreflang="x-default" href="https://baryonlabs.github.io/weekend-album-releases/">
+<style>html{color-scheme:light dark}body{margin:0;-webkit-font-smoothing:antialiased}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Album Cuối Tuần</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  /* Layout: 한국 달력의 토(파랑)·일(빨강)을 축으로 — 주간 달력 띠 히어로 → 기능 → 설치 순서 → 연결 → 데이터 안내 */
+  :root {
+    --bg: #f7f8fb; --paper: #ffffff; --ink: #1c2233; --muted: #626b80; --line: #dfe3ec;
+    --sat: #2f5bd3; --sun: #d9443a; --sat-soft: #e6ecfb; --sun-soft: #fbe9e7; --code: #eef1f7;
+    --display: "Be Vietnam Pro", "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", sans-serif;
+    --body: "Be Vietnam Pro", "Helvetica Neue", "Segoe UI", system-ui, "Apple SD Gothic Neo", sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #12151d; --paper: #1a1f2b; --ink: #e9ecf4; --muted: #9aa3b8; --line: #2b3242;
+      --sat: #7d9cff; --sun: #ff7a6e; --sat-soft: #1f2a4a; --sun-soft: #3a2020; --code: #222838; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #12151d; --paper: #1a1f2b; --ink: #e9ecf4; --muted: #9aa3b8; --line: #2b3242;
+    --sat: #7d9cff; --sun: #ff7a6e; --sat-soft: #1f2a4a; --sun-soft: #3a2020; --code: #222838; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.7 var(--body); padding-inline: 20px; }
+  .wrap { max-width: 980px; margin: 0 auto; padding-block: 40px 56px; display: grid; gap: 72px; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 700; text-wrap: balance; margin: 0; line-height: 1.28; }
+  h1 { font-size: clamp(34px, 6.4vw, 64px); font-weight: 800; letter-spacing: -0.02em; }
+  h2 { font-size: clamp(28px, 4.4vw, 38px); }
+  h3 { font-size: 22px; }
+  p { margin: 0; }
+  a { color: var(--sat); }
+  .eyebrow { font-family: var(--body); font-weight: 500; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  .muted { color: var(--muted); }
+  code, .mono { font-family: var(--mono); font-size: .9em; }
+  :focus-visible { outline: 3px solid var(--sat); outline-offset: 3px; border-radius: 6px; }
+
+  /* Hero */
+  .hero { display: grid; gap: 28px; }
+  /* 언어 전환 */
+  .langs { justify-self: end; display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 4px 2px; max-width: 100%;
+    font-size: 13px; color: var(--muted); margin-bottom: -12px; }
+  .langs a { color: var(--muted); text-decoration: none; padding: 3px 10px; border-radius: 999px; border: 1px solid transparent; white-space: nowrap; }
+  .langs a:hover { color: var(--ink); border-color: var(--line); }
+  .langs a[aria-current="page"] { color: var(--ink); background: var(--paper); border-color: var(--line); font-weight: 500; }
+  @media (max-width: 560px) { .langs { justify-self: stretch; justify-content: flex-start; margin-bottom: -4px; } .langs a { padding: 3px 8px; } }
+
+  .brand { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .brand b { font-family: var(--display); font-weight: 700; font-size: 20px; }
+  .hero h1 .sat { color: var(--sat); } .hero h1 .sun { color: var(--sun); }
+  .lede { font-size: 19px; max-width: 34em; color: var(--muted); }
+  .lede strong { color: var(--ink); font-weight: 500; }
+
+  .week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; max-width: 560px; }
+  .day { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 8px 6px 10px; text-align: center; min-width: 0; }
+  .day span { display: block; font-size: 12px; color: var(--muted); }
+  .day b { font-family: var(--display); font-weight: 700; font-size: 26px; font-variant-numeric: tabular-nums; }
+  .day.sat { background: var(--sat-soft); border-color: transparent; } .day.sat b, .day.sat span { color: var(--sat); }
+  .day.sun { background: var(--sun-soft); border-color: transparent; } .day.sun b, .day.sun span { color: var(--sun); }
+  .folder { font-family: var(--mono); font-size: 13px; color: var(--muted); overflow-x: auto; white-space: nowrap; }
+  .folder em { font-style: normal; color: var(--ink); }
+
+  .get { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; background: var(--sat); color: var(--paper); text-decoration: none;
+    font-weight: 700; font-size: 18px; padding: 15px 24px; border-radius: 14px; box-shadow: 0 6px 20px color-mix(in srgb, var(--sat) 30%, transparent); }
+  .btn:hover { filter: brightness(1.06); }
+  .btn svg { width: 20px; height: 20px; }
+  .get small { color: var(--muted); font-size: 14px; line-height: 1.5; }
+
+  /* Features */
+  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px 32px; }
+  .feature { display: grid; gap: 6px; padding-top: 14px; border-top: 2px solid var(--line); min-width: 0; }
+  .feature:nth-child(3n+1) { border-top-color: var(--sat); }
+  .feature:nth-child(3n+2) { border-top-color: var(--sun); }
+  .feature p { color: var(--muted); font-size: 15px; }
+  .section { display: grid; gap: 26px; }
+  .section > header { display: grid; gap: 8px; max-width: 40em; }
+
+  /* Install steps */
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; counter-reset: s; }
+  .steps li { counter-increment: s; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 4px 14px; background: var(--paper);
+    border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+  .steps li::before { content: counter(s); grid-row: span 3; font-family: var(--display); font-size: 30px; color: var(--sat); line-height: 1; }
+  .steps li > * { min-width: 0; }
+  .steps p { color: var(--muted); font-size: 15px; }
+  .cmd { display: flex; gap: 8px; align-items: stretch; margin-top: 8px; }
+  .cmd pre { flex: 1; min-width: 0; margin: 0; background: var(--code); border-radius: 10px; padding: 10px 12px; font: 13px/1.5 var(--mono); overflow-x: auto; white-space: pre; }
+  .copy { font: 500 13px var(--body); border: 1px solid var(--line); background: var(--paper); color: var(--ink); border-radius: 10px; padding: 0 12px; cursor: pointer; white-space: nowrap; }
+  .copy:hover { border-color: var(--sat); }
+
+  /* Google connect */
+  .connect { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 28px; align-items: start; }
+  .flow { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+  .flow li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 12px; align-items: baseline; }
+  .flow li span { font-family: var(--mono); font-size: 12px; color: var(--sun); border: 1px solid currentColor; border-radius: 999px; padding: 1px 8px; }
+  .mail { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 20px; display: grid; gap: 10px; }
+  .mail .addr { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .mail .addr b { font-family: var(--mono); font-size: 18px; font-weight: 500; user-select: all; }
+
+  /* Optional tools + data */
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th, td { text-align: left; padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-weight: 500; color: var(--muted); font-size: 13px; }
+  td:first-child { font-weight: 500; white-space: nowrap; }
+  .data { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .data div { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; display: grid; gap: 6px; min-width: 0; }
+  .data b { font-weight: 700; }
+  .data p { color: var(--muted); font-size: 14px; }
+
+  /* Screenshots */
+  .shots { display: grid; gap: 18px; }
+  .shots figure { margin: 0; display: grid; gap: 8px; min-width: 0; }
+  .shots img { width: 100%; height: auto; display: block; border-radius: 12px; border: 1px solid var(--line);
+    box-shadow: 0 18px 40px -24px color-mix(in srgb, var(--ink) 45%, transparent); background: var(--paper); }
+  .shots figcaption { font-size: 14px; color: var(--muted); }
+  .shots figcaption b { color: var(--ink); font-weight: 500; }
+  .shot-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px 18px; }
+  .demo-note { font-size: 13px; color: var(--muted); }
+
+  /* Comics & stories */
+  .comic { margin: 0; display: grid; gap: 8px; }
+  .comic img { width: 100%; height: auto; display: block; border-radius: 18px; border: 1px solid var(--line); background: var(--paper); }
+  .comic-wide { max-width: 760px; }
+  .comic figcaption { font-size: 14px; color: var(--muted); }
+  .stories { display: grid; gap: 40px; }
+  .story { display: grid; grid-template-columns: minmax(200px, 340px) minmax(0, 1fr); gap: 28px; align-items: center; }
+  .story.flip { grid-template-columns: minmax(0, 1fr) minmax(200px, 340px); }
+  .story.flip img { order: 2; }
+  .story img { width: 100%; height: auto; display: block; border-radius: 20px; border: 1px solid var(--line); background: var(--paper);
+    box-shadow: 0 18px 40px -26px color-mix(in srgb, var(--ink) 50%, transparent); transform: rotate(-1deg); }
+  .story.flip img { transform: rotate(1deg); }
+  .story > div { display: grid; gap: 10px; min-width: 0; }
+  .story p { color: var(--muted); } .story p b { color: var(--ink); font-weight: 500; }
+  .story ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 15px; }
+  .tag { justify-self: start; font-size: 13px; font-weight: 700; border-radius: 999px; padding: 3px 12px; }
+  .tag.sat { background: var(--sat-soft); color: var(--sat); } .tag.sun { background: var(--sun-soft); color: var(--sun); }
+  @media (max-width: 720px) {
+    .story, .story.flip { grid-template-columns: 1fr; gap: 16px; }
+    .story img, .story.flip img { order: 0; max-width: 300px; transform: none; }
+  }
+  @media (prefers-reduced-motion: no-preference) { .story img { transition: transform .3s ease; } .story img:hover { transform: rotate(0) scale(1.02); } }
+
+  /* 대상별로 바뀌는 첫 문장 */
+  .rotator { display: grid; }
+  .rotator .slide { grid-area: 1 / 1; display: grid; gap: 18px; align-content: start; opacity: 0; visibility: hidden; transform: translateY(6px);
+    transition: opacity .7s ease, transform .7s ease, visibility 0s linear .7s; }
+  .rotator .slide.on { opacity: 1; visibility: visible; transform: none; transition: opacity .7s ease, transform .7s ease; }
+  .who { justify-self: start; font-size: 13px; font-weight: 700; color: var(--sun); background: var(--sun-soft); border-radius: 999px; padding: 4px 12px; }
+  .slide[data-who="travel"] .who { color: var(--sat); background: var(--sat-soft); }
+  .slide[data-who="space"] .who { color: var(--ink); background: var(--line); }
+  .who-dots { display: flex; gap: 8px; margin-top: -8px; }
+  .who-dots button { width: 28px; height: 6px; border-radius: 999px; border: 0; background: var(--line); cursor: pointer; padding: 0; }
+  .who-dots button.on { background: var(--ink); }
+  @media (prefers-reduced-motion: reduce) { .rotator .slide { transition: none; } }
+
+  footer { border-top: 1px solid var(--line); padding-top: 22px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; font-size: 14px; color: var(--muted); }
+  footer b { color: var(--ink); }
+
+  @media (max-width: 720px) {
+    .connect { grid-template-columns: 1fr; }
+    .wrap { gap: 56px; padding-block: 24px 40px; }
+    .day b { font-size: 20px; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .day.sat, .day.sun { animation: lift .6s ease-out both; }
+    .day.sun { animation-delay: .12s; }
+    @keyframes lift { from { transform: translateY(6px); } to { transform: none; } }
+  }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <nav class="langs" aria-label="Ngôn ngữ">
+      <a href="../" lang="ko" hreflang="ko">한국어</a><a href="../en/" lang="en" hreflang="en">English</a><a href="../ja/" lang="ja" hreflang="ja">日本語</a><a href="../id/" lang="id" hreflang="id">Bahasa Indonesia</a><a href="../th/" lang="th" hreflang="th">ไทย</a><a href="./" lang="vi" aria-current="page">Tiếng Việt</a>
+    </nav>
+    <div class="brand">
+      <b>Album Cuối Tuần</b>
+      <span class="eyebrow">Ứng dụng Mac · v1.13.0 · Made in Korea by Baryon Labs</span>
+    </div>
+
+    <div class="rotator" id="rotator" aria-live="polite">
+      <div class="slide on" data-who="family">
+        <span class="who">Cho gia đình mê phim Hàn</span>
+        <h1><span class="sat">Thứ Bảy</span> &amp; <span class="sun">Chủ Nhật</span> của cả nhà,<br>đẹp như phim Hàn.</h1>
+        <p class="lede">Ảnh con cái chất đầy điện thoại mỗi cuối tuần trở thành <strong>mỗi cuối tuần một album</strong>, kèm photobook mang chút cảm giác như cảnh hồi tưởng trong phim Hàn. Khi bạn nhờ, Claude sẽ viết câu chuyện <strong>có cả địa danh và giờ giấc</strong>, rồi xuất PDF gửi bà chỉ với một cú nhấp.</p>
+      </div>
+      <div class="slide" data-who="travel">
+        <span class="who">Cho fan K-pop</span>
+        <h1>Bài đăng cuối tuần,<br>nhạc nền K-pop.</h1>
+        <p class="lede">Trong <strong>My Insta</strong>, bảng tin riêng kiểu Instagram ngay trong app, AI chạy trên Mac chọn ảnh đẹp nhất, hashtag và <strong>bài hát nền từ kho nhạc Hàn</strong>: IU, BTS, NewJeans, DAY6, TWICE và nhiều nữa. Nhạc phát nhẹ nhàng 30 giây nghe thử, còn ảnh của bạn không bị gửi đi đâu cả.</p>
+      </div>
+      <div class="slide" data-who="space">
+        <span class="who">Made in Korea, nói tiếng Việt</span>
+        <h1>Made in Korea,<br>mà cũng biết ăn Tết.</h1>
+        <p class="lede">App có <strong>giao diện tiếng Việt</strong>, và câu chuyện trong album nhận ra các dịp lễ Việt Nam như <strong>Tết Nguyên Đán, Trung Thu, Quốc khánh 2/9</strong>. Mac cũng nhẹ hẳn: ảnh gốc chuyển sang ổ cứng ngoài, Mac chỉ giữ bản xem trước, và <strong>hoàn tác được bất cứ lúc nào</strong>.</p>
+      </div>
+    </div>
+    <div class="who-dots" role="tablist" aria-label="App này dành cho ai?">
+      <button type="button" role="tab" data-go="0" aria-label="Gia đình mê phim Hàn"></button>
+      <button type="button" role="tab" data-go="1" aria-label="Fan K-pop"></button>
+      <button type="button" role="tab" data-go="2" aria-label="Made in Korea, nói tiếng Việt"></button>
+    </div>
+
+    <div class="week" aria-label="Những ngày Album Cuối Tuần gom lại: Thứ Bảy và Chủ Nhật">
+      <div class="day"><span>T2</span><b>10</b></div>
+      <div class="day"><span>T3</span><b>11</b></div>
+      <div class="day"><span>T4</span><b>12</b></div>
+      <div class="day"><span>T5</span><b>13</b></div>
+      <div class="day"><span>T6</span><b>14</b></div>
+      <div class="day sat"><span>T7</span><b>15</b></div>
+      <div class="day sun"><span>CN</span><b>16</b></div>
+    </div>
+    <p class="folder">~/Pictures/주말 사진첩/<em>2026-08 3째주 (8.15~8.16)</em>/20260815_101530_IMG_1234.HEIC</p>
+
+    <div class="get">
+      <a class="btn" href="https://github.com/baryonlabs/weekend-album-releases/releases/latest/download/WeekendAlbum-1.13.0.dmg">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+        Tải về cho Mac
+      </a>
+      <small>WeekendAlbum-1.13.0.dmg · khoảng 700 MB (gồm các mô hình AI chạy trên Mac)<br>Apple Silicon (M1 trở lên) · macOS 15 trở lên · Có tiếng Việt ·
+        <a href="https://github.com/baryonlabs/weekend-album-releases/releases/tag/v1.13.0">Ghi chú phát hành</a></small>
+    </div>
+      <figure class="comic comic-wide">
+      <img src="../illus/hero.jpg" width="1500" height="1000" alt="Truyện tranh ba khung: ảnh cuối tuần của một gia đình bay vào laptop rồi bước ra thành một cuốn album ảnh">
+      <figcaption>Chụp cuối tuần → app gom lại → một cuốn album để giữ mãi</figcaption>
+    </figure>
+  </section>
+
+
+  <section class="section" id="screens">
+    <header>
+      <span class="eyebrow">Xem thử</span>
+      <h2>Trông nó thế này</h2>
+      <p class="demo-note">Màn hình bên dưới là album demo làm từ ảnh mẫu (Unsplash, Lorem Picsum). App dùng được bằng tiếng Việt, tiếng Anh, tiếng Hàn, tiếng Nhật, tiếng Thái và tiếng Indonesia.</p>
+    </header>
+    <div class="shots">
+      <figure>
+        <img src="../shots/home.jpg" width="1600" height="1075" alt="Màn hình chính của Album Cuối Tuần: thẻ album cuối tuần, ngày thường và chuyến đi, xếp theo tháng">
+        <figcaption><b>Trang chính</b> · Album cuối tuần, ngày thường và chuyến đi của từng tháng, xếp thành thẻ.</figcaption>
+      </figure>
+      <div class="shot-grid">
+        <figure>
+          <img src="../shots/album.jpg" width="1600" height="1075" alt="Album của một cuối tuần: câu chuyện mở đầu, ghi chú, ảnh theo ngày và ảnh yêu thích đánh dấu trái tim" loading="lazy">
+          <figcaption><b>Một cuối tuần, một album</b> · Câu chuyện ngắn, ghi chú riêng và những tấm bạn thả tim</figcaption>
+        </figure>
+        <figure>
+          <img src="../shots/book.jpg" width="1600" height="1075" alt="Chế độ photobook: ảnh bìa lớn với tiêu đề câu chuyện phía trên" loading="lazy">
+          <figcaption><b>Photobook</b> · Ảnh yêu thích và câu chuyện gói trong một cuốn, chia sẻ được dưới dạng PDF</figcaption>
+        </figure>
+        <figure>
+          <img src="../shots/insta.jpg" width="1600" height="1075" alt="My Insta: trang cá nhân và lưới bài đăng, mỗi cuối tuần một bài" loading="lazy">
+          <figcaption><b>My Insta</b> · Những tấm đẹp nhất mỗi cuối tuần, thành bảng tin riêng</figcaption>
+        </figure>
+        <figure>
+          <img src="../shots/post.jpg" width="1600" height="1075" alt="Một bài đăng My Insta: ảnh trượt, chú thích, hashtag và bài hát gợi ý kèm thanh âm lượng" loading="lazy">
+          <figcaption><b>Bài đăng</b> · Chú thích, hashtag và một bài hát Hàn khác nhau cho mỗi bài</figcaption>
+        </figure>
+        <figure>
+          <img src="../shots/notes.jpg" width="1600" height="1075" alt="Ghi chú: danh sách việc cần làm và ghi chú gắn với album" loading="lazy">
+          <figcaption><b>Ghi chú</b> · Chuyện muốn đưa vào album và những việc cần làm</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section" id="stories">
+    <header>
+      <span class="eyebrow">Hơn cả album</span>
+      <h2>Ảnh càng nhiều, lo càng nhiều. Để chúng tôi gánh bớt.</h2>
+      <p class="muted">Thẻ máy ảnh, điện thoại, ổ cứng ngoài, Mac đầy ắp. Không gì bị xóa <b>trước khi được kiểm tra</b>, và mọi thứ đều hoàn tác được.</p>
+    </header>
+    <div class="stories">
+      <article class="story">
+        <img src="../illus/sdcard.jpg" width="900" height="900" loading="lazy" alt="Truyện tranh: ảnh từ thẻ SD của máy ảnh và camera hành trình đi qua laptop sang ổ cứng ngoài, rồi hiện dấu tích xanh">
+        <div>
+          <span class="tag sat">Sao lưu thẻ SD</span>
+          <h3>Cắm thẻ vào. App sẽ báo khi nào xóa được an toàn.</h3>
+          <p>Gắn thẻ SD của máy ảnh hoặc camera hành trình rồi chọn ổ cứng ngoài. Các thư mục trong thẻ được sao chép nguyên vẹn, sau đó <b>đọc lại từ ổ cứng để chắc chắn khớp với bản gốc</b>. Khi mọi thứ đều đúng: <b>“✅ Thẻ này có thể xóa an toàn.”</b></p>
+          <ul>
+            <li>Một thẻ = một thư mục. Lần sau, cùng thẻ đó chỉ thêm tệp mới</li>
+            <li>Cả thư mục ẩn và thùng rác trong thẻ. Không sót thứ gì</li>
+            <li>Sao lưu nhiều thẻ liên tiếp với “Đẩy thẻ ra và sao lưu thẻ tiếp theo”</li>
+          </ul>
+        </div>
+      </article>
+      <article class="story flip">
+        <img src="../illus/phone.jpg" width="900" height="900" loading="lazy" alt="Truyện tranh: ảnh và tài liệu trượt từ điện thoại Android theo dây cáp xuống ổ cứng ngoài, chiếc điện thoại thở phào nhẹ nhõm">
+        <div>
+          <span class="tag sun">Sao lưu điện thoại</span>
+          <h3>Tệp tải về và tệp chat rời điện thoại, dung lượng trở lại</h3>
+          <p>Cắm điện thoại Android rồi chọn thư mục (Tải xuống, Máy ảnh, <b>ảnh Zalo</b> và KakaoTalk trong thư mục Pictures) để chuyển sang ổ cứng ngoài. Hai bên được so sánh, và nếu muốn, <b>chỉ những tệp đã xác minh</b> mới bị xóa khỏi điện thoại. Ảnh mới <b>tự động vào Album Cuối Tuần</b>, còn bản gốc nằm trên ổ cứng, nên gần như không tốn dung lượng Mac.</p>
+          <ul>
+            <li>Tệp nào thay đổi sau khi sao chép sẽ không bao giờ bị xóa</li>
+            <li>Chỉ cần bật “Gỡ lỗi USB” (USB debugging) trên điện thoại, một lần</li>
+            <li>Dùng iPhone? Nhập bằng cáp với Chụp Ảnh (Image Capture) hoặc Ảnh; bản gốc chỉ nằm trên iCloud thì xuất từ app Ảnh · <a href="guide/">Cách nhập, theo điện thoại &amp; máy tính →</a></li>
+          </ul>
+        </div>
+      </article>
+      <article class="story">
+        <img src="../illus/clean.jpg" width="900" height="900" loading="lazy" alt="Truyện tranh trước và sau: chiếc tủ bừa bộn đầy ảnh trùng thành những kệ gọn gàng kèm hộp hoàn tác">
+        <div>
+          <span class="tag sat">Dọn ổ cứng</span>
+          <h3>Ổ cứng ngoài lộn xộn? Bạn nhận báo cáo trước.</h3>
+          <p>App quét ổ cứng và cho bạn xem <b>tệp trùng, tệp rác, thư mục rỗng và dung lượng từng thư mục</b>, trước khi di chuyển bất cứ thứ gì. Chọn thứ muốn giữ, phần còn lại vào thư mục tạm; ảnh và video lạc chỗ được xếp vào <b>thư mục năm/tháng</b>.</p>
+          <ul>
+            <li>Chỉ tệp giống nhau đến từng byte mới tính là trùng</li>
+            <li>Mỗi lần dọn đều hoàn tác được bằng một nút</li>
+            <li>Thư mục sao lưu thẻ SD và ổ Time Machine được để yên</li>
+          </ul>
+        </div>
+      </article>
+      <article class="story flip">
+        <img src="../illus/mac.jpg" width="900" height="900" loading="lazy" alt="Truyện tranh: chiếc laptop oằn mình vì ảnh và video dùng kính lúp tìm thư mục lớn, chuyển sang ổ cứng ngoài và thấy nhẹ nhõm">
+        <div>
+          <span class="tag sun">Sao lưu &amp; giải phóng dung lượng</span>
+          <h3>Mac đầy? Giữ album, bỏ bớt phần nặng.</h3>
+          <p>Sao lưu album sang ổ cứng ngoài, rồi nhấn <b>Giải phóng dung lượng Mac</b>. Chỉ bản gốc đã xác minh mới bị xóa khỏi Mac, còn <b>bản xem trước vẫn ở nguyên</b>. Bản gốc và video mở được ngay mỗi khi cắm ổ cứng. Bạn cũng có thể chọn các thư mục ảnh, video lớn trong thư mục nhà và chuyển sang ổ cứng.</p>
+          <ul>
+            <li>Bản trên ổ cứng được đọc lại thêm một lần ngay trước khi xóa</li>
+            <li>“Đưa về lại Mac” bất cứ lúc nào</li>
+            <li>Thư viện Ảnh, dự án code và thư mục album không bao giờ bị di chuyển</li>
+            <li>Hoàn tác được cho đến khi bạn dọn sạch Thùng rác</li>
+            <li>Sao lưu lên Google Drive và dọn dẹp trong cùng một lượt</li>
+          </ul>
+        </div>
+      </article>
+      <article class="story">
+        <img src="../illus/log.jpg" width="900" height="900" loading="lazy" alt="Truyện tranh: một em bé dùng kính lúp kiểm tra từng trang sổ nhật ký có khóa, rồi hiện dấu tích xanh">
+        <div>
+          <span class="tag sat">Nhật ký hoạt động</span>
+          <h3>Cái gì đã đi đâu? Mấy tháng sau vẫn trả lời được.</h3>
+          <p>Mọi lần di chuyển và xóa đều được ghi lại <b>đến từng tệp</b>. Sau này, nhấn <b>kiểm tra lại kết quả</b> để thấy mọi thứ vẫn còn trên ổ cứng, và xác nhận bản thân nhật ký không bị sửa hay mất mục nào.</p>
+          <ul>
+            <li>Vị trí cũ, vị trí mới, kích thước và MD5 của từng tệp</li>
+            <li>Các mục được nối với nhau bằng mã băm, nên sửa đổi hay thiếu sót đều lộ ra</li>
+            <li>Nhật ký chỉ lưu trên Mac của bạn</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <header>
+      <span class="eyebrow">Làm album</span>
+      <h2>Bạn chỉ việc chọn ảnh</h2>
+    </header>
+    <div class="features">
+      <div class="feature"><h3>Mỗi cuối tuần một album</h3><p>Ảnh Thứ Bảy và Chủ Nhật được gom theo cuối tuần (“Tháng 8, tuần 3”), ảnh ngày thường theo tháng (“Ngày thường tháng 9”). Chuyến đi và sự kiện cũng có thể có album riêng.</p></div>
+      <div class="feature"><h3>Ảnh từ đâu cũng được</h3><p>Chọn từ Google Photos, hoặc kéo thả ảnh bạn bè gửi qua Zalo. App đọc ngày chụp và xếp từng tấm vào đúng chỗ. Còn ghi được cả ai là người chụp.</p></div>
+      <div class="feature"><h3>Câu chuyện có đủ khi nào, ở đâu</h3><p>Tên phường, ngày, buổi trong ngày, dịp lễ như Tết hay Trung Thu, cả chữ trên biển hiệu cửa hàng: app ghép lại diễn biến của ngày hôm đó, và khi bạn nhờ, Claude viết thành một trang nhật ký. Rồi chỉnh lại theo giọng của bạn.</p></div>
+      <div class="feature"><h3>Photobook và PDF</h3><p>Chọn vài tấm yêu thích là có ngay photobook. Gộp nhiều cuối tuần vào một tệp PDF để gửi cả nhà.</p></div>
+      <div class="feature"><h3>My Insta · AI trên Mac</h3><p><b>AI chạy ngay trên Mac</b> (Apple Vision · Laya) chọn ảnh đẹp nhất, hashtag và bài hát hợp cảnh chỉ trong vài giây, không gửi ảnh của bạn đi đâu. Bài hát lấy từ kho nhạc Hàn, phát nhẹ 30 giây nghe thử.</p></div>
+      <div class="feature"><h3>Ít ảnh trùng, thêm dung lượng</h3><p>Tìm những tấm ảnh giống nhau bạn nhận hai lần trong chat và chuyển bản thừa vào Thùng rác, rồi dọn bản gốc đã sao lưu để giải phóng dung lượng Mac.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="install">
+    <header>
+      <span class="eyebrow">Cài đặt</span>
+      <h2>Ba bước là xong</h2>
+      <p class="muted">App không đến từ App Store, nên lần đầu Mac sẽ hỏi bạn xác nhận một lần.</p>
+    </header>
+    <ol class="steps">
+      <li>
+        <h3>Tải về và mở tệp DMG</h3>
+        <p>Nhấn <b>Tải về cho Mac</b> ở trên, rồi nhấp đúp vào tệp vừa tải.</p>
+      </li>
+      <li>
+        <h3>Kéo vào Ứng dụng</h3>
+        <p>Trong cửa sổ vừa mở, kéo biểu tượng Album Cuối Tuần (tên hiển thị là “주말 사진첩”) thả vào thư mục Ứng dụng bên cạnh.</p>
+      </li>
+      <li>
+        <h3>Lần đầu, chọn “Vẫn mở”</h3>
+        <p>Nếu macOS báo không thể xác minh app hoặc nhà phát triển, vào <b>Cài đặt hệ thống → Quyền riêng tư &amp; Bảo mật</b>, cuộn xuống cuối và nhấn <b>Vẫn mở</b> (Open Anyway).
+          Nếu báo app “bị hỏng và không thể mở”, hãy dán dòng dưới đây vào Terminal rồi mở lại app.</p>
+        <div class="cmd">
+          <pre id="xattrCmd">xattr -dr com.apple.quarantine "/Applications/주말 사진첩.app"</pre>
+          <button class="copy" type="button" data-copy="xattrCmd">Sao chép</button>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="section" id="google">
+    <div class="connect">
+      <div style="display:grid;gap:16px;min-width:0">
+        <span class="eyebrow">Google Photos (tùy chọn)</span>
+        <h2>Muốn dùng Google Photos? Gửi cho chúng tôi một email.</h2>
+        <p class="muted">App vẫn đang trong giai đoạn thử nghiệm của Google, nên chỉ tài khoản đã đăng ký mới kết nối được Google Photos. Kéo thả ảnh thì dùng được ngay, không cần kết nối.</p>
+        <ul class="flow">
+          <li><span>Bạn</span><p>Gửi email cho chúng tôi địa chỉ Gmail bạn dùng cho Google Photos.</p></li>
+          <li><span>Baryon Labs</span><p>Chúng tôi đăng ký tài khoản và gửi lại tệp kết nối app (.json).</p></li>
+          <li><span>Bạn</span><p>Trong tab <b>Sao lưu &amp; giải phóng dung lượng</b> của app, dùng <b>Chọn JSON đã tải về</b> để chọn tệp đó. Vậy là kết nối xong.</p></li>
+        </ul>
+      </div>
+      <div class="mail">
+        <span class="eyebrow">Gửi tới</span>
+        <div class="addr"><b id="mailAddr">hello@baryon.ai</b><button class="copy" type="button" data-copy="mailAddr">Sao chép địa chỉ</button></div>
+        <p class="muted" style="font-size:14px">Tiêu đề ví dụ: Yêu cầu kết nối Google cho Album Cuối Tuần<br>Nội dung: địa chỉ Gmail bạn dùng cho Google Photos</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="extras">
+    <header>
+      <span class="eyebrow">Có thì tốt</span>
+      <h2>Không có vẫn mở được app</h2>
+      <p class="muted">Nếu Mac có sẵn các chương trình này, tính năng tương ứng sẽ được bật. Nếu không, chỉ riêng tính năng đó tạm tắt.</p>
+    </header>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Chương trình</th><th>Tính năng được bật</th><th>Cài đặt</th></tr></thead>
+        <tbody>
+          <tr><td>Google Chrome</td><td>Cửa sổ chọn ảnh Google Photos, tạo PDF</td><td><a href="https://www.google.com/chrome/">google.com/chrome</a></td></tr>
+          <tr><td>ffmpeg</td><td>Đọc ngày quay video, cắt đoạn, lưu một khung hình thành ảnh</td><td><code>brew install ffmpeg</code></td></tr>
+          <tr><td>adb (công cụ Android)</td><td>Sao lưu điện thoại: đọc và chuyển tệp trên điện thoại Android</td><td><code>brew install --cask android-platform-tools</code></td></tr>
+          <tr><td>Claude Code</td><td>Viết và sửa câu chuyện album, viết chú thích My Insta (dùng tài khoản Claude của chính bạn). Chọn ảnh và bài hát vẫn chạy khi không có nó</td><td><a href="https://claude.com/claude-code">claude.com/claude-code</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <section class="section" id="feedback">
+    <div class="connect">
+      <div style="display:grid;gap:14px;min-width:0">
+        <span class="eyebrow">Góp ý</span>
+        <h2>Có gì chưa ổn? Có tính năng bạn mong muốn?</h2>
+        <p class="muted">Nhấn <b>💬 Gửi góp ý</b> ở đầu app, một email sẽ mở ra với tiêu đề và mẫu đơn giản điền sẵn. Chưa cài app? Nút bên dưới cũng dùng được. Sắp có bảng góp ý chỉ cần xác minh email, không cần đăng ký.</p>
+      </div>
+      <div class="mail">
+        <span class="eyebrow">Gửi tới</span>
+        <div class="addr"><b id="fbAddr">hello@baryon.ai</b><button class="copy" type="button" data-copy="fbAddr">Sao chép địa chỉ</button></div>
+        <a class="btn" style="justify-self:start;font-size:16px;padding:11px 18px" href="mailto:hello@baryon.ai?subject=%5BG%C3%B3p%20%C3%BD%20Album%20Cu%E1%BB%91i%20Tu%E1%BA%A7n%5D%20&body=%E2%96%A0%20Lo%E1%BA%A1i%3A%20%28l%E1%BB%97i%2Fs%E1%BB%B1%20c%E1%BB%91%20%2F%20%C3%BD%20t%C6%B0%E1%BB%9Fng%20t%C3%ADnh%20n%C4%83ng%20%2F%20khen%2Fkh%C3%A1c%29%0A%0A%E2%96%A0%20Chi%20ti%E1%BA%BFt%0A%0A%0A%E2%96%A0%20Phi%C3%AAn%20b%E1%BA%A3n%20app%20%C2%B7%20Mac%3A%20">Gửi góp ý qua email</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="privacy">
+    <header>
+      <span class="eyebrow">Ảnh &amp; quyền riêng tư</span>
+      <h2>Album của bạn nằm trên Mac của bạn</h2>
+    </header>
+    <div class="data">
+      <div><b>Không gì gửi về máy chủ của chúng tôi</b><p>Album được tạo trong thư mục Ảnh trên Mac. Baryon Labs không bao giờ nhận ảnh, câu chuyện hay ghi chú của bạn. Ảnh chỉ rời Mac khi bạn chọn, chẳng hạn sao lưu lên Google Drive của chính bạn.</p></div>
+      <div><b>Phần lớn xử lý trên Mac</b><p>Chọn ảnh, gắn thẻ và chọn bài hát do AI trên Mac đảm nhận. Chỉ khi bạn nhờ viết, vài tấm ảnh đã chọn và bản tóm tắt “khi nào &amp; ở đâu” (đến cấp phường) mới được gửi tới tài khoản Claude của bạn. Bản gốc, tên tệp và tọa độ GPS không được gửi.</p></div>
+      <div><b>Mọi thao tác đều được ghi lại</b><p>Vị trí, kích thước và MD5 của từng tệp được di chuyển hoặc xóa chỉ lưu trên Mac này, để sau này bạn kiểm tra mọi thứ vẫn còn nguyên.</p></div>
+      <div><b>Chỉ đếm lượt dùng ẩn danh</b><p>Baryon Labs chỉ nhận số liệu ẩn danh về tính năng nào được dùng bao nhiêu lần. Bạn có thể xem chính xác những gì sẽ gửi, và tắt nó, trong “ⓘ Thông tin” của app.</p></div>
+    </div>
+    <p class="muted" style="font-size:14px">Chi tiết xem trong “ⓘ Thông tin” của app → ghi chú về dữ liệu &amp; AI, Điều khoản sử dụng và Chính sách quyền riêng tư. Album Cuối Tuần dành cho mục đích cá nhân và gia đình, phi thương mại.</p>
+  </section>
+
+  <footer>
+    <span>Made in Korea by <b>Baryon Labs</b> · © 2026 Baryon Labs. All rights reserved.</span>
+    <span>Liên hệ <span class="mono" style="user-select:all">hello@baryon.ai</span> · <a href="https://github.com/baryonlabs/weekend-album-releases/releases">Tất cả phiên bản</a></span>
+  </footer>
+</div>
+
+<script>
+  document.querySelectorAll("[data-copy]").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const el = document.getElementById(btn.dataset.copy);
+      const text = el.textContent.trim();
+      const label = btn.textContent;
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.textContent = "Đã sao chép!";
+      } catch {
+        const range = document.createRange();
+        range.selectNodeContents(el);
+        const sel = window.getSelection();
+        sel.removeAllRanges(); sel.addRange(range);
+        btn.textContent = "Đã chọn · ⌘C";
+      }
+      setTimeout(() => { btn.textContent = label; }, 1800);
+    });
+  });
+
+  // Audience-specific headline: random on each visit, then rotates every few seconds (fixed when Reduce Motion is on)
+  (() => {
+    const slides = [...document.querySelectorAll("#rotator .slide")];
+    const dots = [...document.querySelectorAll(".who-dots button")];
+    if (!slides.length) return;
+    let i = Math.floor(Math.random() * slides.length), timer = 0, paused = false;
+    const show = (n) => { i = (n + slides.length) % slides.length;
+      slides.forEach((s, k) => { s.classList.toggle("on", k === i); s.setAttribute("aria-hidden", k !== i); });
+      dots.forEach((d, k) => { d.classList.toggle("on", k === i); d.setAttribute("aria-selected", k === i); }); };
+    const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const tick = () => { clearTimeout(timer); if (!calm) timer = setTimeout(() => { if (!paused && !document.hidden) show(i + 1); tick(); }, 5500); };
+    dots.forEach((d, k) => d.addEventListener("click", () => { show(k); tick(); }));
+    const box = document.getElementById("rotator");
+    box.addEventListener("mouseenter", () => { paused = true; });
+    box.addEventListener("mouseleave", () => { paused = false; });
+    show(i); tick();
+  })();
+</script>
+
+</body>
+</html>

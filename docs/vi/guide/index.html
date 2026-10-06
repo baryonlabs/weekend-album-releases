@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Ứng dụng Mac made in Korea gom ảnh gia đình thành mỗi cuối tuần một album, kèm nhạc nền K-pop. Made by Baryon Labs.">
+<meta property="og:title" content="Lấy ảnh từ điện thoại · Album Cuối Tuần">
+<meta property="og:description" content="Cuối tuần của cả nhà, đẹp như phim Hàn — tải miễn phí ứng dụng Mac, có tiếng Việt">
+<meta property="og:image" content="https://baryonlabs.github.io/weekend-album-releases/illus/hero.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://baryonlabs.github.io/weekend-album-releases/vi/guide/">
+<meta property="og:locale" content="vi_VN">
+<link rel="canonical" href="https://baryonlabs.github.io/weekend-album-releases/vi/guide/">
+<link rel="alternate" hreflang="ko" href="https://baryonlabs.github.io/weekend-album-releases/">
+<link rel="alternate" hreflang="en" href="https://baryonlabs.github.io/weekend-album-releases/en/">
+<link rel="alternate" hreflang="ja" href="https://baryonlabs.github.io/weekend-album-releases/ja/">
+<link rel="alternate" hreflang="id" href="https://baryonlabs.github.io/weekend-album-releases/id/">
+<link rel="alternate" hreflang="th" href="https://baryonlabs.github.io/weekend-album-releases/th/">
+<link rel="alternate" hreflang="vi" href="https://baryonlabs.github.io/weekend-album-releases/vi/guide/">
+<link rel="alternate" hreflang="x-default" href="https://baryonlabs.github.io/weekend-album-releases/">
+<style>html{color-scheme:light dark}body{margin:0;-webkit-font-smoothing:antialiased}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<style>
+  :root { --bg:#faf6ef; --paper:#fffdf8; --ink:#2b2620; --muted:#8a7f72; --line:#ece4d6; --accent:#d9734e; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#1b1916; --paper:#24211d; --ink:#f1ebe2; --muted:#a39887; --line:#36312a; --accent:#ee8a63; } }
+  body { background:var(--bg); color:var(--ink); font:16px/1.65 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Hiragino Sans",sans-serif; }
+  .g { max-width:860px; margin:0 auto; padding:28px 16px 64px; }
+  .g a.back { color:var(--muted); text-decoration:none; font-size:14px; }
+  .g h1 { font-size:clamp(26px,4vw,34px); margin:12px 0 6px; letter-spacing:-.02em; }
+  .g .lead { color:var(--muted); margin:0 0 14px; }
+  .toc { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 8px; }
+  .toc a { border:1px solid var(--line); background:var(--paper); border-radius:999px; padding:4px 12px; font-size:13px; color:var(--ink); text-decoration:none; }
+  h2.os { margin:30px 0 10px; font-size:20px; }
+  .note { color:var(--muted); font-size:14px; margin:-4px 0 10px; }
+  .card { display:grid; grid-template-columns:200px 1fr; gap:18px; background:var(--paper); border:1px solid var(--line);
+          border-radius:16px; padding:16px; margin:0 0 14px; box-shadow:0 1px 2px rgba(60,40,20,.06),0 8px 24px rgba(60,40,20,.06); }
+  .card img { width:200px; height:200px; border-radius:12px; object-fit:cover; }
+  .card h3 { margin:2px 0 6px; font-size:18px; }
+  .card ol { margin:0 0 8px; padding-left:20px; }
+  .card li { margin:3px 0; }
+  .tip { background:var(--bg); border-radius:10px; padding:8px 12px; font-size:14px; margin:0; }
+  .tip .tl { color:var(--accent); font-weight:700; margin-right:6px; }
+  code { font-size:13px; background:var(--bg); border-radius:6px; padding:1px 5px; word-break:break-all; }
+  @media (max-width:640px) { .card { grid-template-columns:1fr; } .card img { width:140px; height:140px; } }
+</style>
+<div class="g">
+  <a class="back" href="../">← Quay lại</a>
+  <h1>Lấy ảnh từ điện thoại</h1>
+  <p class="lead">Cách làm tùy vào điện thoại và máy tính của bạn. Hãy tìm trường hợp của mình và làm theo. Đưa thư mục vừa nhập vào bằng <b>Tải lên ảnh đã nhận</b> trong Album Cuối Tuần, ảnh sẽ được sắp xếp theo ngày.</p>
+  <nav class="toc"><a href="#iphone-mac">iPhone → Mac (cáp)</a><a href="#iphone-icloud">iPhone · Ảnh iCloud → Mac</a><a href="#android-mac">Android → Mac</a><a href="#google-photos">Ảnh trong Google Photos (iPhone &amp; Android)</a><a href="#iphone-windows">iPhone → máy tính Windows</a><a href="#android-windows">Android → máy tính Windows</a></nav>
+  <h2 class="os">Mac</h2><article class="card" id="iphone-mac">
+  <img src="../../howto/iphone-mac.jpg" alt="iPhone → Mac (cáp)" width="200" height="200" loading="lazy">
+  <div><h3>iPhone → Mac (cáp)</h3><ol><li>Cắm cáp, mở khóa iPhone và chạm <b>Tin cậy</b> ở thông báo &quot;Tin cậy máy tính này?&quot;.</li><li>Mở app <b>Chụp Ảnh</b> (Image Capture) trên Mac (hoặc <b>Ảnh</b> → Nhập) rồi chọn iPhone.</li><li>Chọn thư mục lưu và nhấn <b>Tải về tất cả</b>.</li><li>Trong Album Cuối Tuần, đưa thư mục đó vào bằng <b>Tải lên ảnh đã nhận</b>.</li></ol><p class="tip"><span class="tl">Mẹo</span> Cài đặt iPhone → Ảnh → &quot;Truyền sang Mac hoặc PC&quot;: chọn <b>Giữ bản gốc</b> để giữ HEIC (&quot;Tự động&quot; sẽ đổi sang JPG). Live Photo sẽ thành một ảnh + một video ngắn.</p></div>
+</article><article class="card" id="iphone-icloud">
+  <img src="../../howto/iphone-icloud.jpg" alt="iPhone · Ảnh iCloud → Mac" width="200" height="200" loading="lazy">
+  <div><h3>iPhone · Ảnh iCloud → Mac</h3><ol><li>Nếu bật <b>Tối ưu hóa dung lượng iPhone</b>, điện thoại chỉ giữ bản nhỏ — bản gốc nằm trên iCloud.</li><li>Trên Mac, bật <b>Cài đặt hệ thống → Tài khoản Apple → iCloud → Ảnh</b> (cùng Tài khoản Apple) rồi chọn ảnh trong app <b>Ảnh</b>.</li><li>Tệp → Xuất → <b>Xuất bản gốc chưa sửa đổi</b> ra một thư mục.</li><li>Đưa thư mục đó vào bằng <b>Tải lên ảnh đã nhận</b>.</li></ol><p class="tip"><span class="tl">Mẹo</span> Mac sắp hết chỗ? Bạn cũng có thể chọn và tải về từ iCloud.com → Ảnh.</p></div>
+</article><article class="card" id="android-mac">
+  <img src="../../howto/android-mac.jpg" alt="Android → Mac" width="200" height="200" loading="lazy">
+  <div><h3>Android → Mac</h3><ol><li>Chỉ lần đầu: chạy <code>brew install --cask android-platform-tools</code> trong Terminal và bật <b>Gỡ lỗi USB</b> (USB debugging) trong Tùy chọn nhà phát triển của điện thoại.</li><li>Cắm cáp và chạm <b>Cho phép gỡ lỗi USB</b> trên điện thoại.</li><li>Trong tab <b>Sao lưu điện thoại</b> của Album Cuối Tuần, chọn thư mục (máy ảnh, tải xuống, ảnh Zalo và KakaoTalk trong Pictures…) rồi chuyển — ảnh mới tự động vào album.</li><li>Nếu muốn, <b>xóa khỏi điện thoại</b> — chỉ những tệp đã xác minh.</li></ol><p class="tip"><span class="tl">Mẹo</span> Chỉ cần ảnh? Đặt chế độ USB của điện thoại thành <b>Truyền ảnh (PTP)</b> và dùng Chụp Ảnh trên Mac.</p></div>
+</article><article class="card" id="google-photos">
+  <img src="../../howto/google-photos.jpg" alt="Ảnh trong Google Photos (iPhone &amp; Android)" width="200" height="200" loading="lazy">
+  <div><h3>Ảnh trong Google Photos (iPhone &amp; Android)</h3><ol><li>Nhấn <b>Lấy ảnh từ Google Photos</b> trong Album Cuối Tuần.</li><li>Chọn ảnh trong cửa sổ Google Photos vừa mở.</li><li>Chỉ những ảnh bạn chọn được tải về và xếp vào album theo ngày.</li></ol><p class="tip"><span class="tl">Mẹo</span> Theo chính sách của Google, app chỉ nhận những ảnh bạn tự chọn. Nếu số lượng rất lớn, hãy dùng Google Takeout.</p></div>
+</article><h2 class="os">Windows PC</h2><p class="note">Hiện Album Cuối Tuần chỉ có trên Mac (bản Windows đang được chuẩn bị). Trên Windows, hãy chép ảnh vào PC trước.</p><article class="card" id="iphone-windows">
+  <img src="../../howto/iphone-windows.jpg" alt="iPhone → máy tính Windows" width="200" height="200" loading="lazy">
+  <div><h3>iPhone → máy tính Windows</h3><ol><li>Cài app <b>Apple Devices</b> từ Microsoft Store (driver kết nối iPhone).</li><li>Cắm cáp và chạm <b>Tin cậy</b> trên iPhone.</li><li>App <b>Ảnh</b> (Photos) của Windows → Nhập → điện thoại, hoặc File Explorer → Apple iPhone → Internal Storage → <b>DCIM</b> rồi sao chép.</li></ol><p class="tip"><span class="tl">Mẹo</span> Dùng Ảnh iCloud? Lấy bản gốc bằng <b>iCloud cho Windows</b>. Nếu không mở được HEIC, cài &quot;HEIF Image Extensions&quot; từ Microsoft Store, hoặc đặt tùy chọn truyền của iPhone thành &quot;Tự động&quot; (JPG).</p></div>
+</article><article class="card" id="android-windows">
+  <img src="../../howto/android-windows.jpg" alt="Android → máy tính Windows" width="200" height="200" loading="lazy">
+  <div><h3>Android → máy tính Windows</h3><ol><li>Cắm cáp và chọn <b>Truyền tệp (MTP)</b> trong thông báo USB của điện thoại.</li><li>File Explorer → tên điện thoại → Bộ nhớ trong.</li><li>Sao chép <b>DCIM/Camera</b> (ảnh chụp), thư mục Zalo và các app chat khác trong <b>Pictures</b>, và <b>Download</b> sang PC.</li></ol><p class="tip"><span class="tl">Mẹo</span> Bạn cũng có thể dùng chức năng Nhập của app <b>Ảnh</b> trên Windows, <b>Phone Link</b>, hoặc <b>Smart Switch</b> cho điện thoại Samsung.</p></div>
+</article>
+</div>
+</body>
+</html>

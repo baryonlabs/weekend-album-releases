@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="แอป Mac จากเกาหลีที่จัดรูปครอบครัวเป็นอัลบั้มสุดสัปดาห์ละเล่ม พร้อมเพลงประกอบเคป๊อป Made by Baryon Labs.">
+<meta property="og:title" content="อัลบั้มสุดสัปดาห์">
+<meta property="og:description" content="เสาร์-อาทิตย์ของครอบครัว ฟีลเหมือนซีรีส์เกาหลี — ดาวน์โหลดแอป Mac ฟรี มีภาษาไทย">
+<meta property="og:image" content="https://baryonlabs.github.io/weekend-album-releases/illus/hero.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://baryonlabs.github.io/weekend-album-releases/th/">
+<meta property="og:locale" content="th_TH">
+<link rel="canonical" href="https://baryonlabs.github.io/weekend-album-releases/th/">
+<link rel="alternate" hreflang="ko" href="https://baryonlabs.github.io/weekend-album-releases/">
+<link rel="alternate" hreflang="en" href="https://baryonlabs.github.io/weekend-album-releases/en/">
+<link rel="alternate" hreflang="ja" href="https://baryonlabs.github.io/weekend-album-releases/ja/">
+<link rel="alternate" hreflang="id" href="https://baryonlabs.github.io/weekend-album-releases/id/">
+<link rel="alternate" hreflang="th" href="https://baryonlabs.github.io/weekend-album-releases/th/">
+<link rel="alternate" hreflang="vi" href="https://baryonlabs.github.io/weekend-album-releases/vi/">
+<link rel="alternate" hreflang="x-default" href="https://baryonlabs.github.io/weekend-album-releases/">
+<style>html{color-scheme:light dark}body{margin:0;-webkit-font-smoothing:antialiased}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>อัลบั้มสุดสัปดาห์</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@500&family=IBM+Plex+Sans+Thai:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  /* Layout: 한국 달력의 토(파랑)·일(빨강)을 축으로 — 주간 달력 띠 히어로 → 기능 → 설치 순서 → 연결 → 데이터 안내 */
+  :root {
+    --bg: #f7f8fb; --paper: #ffffff; --ink: #1c2233; --muted: #626b80; --line: #dfe3ec;
+    --sat: #2f5bd3; --sun: #d9443a; --sat-soft: #e6ecfb; --sun-soft: #fbe9e7; --code: #eef1f7;
+    --display: "Kanit", "Thonburi", "Sukhumvit Set", "Leelawadee UI", "Apple SD Gothic Neo", sans-serif;
+    --body: "IBM Plex Sans Thai", "Thonburi", "Sukhumvit Set", "Leelawadee UI", "Apple SD Gothic Neo", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #12151d; --paper: #1a1f2b; --ink: #e9ecf4; --muted: #9aa3b8; --line: #2b3242;
+      --sat: #7d9cff; --sun: #ff7a6e; --sat-soft: #1f2a4a; --sun-soft: #3a2020; --code: #222838; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #12151d; --paper: #1a1f2b; --ink: #e9ecf4; --muted: #9aa3b8; --line: #2b3242;
+    --sat: #7d9cff; --sun: #ff7a6e; --sat-soft: #1f2a4a; --sun-soft: #3a2020; --code: #222838; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.8 var(--body); padding-inline: 20px; }
+  .wrap { max-width: 980px; margin: 0 auto; padding-block: 40px 56px; display: grid; gap: 72px; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 500; text-wrap: balance; margin: 0; line-height: 1.4; }
+  h1 { font-size: clamp(34px, 6.2vw, 62px); }
+  h2 { font-size: clamp(28px, 4.4vw, 38px); }
+  h3 { font-size: 22px; }
+  p { margin: 0; }
+  a { color: var(--sat); }
+  .eyebrow { font-family: var(--body); font-weight: 500; font-size: 12px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+  .muted { color: var(--muted); }
+  code, .mono { font-family: var(--mono); font-size: .9em; }
+  :focus-visible { outline: 3px solid var(--sat); outline-offset: 3px; border-radius: 6px; }
+
+  /* Hero */
+  .hero { display: grid; gap: 28px; }
+  /* 언어 전환 */
+  .langs { justify-self: end; display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 4px 2px; max-width: 100%;
+    font-size: 13px; color: var(--muted); margin-bottom: -12px; }
+  .langs a { color: var(--muted); text-decoration: none; padding: 3px 10px; border-radius: 999px; border: 1px solid transparent; white-space: nowrap; }
+  .langs a:hover { color: var(--ink); border-color: var(--line); }
+  .langs a[aria-current="page"] { color: var(--ink); background: var(--paper); border-color: var(--line); font-weight: 500; }
+  @media (max-width: 560px) { .langs { justify-self: stretch; justify-content: flex-start; margin-bottom: -4px; } .langs a { padding: 3px 8px; } }
+
+  .brand { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .brand b { font-family: var(--display); font-weight: 500; font-size: 20px; }
+  .hero h1 .sat { color: var(--sat); } .hero h1 .sun { color: var(--sun); }
+  .lede { font-size: 19px; max-width: 34em; color: var(--muted); }
+  .lede strong { color: var(--ink); font-weight: 500; }
+
+  .week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; max-width: 560px; }
+  .day { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 8px 6px 10px; text-align: center; min-width: 0; }
+  .day span { display: block; font-size: 12px; color: var(--muted); }
+  .day b { font-family: var(--display); font-weight: 500; font-size: 26px; font-variant-numeric: tabular-nums; }
+  .day.sat { background: var(--sat-soft); border-color: transparent; } .day.sat b, .day.sat span { color: var(--sat); }
+  .day.sun { background: var(--sun-soft); border-color: transparent; } .day.sun b, .day.sun span { color: var(--sun); }
+  .folder { font-family: var(--mono); font-size: 13px; color: var(--muted); overflow-x: auto; white-space: nowrap; }
+  .folder em { font-style: normal; color: var(--ink); }
+
+  .get { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; background: var(--sat); color: var(--paper); text-decoration: none;
+    font-weight: 700; font-size: 18px; padding: 15px 24px; border-radius: 14px; box-shadow: 0 6px 20px color-mix(in srgb, var(--sat) 30%, transparent); }
+  .btn:hover { filter: brightness(1.06); }
+  .btn svg { width: 20px; height: 20px; }
+  .get small { color: var(--muted); font-size: 14px; line-height: 1.5; }
+
+  /* Features */
+  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px 32px; }
+  .feature { display: grid; gap: 6px; padding-top: 14px; border-top: 2px solid var(--line); min-width: 0; }
+  .feature:nth-child(3n+1) { border-top-color: var(--sat); }
+  .feature:nth-child(3n+2) { border-top-color: var(--sun); }
+  .feature p { color: var(--muted); font-size: 15px; }
+  .section { display: grid; gap: 26px; }
+  .section > header { display: grid; gap: 8px; max-width: 40em; }
+
+  /* Install steps */
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; counter-reset: s; }
+  .steps li { counter-increment: s; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 4px 14px; background: var(--paper);
+    border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+  .steps li::before { content: counter(s); grid-row: span 3; font-family: var(--display); font-size: 30px; color: var(--sat); line-height: 1; }
+  .steps li > * { min-width: 0; }
+  .steps p { color: var(--muted); font-size: 15px; }
+  .cmd { display: flex; gap: 8px; align-items: stretch; margin-top: 8px; }
+  .cmd pre { flex: 1; min-width: 0; margin: 0; background: var(--code); border-radius: 10px; padding: 10px 12px; font: 13px/1.5 var(--mono); overflow-x: auto; white-space: pre; }
+  .copy { font: 500 13px var(--body); border: 1px solid var(--line); background: var(--paper); color: var(--ink); border-radius: 10px; padding: 0 12px; cursor: pointer; white-space: nowrap; }
+  .copy:hover { border-color: var(--sat); }
+
+  /* Google connect */
+  .connect { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 28px; align-items: start; }
+  .flow { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+  .flow li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 12px; align-items: baseline; }
+  .flow li span { font-family: var(--mono); font-size: 12px; color: var(--sun); border: 1px solid currentColor; border-radius: 999px; padding: 1px 8px; }
+  .mail { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 20px; display: grid; gap: 10px; }
+  .mail .addr { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .mail .addr b { font-family: var(--mono); font-size: 18px; font-weight: 500; user-select: all; }
+
+  /* Optional tools + data */
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th, td { text-align: left; padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-weight: 500; color: var(--muted); font-size: 13px; }
+  td:first-child { font-weight: 500; white-space: nowrap; }
+  .data { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .data div { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; display: grid; gap: 6px; min-width: 0; }
+  .data b { font-weight: 700; }
+  .data p { color: var(--muted); font-size: 14px; }
+
+  /* Screenshots */
+  .shots { display: grid; gap: 18px; }
+  .shots figure { margin: 0; display: grid; gap: 8px; min-width: 0; }
+  .shots img { width: 100%; height: auto; display: block; border-radius: 12px; border: 1px solid var(--line);
+    box-shadow: 0 18px 40px -24px color-mix(in srgb, var(--ink) 45%, transparent); background: var(--paper); }
+  .shots figcaption { font-size: 14px; color: var(--muted); }
+  .shots figcaption b { color: var(--ink); font-weight: 500; }
+  .shot-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px 18px; }
+  .demo-note { font-size: 13px; color: var(--muted); }
+
+  /* Comics & stories */
+  .comic { margin: 0; display: grid; gap: 8px; }
+  .comic img { width: 100%; height: auto; display: block; border-radius: 18px; border: 1px solid var(--line); background: var(--paper); }
+  .comic-wide { max-width: 760px; }
+  .comic figcaption { font-size: 14px; color: var(--muted); }
+  .stories { display: grid; gap: 40px; }
+  .story { display: grid; grid-template-columns: minmax(200px, 340px) minmax(0, 1fr); gap: 28px; align-items: center; }
+  .story.flip { grid-template-columns: minmax(0, 1fr) minmax(200px, 340px); }
+  .story.flip img { order: 2; }
+  .story img { width: 100%; height: auto; display: block; border-radius: 20px; border: 1px solid var(--line); background: var(--paper);
+    box-shadow: 0 18px 40px -26px color-mix(in srgb, var(--ink) 50%, transparent); transform: rotate(-1deg); }
+  .story.flip img { transform: rotate(1deg); }
+  .story > div { display: grid; gap: 10px; min-width: 0; }
+  .story p { color: var(--muted); } .story p b { color: var(--ink); font-weight: 500; }
+  .story ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 15px; }
+  .tag { justify-self: start; font-size: 13px; font-weight: 700; border-radius: 999px; padding: 3px 12px; }
+  .tag.sat { background: var(--sat-soft); color: var(--sat); } .tag.sun { background: var(--sun-soft); color: var(--sun); }
+  @media (max-width: 720px) {
+    .story, .story.flip { grid-template-columns: 1fr; gap: 16px; }
+    .story img, .story.flip img { order: 0; max-width: 300px; transform: none; }
+  }
+  @media (prefers-reduced-motion: no-preference) { .story img { transition: transform .3s ease; } .story img:hover { transform: rotate(0) scale(1.02); } }
+
+  /* 대상별로 바뀌는 첫 문장 */
+  .rotator { display: grid; }
+  .rotator .slide { grid-area: 1 / 1; display: grid; gap: 18px; align-content: start; opacity: 0; visibility: hidden; transform: translateY(6px);
+    transition: opacity .7s ease, transform .7s ease, visibility 0s linear .7s; }
+  .rotator .slide.on { opacity: 1; visibility: visible; transform: none; transition: opacity .7s ease, transform .7s ease; }
+  .who { justify-self: start; font-size: 13px; font-weight: 700; color: var(--sun); background: var(--sun-soft); border-radius: 999px; padding: 4px 12px; }
+  .slide[data-who="travel"] .who { color: var(--sat); background: var(--sat-soft); }
+  .slide[data-who="space"] .who { color: var(--ink); background: var(--line); }
+  .who-dots { display: flex; gap: 8px; margin-top: -8px; }
+  .who-dots button { width: 28px; height: 6px; border-radius: 999px; border: 0; background: var(--line); cursor: pointer; padding: 0; }
+  .who-dots button.on { background: var(--ink); }
+  @media (prefers-reduced-motion: reduce) { .rotator .slide { transition: none; } }
+
+  footer { border-top: 1px solid var(--line); padding-top: 22px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; font-size: 14px; color: var(--muted); }
+  footer b { color: var(--ink); }
+
+  @media (max-width: 720px) {
+    .connect { grid-template-columns: 1fr; }
+    .wrap { gap: 56px; padding-block: 24px 40px; }
+    .day b { font-size: 20px; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .day.sat, .day.sun { animation: lift .6s ease-out both; }
+    .day.sun { animation-delay: .12s; }
+    @keyframes lift { from { transform: translateY(6px); } to { transform: none; } }
+  }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <nav class="langs" aria-label="ภาษา">
+      <a href="../" lang="ko" hreflang="ko">한국어</a><a href="../en/" lang="en" hreflang="en">English</a><a href="../ja/" lang="ja" hreflang="ja">日本語</a><a href="../id/" lang="id" hreflang="id">Bahasa Indonesia</a><a href="./" lang="th" aria-current="page">ไทย</a><a href="../vi/" lang="vi" hreflang="vi">Tiếng Việt</a>
+    </nav>
+    <div class="brand">
+      <b>อัลบั้มสุดสัปดาห์</b>
+      <span class="eyebrow">แอป Mac · v1.13.0 · Made in Korea by Baryon Labs</span>
+    </div>
+
+    <div class="rotator" id="rotator" aria-live="polite">
+      <div class="slide on" data-who="family">
+        <span class="who">สำหรับครอบครัวสายซีรีส์เกาหลี</span>
+        <h1><span class="sat">เสาร์</span>-<span class="sun">อาทิตย์</span>ของครอบครัว<br>ฟีลเหมือนซีรีส์เกาหลี</h1>
+        <p class="lede">รูปลูก ๆ ที่สะสมเต็มมือถือทุกสุดสัปดาห์ กลายเป็น<strong>อัลบั้มสุดสัปดาห์ละเล่ม</strong> พร้อมโฟโต้บุ๊กที่ให้ฟีลเหมือนฉากย้อนความทรงจำในซีรีส์เกาหลี ถ้าอยากได้ Claude จะช่วยเขียนเรื่องราวให้ <strong>ครบทั้งชื่อสถานที่และเวลา</strong> แล้วทำเป็น PDF ส่งให้คุณยายได้ในคลิกเดียว</p>
+      </div>
+      <div class="slide" data-who="travel">
+        <span class="who">สำหรับสายเคป๊อป</span>
+        <h1>โพสต์สุดสัปดาห์<br>พร้อมเพลงประกอบเคป๊อป</h1>
+        <p class="lede">ใน <strong>My Insta</strong> ฟีดส่วนตัวสไตล์อินสตาแกรมในแอป AI ที่ทำงานบน Mac ของคุณจะเลือกรูปเด็ด แฮชแท็ก และ<strong>เพลงประกอบจากคลังเพลงเกาหลี</strong> ทั้ง IU, BTS, NewJeans, DAY6, TWICE และอีกมากมาย เปิดเบา ๆ เป็นตัวอย่าง 30 วินาที โดยไม่ส่งรูปของคุณออกไปไหน</p>
+      </div>
+      <div class="slide" data-who="space">
+        <span class="who">เมดอินโคเรีย พูดภาษาไทย</span>
+        <h1>เมดอินโคเรีย<br>แต่รู้จักสงกรานต์นะ</h1>
+        <p class="lede">ใช้แอปเป็น<strong>ภาษาไทย</strong>ได้เลย เรื่องราวในอัลบั้มรู้จักวันสำคัญของไทยอย่าง<strong>สงกรานต์ วันแม่ วันพ่อ</strong> ส่วน Mac ก็โล่งขึ้น ไฟล์ต้นฉบับย้ายไปไว้ในฮาร์ดดิสก์ภายนอก Mac เก็บไว้แค่ภาพตัวอย่าง และ<strong>ย้อนกลับได้ทุกเมื่อ</strong></p>
+      </div>
+    </div>
+    <div class="who-dots" role="tablist" aria-label="แอปนี้เหมาะกับใคร">
+      <button type="button" role="tab" data-go="0" aria-label="ครอบครัวสายซีรีส์เกาหลี"></button>
+      <button type="button" role="tab" data-go="1" aria-label="แฟนเคป๊อป"></button>
+      <button type="button" role="tab" data-go="2" aria-label="เมดอินโคเรีย พูดภาษาไทย"></button>
+    </div>
+
+    <div class="week" aria-label="วันที่อัลบั้มสุดสัปดาห์รวบรวม: วันเสาร์และวันอาทิตย์">
+      <div class="day"><span>จ.</span><b>10</b></div>
+      <div class="day"><span>อ.</span><b>11</b></div>
+      <div class="day"><span>พ.</span><b>12</b></div>
+      <div class="day"><span>พฤ.</span><b>13</b></div>
+      <div class="day"><span>ศ.</span><b>14</b></div>
+      <div class="day sat"><span>ส.</span><b>15</b></div>
+      <div class="day sun"><span>อา.</span><b>16</b></div>
+    </div>
+    <p class="folder">~/Pictures/주말 사진첩/<em>2026-08 3째주 (8.15~8.16)</em>/20260815_101530_IMG_1234.HEIC</p>
+
+    <div class="get">
+      <a class="btn" href="https://github.com/baryonlabs/weekend-album-releases/releases/latest/download/WeekendAlbum-1.13.0.dmg">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+        ดาวน์โหลดสำหรับ Mac
+      </a>
+      <small>WeekendAlbum-1.13.0.dmg · ประมาณ 700 MB (รวมโมเดล AI ที่ทำงานบน Mac)<br>Apple Silicon (M1 ขึ้นไป) · macOS 15 ขึ้นไป · มีภาษาไทย ·
+        <a href="https://github.com/baryonlabs/weekend-album-releases/releases/tag/v1.13.0">บันทึกประจำรุ่น</a></small>
+    </div>
+      <figure class="comic comic-wide">
+      <img src="../illus/hero.jpg" width="1500" height="1000" alt="การ์ตูนสามช่อง: รูปสุดสัปดาห์ของครอบครัวลอยเข้าไปในแล็ปท็อป แล้วออกมาเป็นอัลบั้มรูปหนึ่งเล่ม">
+      <figcaption>ถ่ายช่วงสุดสัปดาห์ → แอปรวบรวมให้ → ได้อัลบั้มเก็บไว้หนึ่งเล่ม</figcaption>
+    </figure>
+  </section>
+
+
+  <section class="section" id="screens">
+    <header>
+      <span class="eyebrow">ลองดูก่อน</span>
+      <h2>หน้าตาเป็นแบบนี้</h2>
+      <p class="demo-note">ภาพหน้าจอเป็นอัลบั้มตัวอย่างที่ทำจากรูปตัวอย่าง (Unsplash, Lorem Picsum) ตัวแอปใช้ได้ทั้งภาษาไทย อังกฤษ เกาหลี ญี่ปุ่น อินโดนีเซีย และเวียดนาม</p>
+    </header>
+    <div class="shots">
+      <figure>
+        <img src="../shots/home.jpg" width="1600" height="1075" alt="หน้าแรกของอัลบั้มสุดสัปดาห์: การ์ดอัลบั้มสุดสัปดาห์ วันธรรมดา และทริป จัดกลุ่มตามเดือน">
+        <figcaption><b>หน้าแรก</b> · อัลบั้มสุดสัปดาห์ วันธรรมดา และทริปของแต่ละเดือน เรียงเป็นการ์ด</figcaption>
+      </figure>
+      <div class="shot-grid">
+        <figure>
+          <img src="../shots/album.jpg" width="1600" height="1075" alt="อัลบั้มของหนึ่งสุดสัปดาห์: เรื่องเล่าเปิดเรื่อง บันทึก รูปแยกตามวัน และรูปโปรดที่กดหัวใจ" loading="lazy">
+          <figcaption><b>หนึ่งสุดสัปดาห์ หนึ่งอัลบั้ม</b> · เรื่องเล่าสั้น ๆ บันทึกส่วนตัว และรูปโปรดที่คุณกดหัวใจ</figcaption>
+        </figure>
+        <figure>
+          <img src="../shots/book.jpg" width="1600" height="1075" alt="มุมมองโฟโต้บุ๊ก: รูปปกขนาดใหญ่พร้อมชื่อเรื่องด้านบน" loading="lazy">
+          <figcaption><b>โฟโต้บุ๊ก</b> · รูปโปรดและเรื่องราวรวมเป็นเล่มเดียว แชร์เป็น PDF ได้</figcaption>
+        </figure>
+        <figure>
+          <img src="../shots/insta.jpg" width="1600" height="1075" alt="My Insta: โปรไฟล์และตารางโพสต์ สุดสัปดาห์ละหนึ่งโพสต์" loading="lazy">
+          <figcaption><b>My Insta</b> · รูปเด็ดของแต่ละสุดสัปดาห์ ในฟีดส่วนตัว</figcaption>
+        </figure>
+        <figure>
+          <img src="../shots/post.jpg" width="1600" height="1075" alt="โพสต์ใน My Insta: รูปแบบเลื่อนดู แคปชัน แฮชแท็ก และเพลงแนะนำพร้อมแถบปรับเสียง" loading="lazy">
+          <figcaption><b>โพสต์</b> · แคปชัน แฮชแท็ก และเพลงเกาหลีที่ไม่ซ้ำกันในแต่ละโพสต์</figcaption>
+        </figure>
+        <figure>
+          <img src="../shots/notes.jpg" width="1600" height="1075" alt="บันทึก: รายการสิ่งที่ต้องทำและบันทึกที่เชื่อมกับอัลบั้ม" loading="lazy">
+          <figcaption><b>บันทึก</b> · เรื่องที่อยากใส่ในอัลบั้ม และสิ่งที่ต้องทำ</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section" id="stories">
+    <header>
+      <span class="eyebrow">มากกว่าอัลบั้ม</span>
+      <h2>รูปยิ่งเยอะ เรื่องให้กังวลยิ่งมาก เราช่วยแบ่งเบาให้</h2>
+      <p class="muted">การ์ดกล้อง มือถือ ฮาร์ดดิสก์ภายนอก Mac ที่พื้นที่เต็ม ไม่มีอะไรถูกลบ<b>จนกว่าจะตรวจสอบแล้ว</b> และทุกอย่างย้อนกลับได้</p>
+    </header>
+    <div class="stories">
+      <article class="story">
+        <img src="../illus/sdcard.jpg" width="900" height="900" loading="lazy" alt="การ์ตูน: รูปจากการ์ด SD ของกล้องและกล้องติดรถยนต์ผ่านแล็ปท็อปไปยังฮาร์ดดิสก์ภายนอก แล้วมีเครื่องหมายถูกสีเขียวขึ้นมา">
+        <div>
+          <span class="tag sat">สำรองการ์ด SD</span>
+          <h3>เสียบการ์ดไว้ แล้วแอปจะบอกเองว่าลบได้เมื่อไร</h3>
+          <p>ใส่การ์ด SD ของกล้องหรือกล้องติดรถยนต์ แล้วเลือกฮาร์ดดิสก์ภายนอก โฟลเดอร์ในการ์ดจะถูกคัดลอกตามเดิมทุกอย่าง จากนั้น<b>อ่านกลับจากฮาร์ดดิสก์อีกครั้งเพื่อเช็กว่าตรงกับต้นฉบับ</b> ถ้าทุกอย่างถูกต้อง: <b>“✅ การ์ดนี้ลบได้อย่างปลอดภัย”</b></p>
+          <ul>
+            <li>การ์ดหนึ่งใบ = หนึ่งโฟลเดอร์ ครั้งต่อไปการ์ดใบเดิมจะเพิ่มแค่ไฟล์ใหม่</li>
+            <li>โฟลเดอร์ที่ซ่อนอยู่และถังขยะในการ์ดก็ไปด้วย ไม่มีอะไรตกหล่น</li>
+            <li>สำรองการ์ดหลายใบต่อกันได้ด้วย “นำออกแล้วสำรองการ์ดใบถัดไป”</li>
+          </ul>
+        </div>
+      </article>
+      <article class="story flip">
+        <img src="../illus/phone.jpg" width="900" height="900" loading="lazy" alt="การ์ตูน: รูปและเอกสารไหลจากมือถือ Android ผ่านสายไปยังฮาร์ดดิสก์ภายนอก และมือถือดูโล่งใจ">
+        <div>
+          <span class="tag sun">สำรองโทรศัพท์</span>
+          <h3>ย้ายไฟล์ดาวน์โหลดและไฟล์แชตออกจากมือถือ ได้พื้นที่คืน</h3>
+          <p>เสียบมือถือ Android แล้วเลือกโฟลเดอร์ (ดาวน์โหลด กล้อง <b>รูปจาก LINE</b> และ KakaoTalk ในโฟลเดอร์ Pictures) เพื่อย้ายไปฮาร์ดดิสก์ภายนอก ระบบจะเทียบทั้งสองฝั่ง และถ้าต้องการ จะลบออกจากมือถือ<b>เฉพาะไฟล์ที่ตรวจสอบแล้ว</b> รูปใหม่<b>เข้าอัลบั้มสุดสัปดาห์ให้อัตโนมัติ</b> ส่วนต้นฉบับอยู่ในฮาร์ดดิสก์ จึงแทบไม่กินพื้นที่ Mac</p>
+          <ul>
+            <li>ไฟล์ที่เปลี่ยนไปหลังคัดลอกจะไม่ถูกลบเด็ดขาด</li>
+            <li>แค่เปิด “การแก้ไขข้อบกพร่อง USB” (USB debugging) ในมือถือครั้งเดียว</li>
+            <li>ใช้ iPhone? นำเข้าผ่านสายด้วยแอปจับภาพ (Image Capture) หรือรูปภาพ ส่วนต้นฉบับที่อยู่แค่ใน iCloud ให้ส่งออกจากแอปรูปภาพ · <a href="guide/">วิธีนำเข้า แยกตามมือถือและคอมพิวเตอร์ →</a></li>
+          </ul>
+        </div>
+      </article>
+      <article class="story">
+        <img src="../illus/clean.jpg" width="900" height="900" loading="lazy" alt="การ์ตูนก่อน-หลัง: ตู้รกที่เต็มไปด้วยรูปซ้ำกลายเป็นชั้นวางเรียบร้อย พร้อมกล่องย้อนกลับ">
+        <div>
+          <span class="tag sat">จัดระเบียบฮาร์ดดิสก์</span>
+          <h3>ฮาร์ดดิสก์ภายนอกรก? ได้รายงานก่อนทุกครั้ง</h3>
+          <p>แอปจะสแกนฮาร์ดดิสก์แล้วแสดง<b>ไฟล์ซ้ำ ไฟล์ขยะ โฟลเดอร์ว่าง และพื้นที่ที่แต่ละโฟลเดอร์ใช้</b> ก่อนจะย้ายอะไรทั้งนั้น เลือกสิ่งที่จะเก็บ ที่เหลือจะไปอยู่ในโฟลเดอร์พักไว้ ส่วนรูปและวิดีโอที่กระจัดกระจายจะถูกจัดเข้า<b>โฟลเดอร์ปี/เดือน</b></p>
+          <ul>
+            <li>นับเป็นไฟล์ซ้ำเฉพาะไฟล์ที่เหมือนกันทุกไบต์</li>
+            <li>การจัดระเบียบทุกครั้งย้อนกลับได้ด้วยปุ่มเดียว</li>
+            <li>โฟลเดอร์สำรองการ์ด SD และดิสก์ Time Machine จะไม่ถูกแตะต้อง</li>
+          </ul>
+        </div>
+      </article>
+      <article class="story flip">
+        <img src="../illus/mac.jpg" width="900" height="900" loading="lazy" alt="การ์ตูน: แล็ปท็อปที่หนักอึ้งด้วยรูปและวิดีโอ ใช้แว่นขยายหาโฟลเดอร์ใหญ่ ย้ายไปฮาร์ดดิสก์ภายนอก แล้วรู้สึกเบาขึ้น">
+        <div>
+          <span class="tag sun">สำรองและเพิ่มพื้นที่</span>
+          <h3>Mac เต็ม? อัลบั้มยังอยู่ ไฟล์หนัก ๆ ย้ายออก</h3>
+          <p>สำรองอัลบั้มไปฮาร์ดดิสก์ภายนอก แล้วกด <b>เพิ่มพื้นที่ Mac</b> จะลบออกจาก Mac เฉพาะต้นฉบับที่ตรวจสอบแล้ว และ<b>ภาพตัวอย่างยังอยู่ครบ</b> ต้นฉบับและวิดีโอเปิดได้ทันทีเมื่อเสียบฮาร์ดดิสก์ นอกจากนี้ยังเลือกโฟลเดอร์รูปและวิดีโอขนาดใหญ่ในโฟลเดอร์บ้าน แล้วย้ายไปฮาร์ดดิสก์ได้ด้วย</p>
+          <ul>
+            <li>อ่านสำเนาในฮาร์ดดิสก์ซ้ำอีกครั้งก่อนลบทุกครั้ง</li>
+            <li>“นำกลับมาที่ Mac” ได้ทุกเมื่อ</li>
+            <li>คลังรูปภาพ โปรเจกต์โค้ด และโฟลเดอร์อัลบั้มจะไม่ถูกย้าย</li>
+            <li>ย้อนกลับได้จนกว่าจะล้างถังขยะ</li>
+            <li>สำรองไป Google Drive และจัดระเบียบไปพร้อมกัน</li>
+          </ul>
+        </div>
+      </article>
+      <article class="story">
+        <img src="../illus/log.jpg" width="900" height="900" loading="lazy" alt="การ์ตูน: เด็กใช้แว่นขยายตรวจหน้าสมุดบันทึกที่คล้องกุญแจ แล้วมีเครื่องหมายถูกสีเขียวขึ้นมา">
+        <div>
+          <span class="tag sat">บันทึกการทำงาน</span>
+          <h3>อะไรย้ายไปไหน? ผ่านไปหลายเดือนก็ยังตอบได้</h3>
+          <p>ทุกการย้ายและการลบถูกบันทึก<b>ละเอียดถึงระดับไฟล์</b> ภายหลังแตะ <b>ตรวจผลลัพธ์อีกครั้ง</b> เพื่อดูว่าทุกอย่างยังอยู่ในฮาร์ดดิสก์ และยืนยันว่าบันทึกเองไม่ถูกแก้ไขหรือมีรายการหายไป</p>
+          <ul>
+            <li>ตำแหน่งเดิม ตำแหน่งใหม่ ขนาด และ MD5 ของทุกไฟล์</li>
+            <li>รายการเชื่อมต่อกันด้วยแฮช การแก้ไขหรือช่องโหว่จึงเห็นได้ทันที</li>
+            <li>บันทึกเก็บไว้บน Mac ของคุณเท่านั้น</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <header>
+      <span class="eyebrow">ทำอัลบั้ม</span>
+      <h2>คุณแค่เลือกรูป</h2>
+    </header>
+    <div class="features">
+      <div class="feature"><h3>สุดสัปดาห์ละหนึ่งอัลบั้ม</h3><p>รูปวันเสาร์และอาทิตย์จัดกลุ่มตามสุดสัปดาห์ (“ส.ค. สัปดาห์ที่ 3”) รูปวันธรรมดาจัดตามเดือน (“วันธรรมดา ก.ย.”) ทริปและงานต่าง ๆ ก็แยกเป็นอัลบั้มของตัวเองได้</p></div>
+      <div class="feature"><h3>มาจากไหนก็ได้</h3><p>เลือกจาก Google Photos หรือลากรูปที่เพื่อนส่งมาทาง LINE มาใส่ได้เลย แอปจะอ่านวันที่ถ่ายแล้วจัดแต่ละรูปไว้ในที่ที่ถูกต้อง ระบุได้ด้วยว่าใครเป็นคนถ่าย</p></div>
+      <div class="feature"><h3>เรื่องราวที่มีทั้งเวลาและสถานที่</h3><p>ชื่อย่าน วันที่ ช่วงเวลา วันสำคัญอย่างสงกรานต์หรือวันแม่ ไปจนถึงตัวหนังสือบนป้ายร้าน แอปปะติดปะต่อเป็นเรื่องราวของวันนั้น และเมื่อคุณขอ Claude จะเขียนให้เหมือนบันทึกประจำวัน จากนั้นปรับให้เป็นสไตล์ของคุณได้</p></div>
+      <div class="feature"><h3>โฟโต้บุ๊กและ PDF</h3><p>เลือกรูปโปรดสักหน่อยก็ได้โฟโต้บุ๊ก รวมหลายสุดสัปดาห์เป็น PDF ไฟล์เดียวส่งให้ครอบครัวได้</p></div>
+      <div class="feature"><h3>My Insta · AI บน Mac</h3><p><b>AI ที่ทำงานบน Mac ของคุณ</b> (Apple Vision · Laya) เลือกรูปเด็ด แฮชแท็ก และเพลงที่เข้ากันได้ในไม่กี่วินาที โดยไม่ส่งรูปออกไปไหน เพลงมาจากคลังเพลงเกาหลี เปิดเบา ๆ เป็นตัวอย่าง 30 วินาที</p></div>
+      <div class="feature"><h3>รูปซ้ำน้อยลง พื้นที่มากขึ้น</h3><p>หารูปเดียวกันที่ได้รับซ้ำสองครั้งในแชต แล้วย้ายรูปที่เกินไปไว้ในถังขยะ จากนั้นจัดการต้นฉบับที่สำรองแล้วเพื่อเพิ่มพื้นที่ใน Mac</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="install">
+    <header>
+      <span class="eyebrow">ติดตั้ง</span>
+      <h2>สามขั้นตอนก็เสร็จ</h2>
+      <p class="muted">แอปนี้ไม่ได้มาจาก App Store ครั้งแรก Mac จึงจะขอให้ยืนยันหนึ่งครั้ง</p>
+    </header>
+    <ol class="steps">
+      <li>
+        <h3>ดาวน์โหลดแล้วเปิดไฟล์ DMG</h3>
+        <p>คลิก <b>ดาวน์โหลดสำหรับ Mac</b> ด้านบน แล้วดับเบิลคลิกไฟล์ที่ดาวน์โหลดมา</p>
+      </li>
+      <li>
+        <h3>ลากไปใส่ในแอปพลิเคชัน</h3>
+        <p>ในหน้าต่างที่เปิดขึ้น ลากไอคอนอัลบั้มสุดสัปดาห์ (ชื่อจะแสดงเป็น “주말 사진첩”) ไปวางที่โฟลเดอร์แอปพลิเคชันข้าง ๆ</p>
+      </li>
+      <li>
+        <h3>ครั้งแรก กด “เปิดต่อไป”</h3>
+        <p>ถ้า macOS แจ้งว่าตรวจสอบแอปหรือผู้พัฒนาไม่ได้ ให้ไปที่ <b>การตั้งค่าระบบ → ความเป็นส่วนตัวและความปลอดภัย</b> เลื่อนลงไปล่างสุด แล้วคลิก <b>เปิดต่อไป</b> (Open Anyway)
+          ถ้าขึ้นว่าแอป “เสียหายและไม่สามารถเปิดได้” ให้วางบรรทัดด้านล่างใน Terminal แล้วเปิดแอปอีกครั้ง</p>
+        <div class="cmd">
+          <pre id="xattrCmd">xattr -dr com.apple.quarantine "/Applications/주말 사진첩.app"</pre>
+          <button class="copy" type="button" data-copy="xattrCmd">คัดลอก</button>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="section" id="google">
+    <div class="connect">
+      <div style="display:grid;gap:16px;min-width:0">
+        <span class="eyebrow">Google Photos (ไม่บังคับ)</span>
+        <h2>อยากใช้ Google Photos? ส่งอีเมลมาฉบับเดียว</h2>
+        <p class="muted">แอปยังอยู่ในช่วงทดสอบของ Google จึงเชื่อมต่อ Google Photos ได้เฉพาะบัญชีที่ลงทะเบียนไว้ ส่วนการลากรูปมาใส่ใช้ได้ทันทีโดยไม่ต้องเชื่อมต่อ</p>
+        <ul class="flow">
+          <li><span>คุณ</span><p>ส่งอีเมลแจ้งที่อยู่ Gmail ที่ใช้กับ Google Photos มาให้เรา</p></li>
+          <li><span>Baryon Labs</span><p>เราลงทะเบียนบัญชีให้ แล้วตอบกลับพร้อมไฟล์เชื่อมต่อแอป (.json)</p></li>
+          <li><span>คุณ</span><p>ในแท็บ <b>สำรองและเพิ่มพื้นที่</b> ของแอป ใช้ <b>เลือก JSON ที่ดาวน์โหลด</b> เพื่อเลือกไฟล์นั้น เท่านี้ก็เชื่อมต่อแล้ว</p></li>
+        </ul>
+      </div>
+      <div class="mail">
+        <span class="eyebrow">ส่งถึง</span>
+        <div class="addr"><b id="mailAddr">hello@baryon.ai</b><button class="copy" type="button" data-copy="mailAddr">คัดลอกที่อยู่</button></div>
+        <p class="muted" style="font-size:14px">ตัวอย่างหัวเรื่อง: ขอเชื่อมต่อ Google สำหรับอัลบั้มสุดสัปดาห์<br>เนื้อหา: ที่อยู่ Gmail ที่ใช้กับ Google Photos</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="extras">
+    <header>
+      <span class="eyebrow">มีไว้ก็ดี</span>
+      <h2>ไม่มีก็เปิดแอปได้</h2>
+      <p class="muted">ถ้ามีโปรแกรมเหล่านี้ใน Mac ฟีเจอร์ที่เกี่ยวข้องจะเปิดใช้งาน ถ้าไม่มี ก็แค่ฟีเจอร์นั้นที่ใช้ไม่ได้</p>
+    </header>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>โปรแกรม</th><th>ฟีเจอร์ที่เปิดใช้</th><th>ติดตั้ง</th></tr></thead>
+        <tbody>
+          <tr><td>Google Chrome</td><td>หน้าต่างเลือกรูปจาก Google Photos, ทำ PDF</td><td><a href="https://www.google.com/chrome/">google.com/chrome</a></td></tr>
+          <tr><td>ffmpeg</td><td>อ่านวันที่ของวิดีโอ ตัดคลิป บันทึกเฟรมเป็นรูป</td><td><code>brew install ffmpeg</code></td></tr>
+          <tr><td>adb (เครื่องมือ Android)</td><td>สำรองโทรศัพท์: อ่านและย้ายไฟล์ในมือถือ Android</td><td><code>brew install --cask android-platform-tools</code></td></tr>
+          <tr><td>Claude Code</td><td>เขียนและเกลาเรื่องราวในอัลบั้ม เขียนแคปชัน My Insta (ใช้บัญชี Claude ของคุณเอง) ส่วนการเลือกรูปและเพลงใช้ได้โดยไม่ต้องมี</td><td><a href="https://claude.com/claude-code">claude.com/claude-code</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <section class="section" id="feedback">
+    <div class="connect">
+      <div style="display:grid;gap:14px;min-width:0">
+        <span class="eyebrow">ความคิดเห็น</span>
+        <h2>มีอะไรติดขัด? อยากให้มีฟีเจอร์ไหน?</h2>
+        <p class="muted">คลิก <b>💬 ส่งความคิดเห็น</b> ที่ด้านบนของแอป อีเมลจะเปิดขึ้นพร้อมหัวเรื่องและแบบฟอร์มง่าย ๆ ยังไม่มีแอป? ใช้ปุ่มด้านล่างก็ได้ เร็ว ๆ นี้จะมีกระดานที่โพสต์ได้แค่ยืนยันอีเมล ไม่ต้องสมัครสมาชิก</p>
+      </div>
+      <div class="mail">
+        <span class="eyebrow">ส่งถึง</span>
+        <div class="addr"><b id="fbAddr">hello@baryon.ai</b><button class="copy" type="button" data-copy="fbAddr">คัดลอกที่อยู่</button></div>
+        <a class="btn" style="justify-self:start;font-size:16px;padding:11px 18px" href="mailto:hello@baryon.ai?subject=%5B%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%84%E0%B8%B4%E0%B8%94%E0%B9%80%E0%B8%AB%E0%B9%87%E0%B8%99%20%E0%B8%AD%E0%B8%B1%E0%B8%A5%E0%B8%9A%E0%B8%B1%E0%B9%89%E0%B8%A1%E0%B8%AA%E0%B8%B8%E0%B8%94%E0%B8%AA%E0%B8%B1%E0%B8%9B%E0%B8%94%E0%B8%B2%E0%B8%AB%E0%B9%8C%5D%20&body=%E2%96%A0%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%A0%E0%B8%97%3A%20%28%E0%B8%9B%E0%B8%B1%E0%B8%8D%E0%B8%AB%E0%B8%B2%2F%E0%B8%9A%E0%B8%B1%E0%B9%8A%E0%B8%81%20%2F%20%E0%B9%84%E0%B8%AD%E0%B9%80%E0%B8%94%E0%B8%B5%E0%B8%A2%E0%B8%9F%E0%B8%B5%E0%B9%80%E0%B8%88%E0%B8%AD%E0%B8%A3%E0%B9%8C%20%2F%20%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%99%E0%B8%8A%E0%B8%A1%2F%E0%B8%AD%E0%B8%B7%E0%B9%88%E0%B8%99%20%E0%B9%86%29%0A%0A%E2%96%A0%20%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B8%A5%E0%B8%B0%E0%B9%80%E0%B8%AD%E0%B8%B5%E0%B8%A2%E0%B8%94%0A%0A%0A%E2%96%A0%20%E0%B9%80%E0%B8%A7%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%8A%E0%B8%B1%E0%B8%99%E0%B9%81%E0%B8%AD%E0%B8%9B%20%C2%B7%20Mac%3A%20">ส่งความคิดเห็นทางอีเมล</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="privacy">
+    <header>
+      <span class="eyebrow">รูปภาพและความเป็นส่วนตัว</span>
+      <h2>อัลบั้มของคุณอยู่บน Mac ของคุณ</h2>
+    </header>
+    <div class="data">
+      <div><b>ไม่มีอะไรส่งไปเซิร์ฟเวอร์ของเรา</b><p>อัลบั้มสร้างอยู่ในโฟลเดอร์รูปภาพบน Mac ของคุณ Baryon Labs ไม่เคยได้รับรูป เรื่องราว หรือบันทึกของคุณ รูปจะออกจาก Mac ก็ต่อเมื่อคุณเลือกเอง เช่น สำรองไปยัง Google Drive ของคุณ</p></div>
+      <div><b>ส่วนใหญ่ทำบน Mac</b><p>การเลือกรูป แท็ก และเพลง จัดการโดย AI บน Mac ของคุณ เฉพาะตอนที่คุณขอให้เขียน รูปที่เลือกไว้ไม่กี่รูปและสรุป “เมื่อไรและที่ไหน” (ละเอียดถึงระดับย่าน) จะถูกส่งไปยังบัญชี Claude ของคุณ ไม่ส่งต้นฉบับ ชื่อไฟล์ และพิกัด GPS</p></div>
+      <div><b>ทุกการกระทำมีบันทึก</b><p>ตำแหน่ง ขนาด และ MD5 ของทุกไฟล์ที่ย้ายหรือลบ เก็บไว้บน Mac เครื่องนี้เท่านั้น จึงตรวจได้ภายหลังว่าทุกอย่างยังอยู่ครบ</p></div>
+      <div><b>มีแค่สถิติการใช้งานแบบไม่ระบุตัวตน</b><p>Baryon Labs ได้รับแค่จำนวนครั้งแบบไม่ระบุตัวตนว่าฟีเจอร์ไหนถูกใช้บ่อยแค่ไหน ดูได้ว่าจะส่งอะไรบ้าง และปิดได้ที่ “ⓘ ข้อมูล” ในแอป</p></div>
+    </div>
+    <p class="muted" style="font-size:14px">ดูรายละเอียดได้ที่ “ⓘ ข้อมูล” ในแอป → หมายเหตุเรื่องข้อมูลและ AI ข้อกำหนดการใช้งาน และนโยบายความเป็นส่วนตัว อัลบั้มสุดสัปดาห์มีไว้สำหรับใช้ส่วนตัวและในครอบครัว ไม่ใช่เชิงพาณิชย์</p>
+  </section>
+
+  <footer>
+    <span>Made in Korea by <b>Baryon Labs</b> · © 2026 Baryon Labs. All rights reserved.</span>
+    <span>ติดต่อ <span class="mono" style="user-select:all">hello@baryon.ai</span> · <a href="https://github.com/baryonlabs/weekend-album-releases/releases">ทุกเวอร์ชัน</a></span>
+  </footer>
+</div>
+
+<script>
+  document.querySelectorAll("[data-copy]").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const el = document.getElementById(btn.dataset.copy);
+      const text = el.textContent.trim();
+      const label = btn.textContent;
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.textContent = "คัดลอกแล้ว!";
+      } catch {
+        const range = document.createRange();
+        range.selectNodeContents(el);
+        const sel = window.getSelection();
+        sel.removeAllRanges(); sel.addRange(range);
+        btn.textContent = "เลือกแล้ว · ⌘C";
+      }
+      setTimeout(() => { btn.textContent = label; }, 1800);
+    });
+  });
+
+  // Audience-specific headline: random on each visit, then rotates every few seconds (fixed when Reduce Motion is on)
+  (() => {
+    const slides = [...document.querySelectorAll("#rotator .slide")];
+    const dots = [...document.querySelectorAll(".who-dots button")];
+    if (!slides.length) return;
+    let i = Math.floor(Math.random() * slides.length), timer = 0, paused = false;
+    const show = (n) => { i = (n + slides.length) % slides.length;
+      slides.forEach((s, k) => { s.classList.toggle("on", k === i); s.setAttribute("aria-hidden", k !== i); });
+      dots.forEach((d, k) => { d.classList.toggle("on", k === i); d.setAttribute("aria-selected", k === i); }); };
+    const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const tick = () => { clearTimeout(timer); if (!calm) timer = setTimeout(() => { if (!paused && !document.hidden) show(i + 1); tick(); }, 5500); };
+    dots.forEach((d, k) => d.addEventListener("click", () => { show(k); tick(); }));
+    const box = document.getElementById("rotator");
+    box.addEventListener("mouseenter", () => { paused = true; });
+    box.addEventListener("mouseleave", () => { paused = false; });
+    show(i); tick();
+  })();
+</script>
+
+</body>
+</html>

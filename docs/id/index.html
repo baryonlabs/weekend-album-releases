@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Aplikasi Mac buatan Korea yang merapikan foto keluarga jadi satu album tiap akhir pekan, lengkap dengan lagu latar K-pop. Made by Baryon Labs.">
+<meta property="og:title" content="Album Akhir Pekan">
+<meta property="og:description" content="Sabtu & Minggu keluarga, serasa episode drakor — unduh gratis aplikasi Mac, kini dalam Bahasa Indonesia">
+<meta property="og:image" content="https://baryonlabs.github.io/weekend-album-releases/illus/hero.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://baryonlabs.github.io/weekend-album-releases/id/">
+<meta property="og:locale" content="id_ID">
+<link rel="canonical" href="https://baryonlabs.github.io/weekend-album-releases/id/">
+<link rel="alternate" hreflang="ko" href="https://baryonlabs.github.io/weekend-album-releases/">
+<link rel="alternate" hreflang="en" href="https://baryonlabs.github.io/weekend-album-releases/en/">
+<link rel="alternate" hreflang="ja" href="https://baryonlabs.github.io/weekend-album-releases/ja/">
+<link rel="alternate" hreflang="id" href="https://baryonlabs.github.io/weekend-album-releases/id/">
+<link rel="alternate" hreflang="th" href="https://baryonlabs.github.io/weekend-album-releases/th/">
+<link rel="alternate" hreflang="vi" href="https://baryonlabs.github.io/weekend-album-releases/vi/">
+<link rel="alternate" hreflang="x-default" href="https://baryonlabs.github.io/weekend-album-releases/">
+<style>html{color-scheme:light dark}body{margin:0;-webkit-font-smoothing:antialiased}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Album Akhir Pekan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  /* Layout: 한국 달력의 토(파랑)·일(빨강)을 축으로 — 주간 달력 띠 히어로 → 기능 → 설치 순서 → 연결 → 데이터 안내 */
+  :root {
+    --bg: #f7f8fb; --paper: #ffffff; --ink: #1c2233; --muted: #626b80; --line: #dfe3ec;
+    --sat: #2f5bd3; --sun: #d9443a; --sat-soft: #e6ecfb; --sun-soft: #fbe9e7; --code: #eef1f7;
+    --display: "Do Hyeon", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    --body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #12151d; --paper: #1a1f2b; --ink: #e9ecf4; --muted: #9aa3b8; --line: #2b3242;
+      --sat: #7d9cff; --sun: #ff7a6e; --sat-soft: #1f2a4a; --sun-soft: #3a2020; --code: #222838; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #12151d; --paper: #1a1f2b; --ink: #e9ecf4; --muted: #9aa3b8; --line: #2b3242;
+    --sat: #7d9cff; --sun: #ff7a6e; --sat-soft: #1f2a4a; --sun-soft: #3a2020; --code: #222838; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.7 var(--body); padding-inline: 20px; }
+  .wrap { max-width: 980px; margin: 0 auto; padding-block: 40px 56px; display: grid; gap: 72px; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 400; text-wrap: balance; margin: 0; line-height: 1.2; }
+  h1 { font-size: clamp(44px, 8vw, 76px); letter-spacing: -0.01em; }
+  h2 { font-size: clamp(28px, 4.4vw, 38px); }
+  h3 { font-size: 22px; }
+  p { margin: 0; }
+  a { color: var(--sat); }
+  .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  .muted { color: var(--muted); }
+  code, .mono { font-family: var(--mono); font-size: .9em; }
+  :focus-visible { outline: 3px solid var(--sat); outline-offset: 3px; border-radius: 6px; }
+
+  /* Hero */
+  .hero { display: grid; gap: 28px; }
+  /* 언어 전환 */
+  .langs { justify-self: end; display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 4px 2px; max-width: 100%;
+    font-size: 13px; color: var(--muted); margin-bottom: -12px; }
+  .langs a { color: var(--muted); text-decoration: none; padding: 3px 10px; border-radius: 999px; border: 1px solid transparent; white-space: nowrap; }
+  .langs a:hover { color: var(--ink); border-color: var(--line); }
+  .langs a[aria-current="page"] { color: var(--ink); background: var(--paper); border-color: var(--line); font-weight: 500; }
+  @media (max-width: 560px) { .langs { justify-self: stretch; justify-content: flex-start; margin-bottom: -4px; } .langs a { padding: 3px 8px; } }
+
+  .brand { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .brand b { font-family: var(--display); font-weight: 400; font-size: 20px; }
+  .hero h1 .sat { color: var(--sat); } .hero h1 .sun { color: var(--sun); }
+  .lede { font-size: 19px; max-width: 34em; color: var(--muted); }
+  .lede strong { color: var(--ink); font-weight: 500; }
+
+  .week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; max-width: 560px; }
+  .day { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 8px 6px 10px; text-align: center; min-width: 0; }
+  .day span { display: block; font-size: 12px; color: var(--muted); }
+  .day b { font-family: var(--display); font-weight: 400; font-size: 26px; font-variant-numeric: tabular-nums; }
+  .day.sat { background: var(--sat-soft); border-color: transparent; } .day.sat b, .day.sat span { color: var(--sat); }
+  .day.sun { background: var(--sun-soft); border-color: transparent; } .day.sun b, .day.sun span { color: var(--sun); }
+  .folder { font-family: var(--mono); font-size: 13px; color: var(--muted); overflow-x: auto; white-space: nowrap; }
+  .folder em { font-style: normal; color: var(--ink); }
+
+  .get { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; background: var(--sat); color: var(--paper); text-decoration: none;
+    font-weight: 700; font-size: 18px; padding: 15px 24px; border-radius: 14px; box-shadow: 0 6px 20px color-mix(in srgb, var(--sat) 30%, transparent); }
+  .btn:hover { filter: brightness(1.06); }
+  .btn svg { width: 20px; height: 20px; }
+  .get small { color: var(--muted); font-size: 14px; line-height: 1.5; }
+
+  /* Features */
+  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px 32px; }
+  .feature { display: grid; gap: 6px; padding-top: 14px; border-top: 2px solid var(--line); min-width: 0; }
+  .feature:nth-child(3n+1) { border-top-color: var(--sat); }
+  .feature:nth-child(3n+2) { border-top-color: var(--sun); }
+  .feature p { color: var(--muted); font-size: 15px; }
+  .section { display: grid; gap: 26px; }
+  .section > header { display: grid; gap: 8px; max-width: 40em; }
+
+  /* Install steps */
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; counter-reset: s; }
+  .steps li { counter-increment: s; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 4px 14px; background: var(--paper);
+    border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+  .steps li::before { content: counter(s); grid-row: span 3; font-family: var(--display); font-size: 30px; color: var(--sat); line-height: 1; }
+  .steps li > * { min-width: 0; }
+  .steps p { color: var(--muted); font-size: 15px; }
+  .cmd { display: flex; gap: 8px; align-items: stretch; margin-top: 8px; }
+  .cmd pre { flex: 1; min-width: 0; margin: 0; background: var(--code); border-radius: 10px; padding: 10px 12px; font: 13px/1.5 var(--mono); overflow-x: auto; white-space: pre; }
+  .copy { font: 500 13px var(--body); border: 1px solid var(--line); background: var(--paper); color: var(--ink); border-radius: 10px; padding: 0 12px; cursor: pointer; white-space: nowrap; }
+  .copy:hover { border-color: var(--sat); }
+
+  /* Google connect */
+  .connect { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 28px; align-items: start; }
+  .flow { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+  .flow li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 12px; align-items: baseline; }
+  .flow li span { font-family: var(--mono); font-size: 12px; color: var(--sun); border: 1px solid currentColor; border-radius: 999px; padding: 1px 8px; }
+  .mail { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 20px; display: grid; gap: 10px; }
+  .mail .addr { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .mail .addr b { font-family: var(--mono); font-size: 18px; font-weight: 500; user-select: all; }
+
+  /* Optional tools + data */
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th, td { text-align: left; padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-weight: 500; color: var(--muted); font-size: 13px; }
+  td:first-child { font-weight: 500; white-space: nowrap; }
+  .data { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .data div { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; display: grid; gap: 6px; min-width: 0; }
+  .data b { font-weight: 700; }
+  .data p { color: var(--muted); font-size: 14px; }
+
+  /* Screenshots */
+  .shots { display: grid; gap: 18px; }
+  .shots figure { margin: 0; display: grid; gap: 8px; min-width: 0; }
+  .shots img { width: 100%; height: auto; display: block; border-radius: 12px; border: 1px solid var(--line);
+    box-shadow: 0 18px 40px -24px color-mix(in srgb, var(--ink) 45%, transparent); background: var(--paper); }
+  .shots figcaption { font-size: 14px; color: var(--muted); }
+  .shots figcaption b { color: var(--ink); font-weight: 500; }
+  .shot-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px 18px; }
+  .demo-note { font-size: 13px; color: var(--muted); }
+
+  /* Comics & stories */
+  .comic { margin: 0; display: grid; gap: 8px; }
+  .comic img { width: 100%; height: auto; display: block; border-radius: 18px; border: 1px solid var(--line); background: var(--paper); }
+  .comic-wide { max-width: 760px; }
+  .comic figcaption { font-size: 14px; color: var(--muted); }
+  .stories { display: grid; gap: 40px; }
+  .story { display: grid; grid-template-columns: minmax(200px, 340px) minmax(0, 1fr); gap: 28px; align-items: center; }
+  .story.flip { grid-template-columns: minmax(0, 1fr) minmax(200px, 340px); }
+  .story.flip img { order: 2; }
+  .story img { width: 100%; height: auto; display: block; border-radius: 20px; border: 1px solid var(--line); background: var(--paper);
+    box-shadow: 0 18px 40px -26px color-mix(in srgb, var(--ink) 50%, transparent); transform: rotate(-1deg); }
+  .story.flip img { transform: rotate(1deg); }
+  .story > div { display: grid; gap: 10px; min-width: 0; }
+  .story p { color: var(--muted); } .story p b { color: var(--ink); font-weight: 500; }
+  .story ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 15px; }
+  .tag { justify-self: start; font-size: 13px; font-weight: 700; border-radius: 999px; padding: 3px 12px; }
+  .tag.sat { background: var(--sat-soft); color: var(--sat); } .tag.sun { background: var(--sun-soft); color: var(--sun); }
+  @media (max-width: 720px) {
+    .story, .story.flip { grid-template-columns: 1fr; gap: 16px; }
+    .story img, .story.flip img { order: 0; max-width: 300px; transform: none; }
+  }
+  @media (prefers-reduced-motion: no-preference) { .story img { transition: transform .3s ease; } .story img:hover { transform: rotate(0) scale(1.02); } }
+
+  /* 대상별로 바뀌는 첫 문장 */
+  .rotator { display: grid; }
+  .rotator .slide { grid-area: 1 / 1; display: grid; gap: 18px; align-content: start; opacity: 0; visibility: hidden; transform: translateY(6px);
+    transition: opacity .7s ease, transform .7s ease, visibility 0s linear .7s; }
+  .rotator .slide.on { opacity: 1; visibility: visible; transform: none; transition: opacity .7s ease, transform .7s ease; }
+  .who { justify-self: start; font-size: 13px; font-weight: 700; color: var(--sun); background: var(--sun-soft); border-radius: 999px; padding: 4px 12px; }
+  .slide[data-who="travel"] .who { color: var(--sat); background: var(--sat-soft); }
+  .slide[data-who="space"] .who { color: var(--ink); background: var(--line); }
+  .who-dots { display: flex; gap: 8px; margin-top: -8px; }
+  .who-dots button { width: 28px; height: 6px; border-radius: 999px; border: 0; background: var(--line); cursor: pointer; padding: 0; }
+  .who-dots button.on { background: var(--ink); }
+  @media (prefers-reduced-motion: reduce) { .rotator .slide { transition: none; } }
+
+  footer { border-top: 1px solid var(--line); padding-top: 22px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; font-size: 14px; color: var(--muted); }
+  footer b { color: var(--ink); }
+
+  @media (max-width: 720px) {
+    .connect { grid-template-columns: 1fr; }
+    .wrap { gap: 56px; padding-block: 24px 40px; }
+    .day b { font-size: 20px; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .day.sat, .day.sun { animation: lift .6s ease-out both; }
+    .day.sun { animation-delay: .12s; }
+    @keyframes lift { from { transform: translateY(6px); } to { transform: none; } }
+  }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <nav class="langs" aria-label="Bahasa">
+      <a href="../" lang="ko" hreflang="ko">한국어</a><a href="../en/" lang="en" hreflang="en">English</a><a href="../ja/" lang="ja" hreflang="ja">日本語</a><a href="./" lang="id" aria-current="page">Bahasa Indonesia</a><a href="../th/" lang="th" hreflang="th">ไทย</a><a href="../vi/" lang="vi" hreflang="vi">Tiếng Việt</a>
+    </nav>
+    <div class="brand">
+      <b>Album Akhir Pekan</b>
+      <span class="eyebrow">Aplikasi Mac · v1.13.0 · Made in Korea by Baryon Labs</span>
+    </div>
+
+    <div class="rotator" id="rotator" aria-live="polite">
+      <div class="slide on" data-who="family">
+        <span class="who">Untuk keluarga pencinta drakor</span>
+        <h1><span class="sat">Sabtu</span> &amp; <span class="sun">Minggu</span> keluarga,<br>serasa episode drakor.</h1>
+        <p class="lede">Foto anak-anak yang menumpuk di ponsel tiap akhir pekan jadi <strong>satu album per akhir pekan</strong>, plus photo book yang rasanya seperti adegan kilas balik di drama Korea. Kalau kamu minta, Claude menuliskan ceritanya, <strong>lengkap dengan nama tempat dan jamnya</strong>, lalu jadi PDF untuk Nenek dengan satu klik.</p>
+      </div>
+      <div class="slide" data-who="travel">
+        <span class="who">Untuk para K-popers</span>
+        <h1>Postingan akhir pekan,<br>BGM-nya lagu K-pop.</h1>
+        <p class="lede">Di <strong>My Insta</strong>, feed pribadi ala Instagram di dalam aplikasi, AI di Mac-mu memilih foto terbaik, tagar, dan <strong>lagu latar dari katalog lagu Korea</strong>: IU, BTS, NewJeans, DAY6, TWICE, dan banyak lagi. Diputar pelan sebagai cuplikan 30 detik, dan fotomu tidak dikirim ke mana-mana.</p>
+      </div>
+      <div class="slide" data-who="space">
+        <span class="who">Buatan Korea, berbahasa Indonesia</span>
+        <h1>Buatan Korea,<br>tapi paham Lebaran.</h1>
+        <p class="lede">Aplikasinya tersedia dalam <strong>Bahasa Indonesia</strong>, dan cerita album mengenali hari besar di sini seperti <strong>Lebaran, Imlek, dan 17 Agustus</strong>. Mac juga jadi lega: file asli pindah ke hard disk eksternal, Mac cukup menyimpan pratinjau, dan semuanya <strong>bisa dibatalkan kapan saja</strong>.</p>
+      </div>
+    </div>
+    <div class="who-dots" role="tablist" aria-label="Untuk siapa aplikasi ini?">
+      <button type="button" role="tab" data-go="0" aria-label="Keluarga pencinta drakor"></button>
+      <button type="button" role="tab" data-go="1" aria-label="Penggemar K-pop"></button>
+      <button type="button" role="tab" data-go="2" aria-label="Buatan Korea, berbahasa Indonesia"></button>
+    </div>
+
+    <div class="week" aria-label="Hari yang dikumpulkan Album Akhir Pekan: Sabtu dan Minggu">
+      <div class="day"><span>Sen</span><b>10</b></div>
+      <div class="day"><span>Sel</span><b>11</b></div>
+      <div class="day"><span>Rab</span><b>12</b></div>
+      <div class="day"><span>Kam</span><b>13</b></div>
+      <div class="day"><span>Jum</span><b>14</b></div>
+      <div class="day sat"><span>Sab</span><b>15</b></div>
+      <div class="day sun"><span>Min</span><b>16</b></div>
+    </div>
+    <p class="folder">~/Pictures/주말 사진첩/<em>2026-08 3째주 (8.15~8.16)</em>/20260815_101530_IMG_1234.HEIC</p>
+
+    <div class="get">
+      <a class="btn" href="https://github.com/baryonlabs/weekend-album-releases/releases/latest/download/WeekendAlbum-1.13.0.dmg">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+        Unduh untuk Mac
+      </a>
+      <small>WeekendAlbum-1.13.0.dmg · sekitar 700 MB (termasuk model AI yang berjalan di Mac)<br>Apple Silicon (M1 atau lebih baru) · macOS 15 atau lebih baru · Tersedia dalam Bahasa Indonesia ·
+        <a href="https://github.com/baryonlabs/weekend-album-releases/releases/tag/v1.13.0">Catatan rilis</a></small>
+    </div>
+      <figure class="comic comic-wide">
+      <img src="../illus/hero.jpg" width="1500" height="1000" alt="Komik tiga panel: foto akhir pekan sebuah keluarga terbang ke laptop dan keluar sebagai satu album foto">
+      <figcaption>Jepret di akhir pekan → aplikasi mengumpulkan → satu album untuk disimpan</figcaption>
+    </figure>
+  </section>
+
+
+  <section class="section" id="screens">
+    <header>
+      <span class="eyebrow">Intip dulu</span>
+      <h2>Begini tampilannya</h2>
+      <p class="demo-note">Layar di bawah adalah album demo dengan gambar contoh (Unsplash, Lorem Picsum). Aplikasinya bisa dipakai dalam Bahasa Indonesia, Inggris, Korea, Jepang, Thai, dan Vietnam.</p>
+    </header>
+    <div class="shots">
+      <figure>
+        <img src="../shots/home.jpg" width="1600" height="1075" alt="Layar beranda Album Akhir Pekan: kartu album akhir pekan, hari kerja, dan perjalanan, dikelompokkan per bulan">
+        <figcaption><b>Beranda</b> · Album akhir pekan, hari kerja, dan perjalanan tiap bulan, tersusun rapi sebagai kartu.</figcaption>
+      </figure>
+      <div class="shot-grid">
+        <figure>
+          <img src="../shots/album.jpg" width="1600" height="1075" alt="Album satu akhir pekan: cerita pembuka, catatan, foto per hari, dan favorit bertanda hati" loading="lazy">
+          <figcaption><b>Satu akhir pekan, satu album</b> · Cerita singkat, catatan pribadi, dan foto favorit yang kamu beri hati</figcaption>
+        </figure>
+        <figure>
+          <img src="../shots/book.jpg" width="1600" height="1075" alt="Tampilan photo book: foto sampul besar dengan judul cerita di atasnya" loading="lazy">
+          <figcaption><b>Photo book</b> · Foto favorit dan cerita jadi satu buku, bisa dibagikan sebagai PDF</figcaption>
+        </figure>
+        <figure>
+          <img src="../shots/insta.jpg" width="1600" height="1075" alt="My Insta: profil dan grid postingan, satu postingan per akhir pekan" loading="lazy">
+          <figcaption><b>My Insta</b> · Foto terbaik tiap akhir pekan, sebagai feed pribadi</figcaption>
+        </figure>
+        <figure>
+          <img src="../shots/post.jpg" width="1600" height="1075" alt="Postingan My Insta: carousel foto, caption, tagar, dan lagu rekomendasi dengan slider volume" loading="lazy">
+          <figcaption><b>Postingan</b> · Caption, tagar, dan lagu Korea yang berbeda untuk setiap postingan</figcaption>
+        </figure>
+        <figure>
+          <img src="../shots/notes.jpg" width="1600" height="1075" alt="Catatan: daftar tugas dan catatan yang terhubung ke album" loading="lazy">
+          <figcaption><b>Catatan</b> · Cerita yang ingin dimasukkan ke album, dan hal yang perlu dikerjakan</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section" id="stories">
+    <header>
+      <span class="eyebrow">Lebih dari album</span>
+      <h2>Makin banyak foto, makin banyak pikiran. Biar sebagian kami yang urus.</h2>
+      <p class="muted">Kartu kamera, ponsel, hard disk eksternal, Mac yang penuh. Tidak ada yang dihapus <b>sebelum diperiksa</b>, dan semuanya bisa dibatalkan.</p>
+    </header>
+    <div class="stories">
+      <article class="story">
+        <img src="../illus/sdcard.jpg" width="900" height="900" loading="lazy" alt="Komik: foto dari kartu SD kamera dan dashcam melewati laptop ke hard disk eksternal, lalu muncul tanda centang hijau">
+        <div>
+          <span class="tag sat">Cadangan Kartu SD</span>
+          <h3>Colok kartunya. Nanti dikabari kapan aman dihapus.</h3>
+          <p>Masukkan kartu SD kamera atau dashcam, lalu pilih hard disk eksternal. Folder di kartu disalin apa adanya, lalu <b>dibaca ulang dari hard disk untuk memastikan sama persis dengan aslinya</b>. Kalau semua cocok: <b>“✅ Kartu ini aman untuk dihapus.”</b></p>
+          <ul>
+            <li>Satu kartu = satu folder. Lain kali, kartu yang sama hanya menambah file baru</li>
+            <li>Folder tersembunyi dan tempat sampah di kartu ikut tersalin. Tidak ada yang tertinggal</li>
+            <li>Cadangkan banyak kartu berturut-turut dengan “Keluarkan dan cadangkan kartu berikutnya”</li>
+          </ul>
+        </div>
+      </article>
+      <article class="story flip">
+        <img src="../illus/phone.jpg" width="900" height="900" loading="lazy" alt="Komik: foto dan dokumen meluncur dari ponsel Android lewat kabel ke hard disk eksternal, dan ponselnya tampak lega">
+        <div>
+          <span class="tag sun">Cadangan Ponsel</span>
+          <h3>Unduhan dan file chat keluar dari ponsel, ruangnya kembali</h3>
+          <p>Colokkan ponsel Android dan pilih folder (Download, Kamera, <b>WhatsApp, Telegram</b>, juga KakaoTalk) untuk dipindah ke hard disk eksternal. Kedua sisi dibandingkan, dan kalau mau, <b>hanya file yang sudah terverifikasi</b> yang dihapus dari ponsel. Foto baru <b>otomatis masuk ke Album Akhir Pekan</b>, sementara file aslinya tetap di hard disk, jadi hampir tidak memakan ruang Mac.</p>
+          <ul>
+            <li>File yang berubah setelah disalin tidak akan pernah dihapus</li>
+            <li>Cukup nyalakan “Debugging USB” di ponsel, sekali saja</li>
+            <li>Pakai iPhone? Impor lewat kabel dengan Tangkap Gambar (Image Capture) atau Foto; file asli yang hanya ada di iCloud diekspor dari aplikasi Foto · <a href="guide/">Cara impor, per ponsel &amp; komputer →</a></li>
+          </ul>
+        </div>
+      </article>
+      <article class="story">
+        <img src="../illus/clean.jpg" width="900" height="900" loading="lazy" alt="Komik sebelum dan sesudah: lemari berantakan penuh foto duplikat jadi rak rapi dengan kotak urungkan">
+        <div>
+          <span class="tag sat">Rapikan Hard Disk</span>
+          <h3>Hard disk eksternal berantakan? Kamu dapat laporannya dulu.</h3>
+          <p>Hard disk dipindai dan kamu diperlihatkan <b>duplikat, file sampah, folder kosong, dan besar ruang tiap folder</b>, sebelum ada yang dipindah. Pilih yang mau disimpan, sisanya masuk folder penampungan; foto dan video yang tercecer dirapikan ke <b>folder tahun/bulan</b>.</p>
+          <ul>
+            <li>Hanya file yang identik sampai ke tiap byte yang dianggap duplikat</li>
+            <li>Setiap perapian bisa dibatalkan dengan satu tombol</li>
+            <li>Folder cadangan kartu SD dan disk Time Machine tidak disentuh</li>
+          </ul>
+        </div>
+      </article>
+      <article class="story flip">
+        <img src="../illus/mac.jpg" width="900" height="900" loading="lazy" alt="Komik: laptop yang keberatan foto dan video menemukan folder besar dengan kaca pembesar, memindahkannya ke hard disk eksternal, lalu terasa ringan">
+        <div>
+          <span class="tag sun">Cadangkan &amp; Kosongkan Ruang</span>
+          <h3>Mac penuh? Albumnya tetap, beratnya hilang.</h3>
+          <p>Cadangkan album ke hard disk eksternal, lalu tekan <b>Kosongkan ruang Mac</b>. Hanya file asli yang sudah terverifikasi yang dihapus dari Mac, dan <b>pratinjaunya tetap ada</b>. File asli dan video langsung terbuka setiap kali hard disk tersambung. Kamu juga bisa memilih folder foto dan video besar di folder rumah dan memindahkannya ke hard disk.</p>
+          <ul>
+            <li>Salinan di hard disk dibaca ulang sekali lagi tepat sebelum menghapus</li>
+            <li>“Kembalikan ke Mac” kapan pun kamu mau</li>
+            <li>Perpustakaan Foto, proyek kode, dan folder album tidak pernah dipindah</li>
+            <li>Bisa dibatalkan selama Tong Sampah belum dikosongkan</li>
+            <li>Cadangkan ke Google Drive dan rapikan sekaligus</li>
+          </ul>
+        </div>
+      </article>
+      <article class="story">
+        <img src="../illus/log.jpg" width="900" height="900" loading="lazy" alt="Komik: seorang anak memeriksa halaman buku catatan bergembok dengan kaca pembesar, dan muncul tanda centang hijau">
+        <div>
+          <span class="tag sat">Log Aktivitas</span>
+          <h3>Apa pindah ke mana? Masih bisa dijawab berbulan-bulan kemudian.</h3>
+          <p>Setiap pemindahan dan penghapusan dicatat <b>sampai ke tiap file</b>. Nanti, ketuk <b>periksa hasil lagi</b> untuk melihat semuanya masih ada di hard disk, dan memastikan lognya sendiri tidak diubah atau ada catatan yang hilang.</p>
+          <ul>
+            <li>Lokasi asal, lokasi baru, ukuran, dan MD5 untuk setiap file</li>
+            <li>Catatan saling terkait dengan hash, jadi perubahan atau celah akan ketahuan</li>
+            <li>Log hanya disimpan di Mac-mu</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <header>
+      <span class="eyebrow">Membuat album</span>
+      <h2>Kamu cukup memilih fotonya</h2>
+    </header>
+    <div class="features">
+      <div class="feature"><h3>Satu album tiap akhir pekan</h3><p>Foto Sabtu dan Minggu dikelompokkan per akhir pekan (“Agustus, minggu ke-3”), foto hari kerja per bulan (“Hari kerja September”). Perjalanan dan acara juga bisa punya album sendiri.</p></div>
+      <div class="feature"><h3>Dari mana pun asalnya</h3><p>Pilih dari Google Foto, atau seret foto kiriman teman dari WhatsApp. Aplikasi membaca tanggal pengambilan dan menaruh setiap foto di tempat yang benar. Bahkan bisa dicatat siapa yang memotretnya.</p></div>
+      <div class="feature"><h3>Cerita lengkap dengan kapan dan di mana</h3><p>Nama daerah, tanggal, waktu, hari besar seperti Lebaran atau 17 Agustus, sampai tulisan di papan toko: semuanya dirangkai jadi alur hari itu, dan Claude menulisnya seperti catatan harian saat kamu minta. Lalu sentuh sedikit biar jadi milikmu.</p></div>
+      <div class="feature"><h3>Photo book dan PDF</h3><p>Pilih beberapa favorit, jadilah photo book. Gabungkan beberapa akhir pekan dalam satu PDF untuk dikirim ke grup keluarga.</p></div>
+      <div class="feature"><h3>My Insta · AI di Mac</h3><p><b>AI yang berjalan di Mac-mu</b> (Apple Vision · Laya) memilih foto terbaik, tagar, dan lagu yang pas dalam hitungan detik, tanpa mengirim fotomu ke mana pun. Lagunya dari katalog lagu Korea, diputar pelan sebagai cuplikan 30 detik.</p></div>
+      <div class="feature"><h3>Lebih sedikit duplikat, lebih banyak ruang</h3><p>Menemukan foto yang sama yang kamu terima dua kali di chat dan memindahkan salinannya ke Tong Sampah, lalu merapikan file asli yang sudah dicadangkan untuk mengosongkan ruang di Mac.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="install">
+    <header>
+      <span class="eyebrow">Instal</span>
+      <h2>Tiga langkah, beres</h2>
+      <p class="muted">Aplikasinya bukan dari App Store, jadi Mac akan minta konfirmasi sekali, hanya saat pertama kali.</p>
+    </header>
+    <ol class="steps">
+      <li>
+        <h3>Unduh dan buka DMG-nya</h3>
+        <p>Klik <b>Unduh untuk Mac</b> di atas, lalu klik dua kali file yang terunduh.</p>
+      </li>
+      <li>
+        <h3>Seret ke Aplikasi</h3>
+        <p>Di jendela yang terbuka, seret ikon Album Akhir Pekan (namanya tampil sebagai “주말 사진첩”) ke folder Aplikasi di sebelahnya.</p>
+      </li>
+      <li>
+        <h3>Pertama kali, “Tetap Buka”</h3>
+        <p>Kalau macOS bilang tidak bisa memverifikasi aplikasi atau pengembangnya, buka <b>Pengaturan Sistem → Privasi &amp; Keamanan</b>, gulir ke paling bawah, lalu klik <b>Tetap Buka</b>.
+          Kalau muncul pesan aplikasi “rusak dan tidak dapat dibuka”, tempel baris di bawah ke Terminal, lalu buka aplikasinya lagi.</p>
+        <div class="cmd">
+          <pre id="xattrCmd">xattr -dr com.apple.quarantine "/Applications/주말 사진첩.app"</pre>
+          <button class="copy" type="button" data-copy="xattrCmd">Salin</button>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="section" id="google">
+    <div class="connect">
+      <div style="display:grid;gap:16px;min-width:0">
+        <span class="eyebrow">Google Foto (opsional)</span>
+        <h2>Mau pakai Google Foto? Kirim satu email saja.</h2>
+        <p class="muted">Aplikasi ini masih dalam tahap pengujian Google, jadi hanya akun terdaftar yang bisa terhubung ke Google Foto. Menyeret foto langsung bisa dipakai, tanpa perlu terhubung.</p>
+        <ul class="flow">
+          <li><span>Kamu</span><p>Kirim email berisi alamat Gmail yang kamu pakai untuk Google Foto.</p></li>
+          <li><span>Baryon Labs</span><p>Kami mendaftarkan akunmu dan membalas dengan file koneksi aplikasi (.json).</p></li>
+          <li><span>Kamu</span><p>Di tab <b>Cadangkan &amp; Kosongkan Ruang</b> di aplikasi, pilih file itu lewat <b>Pilih JSON yang diunduh</b>. Terhubung.</p></li>
+        </ul>
+      </div>
+      <div class="mail">
+        <span class="eyebrow">Kirim ke</span>
+        <div class="addr"><b id="mailAddr">hello@baryon.ai</b><button class="copy" type="button" data-copy="mailAddr">Salin alamat</button></div>
+        <p class="muted" style="font-size:14px">Contoh subjek: Permintaan koneksi Google Album Akhir Pekan<br>Isi: alamat Gmail yang kamu pakai untuk Google Foto</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="extras">
+    <header>
+      <span class="eyebrow">Pelengkap</span>
+      <h2>Aplikasi tetap terbuka tanpa ini</h2>
+      <p class="muted">Kalau program ini ada di Mac-mu, fitur yang terkait akan menyala. Kalau tidak, hanya fitur itu yang tidak aktif.</p>
+    </header>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Program</th><th>Fitur yang dinyalakan</th><th>Instal</th></tr></thead>
+        <tbody>
+          <tr><td>Google Chrome</td><td>Jendela pemilih Google Foto, membuat PDF</td><td><a href="https://www.google.com/chrome/">google.com/chrome</a></td></tr>
+          <tr><td>ffmpeg</td><td>Membaca tanggal video, memotong bagian, menyimpan satu frame sebagai foto</td><td><code>brew install ffmpeg</code></td></tr>
+          <tr><td>adb (alat Android)</td><td>Cadangan Ponsel: membaca dan memindahkan file di ponsel Android</td><td><code>brew install --cask android-platform-tools</code></td></tr>
+          <tr><td>Claude Code</td><td>Menulis dan menyunting cerita album, menulis caption My Insta (memakai akun Claude-mu sendiri). Memilih foto dan lagu tetap jalan tanpanya</td><td><a href="https://claude.com/claude-code">claude.com/claude-code</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <section class="section" id="feedback">
+    <div class="connect">
+      <div style="display:grid;gap:14px;min-width:0">
+        <span class="eyebrow">Masukan</span>
+        <h2>Ada yang mengganjal? Ada fitur yang kamu harapkan?</h2>
+        <p class="muted">Klik <b>💬 Kirim Masukan</b> di bagian atas aplikasi, dan email terbuka dengan subjek dan templat sederhana yang sudah terisi. Belum punya aplikasinya? Tombol di bawah juga bisa. Papan tempat kamu bisa menulis cukup dengan verifikasi email, tanpa daftar, segera hadir.</p>
+      </div>
+      <div class="mail">
+        <span class="eyebrow">Kirim ke</span>
+        <div class="addr"><b id="fbAddr">hello@baryon.ai</b><button class="copy" type="button" data-copy="fbAddr">Salin alamat</button></div>
+        <a class="btn" style="justify-self:start;font-size:16px;padding:11px 18px" href="mailto:hello@baryon.ai?subject=%5BMasukan%20Album%20Akhir%20Pekan%5D%20&body=%E2%96%A0%20Jenis%3A%20%28masalah%2Fbug%20%2F%20ide%20fitur%20%2F%20pujian%2Flainnya%29%0A%0A%E2%96%A0%20Detail%0A%0A%0A%E2%96%A0%20Versi%20aplikasi%20%C2%B7%20Mac%3A%20">Kirim masukan lewat email</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="privacy">
+    <header>
+      <span class="eyebrow">Foto &amp; privasi</span>
+      <h2>Albummu tinggal di Mac-mu</h2>
+    </header>
+    <div class="data">
+      <div><b>Tidak ada yang masuk ke server kami</b><p>Album dibuat di folder Gambar di Mac-mu. Baryon Labs tidak pernah menerima foto, cerita, atau catatanmu. Foto keluar dari Mac hanya kalau kamu memilihnya, misalnya saat mencadangkan ke Google Drive milikmu sendiri.</p></div>
+      <div><b>Sebagian besar di Mac</b><p>Pemilihan foto, tagar, dan lagu ditangani AI di Mac-mu. Hanya saat kamu minta dituliskan, beberapa foto terpilih dan ringkasan “kapan &amp; di mana” (sampai tingkat kelurahan) dikirim ke akun Claude-mu. File asli, nama file, dan koordinat GPS tidak dikirim.</p></div>
+      <div><b>Setiap tindakan dicatat</b><p>Lokasi, ukuran, dan MD5 setiap file yang dipindah atau dihapus disimpan hanya di Mac ini, jadi nanti kamu bisa memastikan semuanya masih utuh.</p></div>
+      <div><b>Hanya hitungan penggunaan anonim</b><p>Baryon Labs hanya menerima hitungan anonim tentang fitur mana yang dipakai dan seberapa sering. Kamu bisa melihat persis apa yang akan dikirim, dan mematikannya, di “ⓘ Info” dalam aplikasi.</p></div>
+    </div>
+    <p class="muted" style="font-size:14px">Detailnya ada di “ⓘ Info” dalam aplikasi → catatan data &amp; AI, Ketentuan Penggunaan, dan Kebijakan Privasi. Album Akhir Pekan dibuat untuk penggunaan pribadi dan keluarga, non-komersial.</p>
+  </section>
+
+  <footer>
+    <span>Made in Korea by <b>Baryon Labs</b> · © 2026 Baryon Labs. All rights reserved.</span>
+    <span>Kontak <span class="mono" style="user-select:all">hello@baryon.ai</span> · <a href="https://github.com/baryonlabs/weekend-album-releases/releases">Semua versi</a></span>
+  </footer>
+</div>
+
+<script>
+  document.querySelectorAll("[data-copy]").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const el = document.getElementById(btn.dataset.copy);
+      const text = el.textContent.trim();
+      const label = btn.textContent;
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.textContent = "Tersalin!";
+      } catch {
+        const range = document.createRange();
+        range.selectNodeContents(el);
+        const sel = window.getSelection();
+        sel.removeAllRanges(); sel.addRange(range);
+        btn.textContent = "Terpilih · ⌘C";
+      }
+      setTimeout(() => { btn.textContent = label; }, 1800);
+    });
+  });
+
+  // Audience-specific headline: random on each visit, then rotates every few seconds (fixed when Reduce Motion is on)
+  (() => {
+    const slides = [...document.querySelectorAll("#rotator .slide")];
+    const dots = [...document.querySelectorAll(".who-dots button")];
+    if (!slides.length) return;
+    let i = Math.floor(Math.random() * slides.length), timer = 0, paused = false;
+    const show = (n) => { i = (n + slides.length) % slides.length;
+      slides.forEach((s, k) => { s.classList.toggle("on", k === i); s.setAttribute("aria-hidden", k !== i); });
+      dots.forEach((d, k) => { d.classList.toggle("on", k === i); d.setAttribute("aria-selected", k === i); }); };
+    const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const tick = () => { clearTimeout(timer); if (!calm) timer = setTimeout(() => { if (!paused && !document.hidden) show(i + 1); tick(); }, 5500); };
+    dots.forEach((d, k) => d.addEventListener("click", () => { show(k); tick(); }));
+    const box = document.getElementById("rotator");
+    box.addEventListener("mouseenter", () => { paused = true; });
+    box.addEventListener("mouseleave", () => { paused = false; });
+    show(i); tick();
+  })();
+</script>
+
+</body>
+</html>
