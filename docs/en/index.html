@@ -193,6 +193,8 @@
     .day.sun { animation-delay: .12s; }
     @keyframes lift { from { transform: translateY(6px); } to { transform: none; } }
   }
+
+  .os-h { margin: 18px 0 2px; font-size: 18px; }
 </style>
 
 </head>
@@ -396,6 +398,7 @@
       <h2>Three steps, done</h2>
       <p class="muted">It's not from the App Store, so your Mac asks you to confirm once, the first time only.</p>
     </header>
+    <h3 class="os-h">🍎 Mac</h3>
     <ol class="steps">
       <li>
         <h3>Download and open the DMG</h3>
@@ -412,6 +415,35 @@
         <div class="cmd">
           <pre id="xattrCmd">xattr -dr com.apple.quarantine "/Applications/주말 사진첩.app"</pre>
           <button class="copy" type="button" data-copy="xattrCmd">Copy</button>
+        </div>
+      </li>
+    </ol>
+    <h3 class="os-h" id="winSteps">🪟 Windows 10/11</h3>
+    <ol class="steps">
+      <li>
+        <h3>Run the installer</h3>
+        <p>Double-click <span class="mono">WeekendAlbum-1.15.0-Setup.exe</span> from <b>Download for Windows</b> above. No admin rights needed — it installs for your account only.</p>
+      </li>
+      <li>
+        <h3>First time: "More info → Run anyway"</h3>
+        <p>If <b>Windows protected your PC</b> appears, click <b>More info</b>, then <b>Run anyway</b>. It's a new app without a code-signing certificate yet, so this shows only once.</p>
+      </li>
+      <li>
+        <h3>Open Weekend Album and pick a view</h3>
+        <p>Open <b>Weekend Album</b> from the Start menu (or desktop) and choose <b>Family</b> or <b>Professional</b>. Photos go to <b>Pictures\주말 사진첩</b>. On Windows 10, if the window stays blank, install the <a href="https://go.microsoft.com/fwlink/p/?LinkId=2124703">Microsoft Edge WebView2 Runtime</a> and reopen.</p>
+      </li>
+      <li>
+        <h3>(Optional) Video & Android phone tools</h3>
+        <p>For video scenes/clips and phone backup, paste these lines into <b>PowerShell</b> to install the free tools. Face grouping, AI content sorting and Photos app sync are Mac-only.</p>
+        <div class="cmds" style="display:grid;gap:6px;min-width:0">
+          <div class="cmd">
+            <pre id="wgFf">winget install Gyan.FFmpeg</pre>
+            <button class="copy" type="button" data-copy="wgFf">Copy</button>
+          </div>
+          <div class="cmd">
+            <pre id="wgAdb">winget install Google.PlatformTools</pre>
+            <button class="copy" type="button" data-copy="wgAdb">Copy</button>
+          </div>
         </div>
       </li>
     </ol>

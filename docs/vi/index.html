@@ -192,6 +192,8 @@
     .day.sun { animation-delay: .12s; }
     @keyframes lift { from { transform: translateY(6px); } to { transform: none; } }
   }
+
+  .os-h { margin: 18px 0 2px; font-size: 18px; }
 </style>
 
 </head>
@@ -394,6 +396,7 @@
       <h2>Ba bước là xong</h2>
       <p class="muted">App không đến từ App Store, nên lần đầu Mac sẽ hỏi bạn xác nhận một lần.</p>
     </header>
+    <h3 class="os-h">🍎 Mac</h3>
     <ol class="steps">
       <li>
         <h3>Tải về và mở tệp DMG</h3>
@@ -410,6 +413,35 @@
         <div class="cmd">
           <pre id="xattrCmd">xattr -dr com.apple.quarantine "/Applications/주말 사진첩.app"</pre>
           <button class="copy" type="button" data-copy="xattrCmd">Sao chép</button>
+        </div>
+      </li>
+    </ol>
+    <h3 class="os-h" id="winSteps">🪟 Windows 10/11</h3>
+    <ol class="steps">
+      <li>
+        <h3>Chạy tệp cài đặt</h3>
+        <p>Bấm đúp <span class="mono">WeekendAlbum-1.15.0-Setup.exe</span> tải từ <b>Tải về cho Windows</b> ở trên. Không cần quyền quản trị — chỉ cài cho tài khoản của bạn.</p>
+      </li>
+      <li>
+        <h3>Lần đầu: "Thông tin thêm → Vẫn chạy"</h3>
+        <p>Nếu hiện <b>Windows đã bảo vệ PC của bạn</b>, bấm <b>Thông tin thêm</b> rồi <b>Vẫn chạy</b>. Ứng dụng mới chưa có chứng chỉ ký mã nên chỉ hiện lần đầu.</p>
+      </li>
+      <li>
+        <h3>Mở ứng dụng và chọn chế độ xem</h3>
+        <p>Mở <b>Album Cuối Tuần</b> từ menu Start (hoặc màn hình nền) và chọn <b>Gia đình</b> hoặc <b>Chuyên nghiệp</b>. Ảnh được gom vào <b>Pictures\주말 사진첩</b>. Trên Windows 10, nếu cửa sổ trống, hãy cài <a href="https://go.microsoft.com/fwlink/p/?LinkId=2124703">Microsoft Edge WebView2 Runtime</a> rồi mở lại.</p>
+      </li>
+      <li>
+        <h3>(Tùy chọn) Công cụ video & điện thoại Android</h3>
+        <p>Để dùng cảnh/clip video và sao lưu điện thoại, dán các dòng dưới vào <b>PowerShell</b> để cài công cụ miễn phí. Gom theo khuôn mặt, phân loại nội dung ảnh bằng AI và đồng bộ app Ảnh chỉ có trên Mac.</p>
+        <div class="cmds" style="display:grid;gap:6px;min-width:0">
+          <div class="cmd">
+            <pre id="wgFf">winget install Gyan.FFmpeg</pre>
+            <button class="copy" type="button" data-copy="wgFf">Sao chép</button>
+          </div>
+          <div class="cmd">
+            <pre id="wgAdb">winget install Google.PlatformTools</pre>
+            <button class="copy" type="button" data-copy="wgAdb">Sao chép</button>
+          </div>
         </div>
       </li>
     </ol>

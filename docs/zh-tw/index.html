@@ -196,6 +196,8 @@
     .day.sun { animation-delay: .12s; }
     @keyframes lift { from { transform: translateY(6px); } to { transform: none; } }
   }
+
+  .os-h { margin: 18px 0 2px; font-size: 18px; }
 </style>
 
 </head>
@@ -398,6 +400,7 @@
       <h2>三個步驟搞定</h2>
       <p class="muted">這個 App 不是從 App Store 下載的，所以 Mac 會請你確認一次，只有第一次。</p>
     </header>
+    <h3 class="os-h">🍎 Mac</h3>
     <ol class="steps">
       <li>
         <h3>下載並打開 DMG</h3>
@@ -414,6 +417,35 @@
         <div class="cmd">
           <pre id="xattrCmd">xattr -dr com.apple.quarantine "/Applications/주말 사진첩.app"</pre>
           <button class="copy" type="button" data-copy="xattrCmd">拷貝</button>
+        </div>
+      </li>
+    </ol>
+    <h3 class="os-h" id="winSteps">🪟 Windows 10/11</h3>
+    <ol class="steps">
+      <li>
+        <h3>執行安裝程式</h3>
+        <p>雙擊上方 <b>下載 Windows 版</b> 取得的 <span class="mono">WeekendAlbum-1.15.0-Setup.exe</span>。不需要系統管理員權限，只安裝到你的帳號。</p>
+      </li>
+      <li>
+        <h3>第一次：「其他資訊 → 仍要執行」</h3>
+        <p>若出現 <b>Windows 已保護您的電腦</b>，請按 <b>其他資訊</b>，再按 <b>仍要執行</b>。這是尚未取得程式碼簽章憑證的新 App，只會出現第一次。</p>
+      </li>
+      <li>
+        <h3>開啟 App 並選擇檢視</h3>
+        <p>從開始功能表（或桌面）開啟 <b>週末相簿</b>，選擇 <b>家庭</b> 或 <b>專業</b>。照片會集中到 <b>圖片\주말 사진첩</b>。Windows 10 若視窗一片空白，請安裝 <a href="https://go.microsoft.com/fwlink/p/?LinkId=2124703">Microsoft Edge WebView2 執行階段</a> 後重新開啟。</p>
+      </li>
+      <li>
+        <h3>（選用）影片與 Android 手機工具</h3>
+        <p>要使用影片場景/片段和手機備份，請把下面幾行貼到 <b>PowerShell</b> 安裝免費工具。依人臉分組、照片內容 AI 分類和「照片」App 同步僅限 Mac。</p>
+        <div class="cmds" style="display:grid;gap:6px;min-width:0">
+          <div class="cmd">
+            <pre id="wgFf">winget install Gyan.FFmpeg</pre>
+            <button class="copy" type="button" data-copy="wgFf">複製</button>
+          </div>
+          <div class="cmd">
+            <pre id="wgAdb">winget install Google.PlatformTools</pre>
+            <button class="copy" type="button" data-copy="wgAdb">複製</button>
+          </div>
         </div>
       </li>
     </ol>

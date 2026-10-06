@@ -193,6 +193,8 @@
     .day.sun { animation-delay: .12s; }
     @keyframes lift { from { transform: translateY(6px); } to { transform: none; } }
   }
+
+  .os-h { margin: 18px 0 2px; font-size: 18px; }
 </style>
 
 </head>
@@ -396,6 +398,7 @@
       <h2>3단계면 끝나요</h2>
       <p class="muted">앱 스토어 밖에서 받는 앱이라 처음 한 번만 Mac의 확인 절차를 거칩니다.</p>
     </header>
+    <h3 class="os-h">🍎 Mac</h3>
     <ol class="steps">
       <li>
         <h3>DMG를 내려받아 엽니다</h3>
@@ -412,6 +415,35 @@
         <div class="cmd">
           <pre id="xattrCmd">xattr -dr com.apple.quarantine "/Applications/주말 사진첩.app"</pre>
           <button class="copy" type="button" data-copy="xattrCmd">복사</button>
+        </div>
+      </li>
+    </ol>
+    <h3 class="os-h" id="winSteps">🪟 Windows 10/11</h3>
+    <ol class="steps">
+      <li>
+        <h3>설치 파일을 실행합니다</h3>
+        <p>위의 <b>Windows용 다운로드</b>로 받은 <span class="mono">WeekendAlbum-1.15.0-Setup.exe</span>를 더블클릭하세요. 관리자 권한은 필요 없고, 내 계정에만 설치됩니다.</p>
+      </li>
+      <li>
+        <h3>처음 한 번 "추가 정보 → 실행"</h3>
+        <p><b>Windows의 PC 보호</b> 창이 뜨면 <b>추가 정보</b>를 누른 뒤 <b>실행</b>을 누르세요. 아직 인증서 서명이 없는 새 앱이라 처음 한 번만 나옵니다.</p>
+      </li>
+      <li>
+        <h3>「주말 사진첩」을 열고 보기를 고릅니다</h3>
+        <p>시작 메뉴(또는 바탕화면)의 <b>주말 사진첩</b>을 열고 <b>가족</b>·<b>프로페셔널</b> 중 고르세요. 사진은 <b>사진(Pictures)\주말 사진첩</b> 폴더에 모입니다. Windows 10에서 창이 비어 있으면 <a href="https://go.microsoft.com/fwlink/p/?LinkId=2124703">Microsoft Edge WebView2 런타임</a>을 설치하고 다시 여세요.</p>
+      </li>
+      <li>
+        <h3>(선택) 동영상·안드로이드 폰 도구</h3>
+        <p>동영상 장면·클립과 폰 백업을 쓰려면 <b>PowerShell</b>에 아래 줄을 붙여 넣어 무료 도구를 설치하세요. 얼굴로 묶기·사진 내용 AI 분류·사진 앱 연동은 Mac에서만 됩니다.</p>
+        <div class="cmds" style="display:grid;gap:6px;min-width:0">
+          <div class="cmd">
+            <pre id="wgFf">winget install Gyan.FFmpeg</pre>
+            <button class="copy" type="button" data-copy="wgFf">복사</button>
+          </div>
+          <div class="cmd">
+            <pre id="wgAdb">winget install Google.PlatformTools</pre>
+            <button class="copy" type="button" data-copy="wgAdb">복사</button>
+          </div>
         </div>
       </li>
     </ol>

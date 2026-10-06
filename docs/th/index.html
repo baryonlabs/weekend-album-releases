@@ -192,6 +192,8 @@
     .day.sun { animation-delay: .12s; }
     @keyframes lift { from { transform: translateY(6px); } to { transform: none; } }
   }
+
+  .os-h { margin: 18px 0 2px; font-size: 18px; }
 </style>
 
 </head>
@@ -394,6 +396,7 @@
       <h2>สามขั้นตอนก็เสร็จ</h2>
       <p class="muted">แอปนี้ไม่ได้มาจาก App Store ครั้งแรก Mac จึงจะขอให้ยืนยันหนึ่งครั้ง</p>
     </header>
+    <h3 class="os-h">🍎 Mac</h3>
     <ol class="steps">
       <li>
         <h3>ดาวน์โหลดแล้วเปิดไฟล์ DMG</h3>
@@ -410,6 +413,35 @@
         <div class="cmd">
           <pre id="xattrCmd">xattr -dr com.apple.quarantine "/Applications/주말 사진첩.app"</pre>
           <button class="copy" type="button" data-copy="xattrCmd">คัดลอก</button>
+        </div>
+      </li>
+    </ol>
+    <h3 class="os-h" id="winSteps">🪟 Windows 10/11</h3>
+    <ol class="steps">
+      <li>
+        <h3>เรียกใช้ไฟล์ติดตั้ง</h3>
+        <p>ดับเบิลคลิก <span class="mono">WeekendAlbum-1.15.0-Setup.exe</span> จาก <b>ดาวน์โหลดสำหรับ Windows</b> ด้านบน ไม่ต้องใช้สิทธิ์ผู้ดูแล ติดตั้งเฉพาะบัญชีของคุณ</p>
+      </li>
+      <li>
+        <h3>ครั้งแรก: "ข้อมูลเพิ่มเติม → เรียกใช้"</h3>
+        <p>ถ้าขึ้น <b>Windows ได้ปกป้องพีซีของคุณ</b> ให้กด <b>ข้อมูลเพิ่มเติม</b> แล้ว <b>เรียกใช้</b> เป็นแอปใหม่ที่ยังไม่มีใบรับรองการลงนาม จึงขึ้นแค่ครั้งแรก</p>
+      </li>
+      <li>
+        <h3>เปิดแอปแล้วเลือกมุมมอง</h3>
+        <p>เปิด <b>อัลบั้มสุดสัปดาห์</b> จากเมนู Start (หรือเดสก์ท็อป) แล้วเลือก <b>ครอบครัว</b> หรือ <b>มืออาชีพ</b> รูปจะรวมอยู่ที่ <b>Pictures\주말 사진첩</b> ถ้าใช้ Windows 10 แล้วหน้าต่างว่าง ให้ติดตั้ง <a href="https://go.microsoft.com/fwlink/p/?LinkId=2124703">Microsoft Edge WebView2 Runtime</a> แล้วเปิดใหม่</p>
+      </li>
+      <li>
+        <h3>(ไม่บังคับ) เครื่องมือวิดีโอและมือถือ Android</h3>
+        <p>ถ้าจะใช้ฉาก/คลิปวิดีโอและสำรองมือถือ ให้วางบรรทัดด้านล่างใน <b>PowerShell</b> เพื่อติดตั้งเครื่องมือฟรี การจัดกลุ่มใบหน้า การจัดหมวดเนื้อหารูปด้วย AI และการซิงก์แอปรูปภาพใช้ได้เฉพาะ Mac</p>
+        <div class="cmds" style="display:grid;gap:6px;min-width:0">
+          <div class="cmd">
+            <pre id="wgFf">winget install Gyan.FFmpeg</pre>
+            <button class="copy" type="button" data-copy="wgFf">คัดลอก</button>
+          </div>
+          <div class="cmd">
+            <pre id="wgAdb">winget install Google.PlatformTools</pre>
+            <button class="copy" type="button" data-copy="wgAdb">คัดลอก</button>
+          </div>
         </div>
       </li>
     </ol>

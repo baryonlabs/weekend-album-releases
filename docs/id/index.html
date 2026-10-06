@@ -192,6 +192,8 @@
     .day.sun { animation-delay: .12s; }
     @keyframes lift { from { transform: translateY(6px); } to { transform: none; } }
   }
+
+  .os-h { margin: 18px 0 2px; font-size: 18px; }
 </style>
 
 </head>
@@ -394,6 +396,7 @@
       <h2>Tiga langkah, beres</h2>
       <p class="muted">Aplikasinya bukan dari App Store, jadi Mac akan minta konfirmasi sekali, hanya saat pertama kali.</p>
     </header>
+    <h3 class="os-h">🍎 Mac</h3>
     <ol class="steps">
       <li>
         <h3>Unduh dan buka DMG-nya</h3>
@@ -410,6 +413,35 @@
         <div class="cmd">
           <pre id="xattrCmd">xattr -dr com.apple.quarantine "/Applications/주말 사진첩.app"</pre>
           <button class="copy" type="button" data-copy="xattrCmd">Salin</button>
+        </div>
+      </li>
+    </ol>
+    <h3 class="os-h" id="winSteps">🪟 Windows 10/11</h3>
+    <ol class="steps">
+      <li>
+        <h3>Jalankan installer</h3>
+        <p>Klik dua kali <span class="mono">WeekendAlbum-1.15.0-Setup.exe</span> dari <b>Unduh untuk Windows</b> di atas. Tidak perlu hak admin — hanya terpasang untuk akun Anda.</p>
+      </li>
+      <li>
+        <h3>Pertama kali: "Info selengkapnya → Tetap jalankan"</h3>
+        <p>Jika muncul <b>Windows protected your PC</b>, klik <b>Info selengkapnya</b> lalu <b>Tetap jalankan</b>. Aplikasinya baru dan belum bersertifikat tanda tangan, jadi hanya muncul sekali.</p>
+      </li>
+      <li>
+        <h3>Buka aplikasi dan pilih tampilan</h3>
+        <p>Buka <b>Album Akhir Pekan</b> dari menu Start (atau desktop) lalu pilih <b>Keluarga</b> atau <b>Profesional</b>. Foto dikumpulkan di <b>Pictures\주말 사진첩</b>. Di Windows 10, jika jendela kosong, pasang <a href="https://go.microsoft.com/fwlink/p/?LinkId=2124703">Microsoft Edge WebView2 Runtime</a> lalu buka lagi.</p>
+      </li>
+      <li>
+        <h3>(Opsional) Alat video & ponsel Android</h3>
+        <p>Untuk adegan/klip video dan cadangan ponsel, tempel baris di bawah ke <b>PowerShell</b> untuk memasang alat gratis. Kelompok wajah, pemilahan isi foto dengan AI, dan sinkron app Foto hanya di Mac.</p>
+        <div class="cmds" style="display:grid;gap:6px;min-width:0">
+          <div class="cmd">
+            <pre id="wgFf">winget install Gyan.FFmpeg</pre>
+            <button class="copy" type="button" data-copy="wgFf">Salin</button>
+          </div>
+          <div class="cmd">
+            <pre id="wgAdb">winget install Google.PlatformTools</pre>
+            <button class="copy" type="button" data-copy="wgAdb">Salin</button>
+          </div>
         </div>
       </li>
     </ol>

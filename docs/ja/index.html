@@ -192,6 +192,8 @@
     .day.sun { animation-delay: .12s; }
     @keyframes lift { from { transform: translateY(6px); } to { transform: none; } }
   }
+
+  .os-h { margin: 18px 0 2px; font-size: 18px; }
 </style>
 
 </head>
@@ -394,6 +396,7 @@
       <h2>3ステップで完了</h2>
       <p class="muted">App Store 以外から入手するアプリなので、最初の1回だけ Mac の確認手順があります。</p>
     </header>
+    <h3 class="os-h">🍎 Mac</h3>
     <ol class="steps">
       <li>
         <h3>DMG をダウンロードして開く</h3>
@@ -410,6 +413,35 @@
         <div class="cmd">
           <pre id="xattrCmd">xattr -dr com.apple.quarantine "/Applications/주말 사진첩.app"</pre>
           <button class="copy" type="button" data-copy="xattrCmd">コピー</button>
+        </div>
+      </li>
+    </ol>
+    <h3 class="os-h" id="winSteps">🪟 Windows 10/11</h3>
+    <ol class="steps">
+      <li>
+        <h3>インストーラーを実行</h3>
+        <p>上の <b>Windows 版をダウンロード</b> で受け取った <span class="mono">WeekendAlbum-1.15.0-Setup.exe</span> をダブルクリック。管理者権限は不要で、自分のアカウントにだけインストールされます。</p>
+      </li>
+      <li>
+        <h3>初回だけ「詳細情報 → 実行」</h3>
+        <p><b>Windows によって PC が保護されました</b> と出たら <b>詳細情報</b> → <b>実行</b> を押してください。まだコード署名のない新しいアプリなので、最初の一度だけ表示されます。</p>
+      </li>
+      <li>
+        <h3>アプリを開いて表示を選ぶ</h3>
+        <p>スタートメニュー（またはデスクトップ）から開き、<b>家族</b>か<b>プロフェッショナル</b>を選びます。写真は <b>ピクチャ\주말 사진첩</b> に集まります。Windows 10 で画面が真っ白なら <a href="https://go.microsoft.com/fwlink/p/?LinkId=2124703">Microsoft Edge WebView2 ランタイム</a> を入れて開き直してください。</p>
+      </li>
+      <li>
+        <h3>（任意）動画・Android スマホ用ツール</h3>
+        <p>動画のシーン・クリップやスマホのバックアップを使うなら、<b>PowerShell</b> に下の行を貼り付けて無料ツールを入れます。顔でまとめる・写真内容の AI 分類・写真アプリ連携は Mac のみです。</p>
+        <div class="cmds" style="display:grid;gap:6px;min-width:0">
+          <div class="cmd">
+            <pre id="wgFf">winget install Gyan.FFmpeg</pre>
+            <button class="copy" type="button" data-copy="wgFf">コピー</button>
+          </div>
+          <div class="cmd">
+            <pre id="wgAdb">winget install Google.PlatformTools</pre>
+            <button class="copy" type="button" data-copy="wgAdb">コピー</button>
+          </div>
         </div>
       </li>
     </ol>
