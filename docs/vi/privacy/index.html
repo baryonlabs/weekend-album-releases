@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chính sách quyền riêng tư</title>
+<link rel="canonical" href="https://baryonlabs.github.io/weekend-album-releases/vi/privacy/">
+<style>
+:root{--bg:#fbf8f3;--ink:#2b2622;--muted:#6f655c;--line:#e7dfd4;--accent:#c4553a}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#171513;--ink:#ece6df;--muted:#a79d93;--line:#34302b;--accent:#e58a6f}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.75 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Segoe UI",sans-serif;padding:0 16px}
+main{max-width:760px;margin:0 auto;padding:32px 0 64px}
+a{color:var(--accent)} h1{font-size:28px;line-height:1.3} h2{font-size:20px;margin-top:32px} code{font-size:.9em;background:var(--line);padding:1px 5px;border-radius:4px}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:14px} th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+.top{font-size:14px;color:var(--muted)} .top a{margin-right:12px}
+</style>
+</head>
+<body>
+<main>
+<p class="top"><a href="../../vi/">← 주말 사진첩 · Weekend Album</a> <a href="../../privacy/" lang="ko">ko</a> <a href="../../en/privacy/" lang="en">en</a> <a href="../../ja/privacy/" lang="ja">ja</a> <a href="../../id/privacy/" lang="id">id</a> <a href="../../th/privacy/" lang="th">th</a> <a href="../../vi/privacy/" lang="vi">vi</a> <a href="../../zh/privacy/" lang="zh">zh</a> <a href="../../zh-tw/privacy/" lang="zh-tw">zh-tw</a></p>
+<h1>Chính sách quyền riêng tư</h1>
+<p>Đây là bản dịch để tiện tham khảo. Nếu có khác biệt, bản gốc tiếng Hàn sẽ được ưu tiên.</p>
+<p>Ngày hiệu lực: 2 tháng 10 năm 2026 · Phiên bản 1.0.0</p>
+<p>Baryon Labs (바리온랩스, sau đây gọi là "Công ty") trân trọng thông tin cá nhân của những người sử dụng <b>Album Cuối Tuần</b> và <b>Photo Offload</b> (sau đây gọi là "Ứng dụng").</p>
+<h2>1. Thông tin Công ty nhận: chỉ số liệu thống kê sử dụng ẩn danh</h2>
+<p>Công ty chỉ nhận <b>số liệu thống kê sử dụng ẩn danh</b> (ID cài đặt ngẫu nhiên, phiên bản ứng dụng, phiên bản macOS, số lần sử dụng từng chức năng theo ngày). Công ty không nhận ảnh, video, tên tệp hay tên album, văn bản hay ghi chú, tài khoản, email, tên người hay vị trí, và Ứng dụng không có chức năng quảng cáo hay theo dõi.</p>
+<ul><li>Mục đích: nắm bắt tình hình sử dụng các chức năng và cải thiện Ứng dụng. Không sử dụng cho mục đích khác, không cung cấp cho bên thứ ba, không bán.</li><li>Bạn có thể xem nguyên văn nội dung được gửi đi trong màn hình 「Thông tin」 của Ứng dụng và có thể tắt bất cứ lúc nào (khi tắt, các bản ghi chưa gửi cũng bị xóa).</li><li>Địa chỉ IP được chuyển đến máy chủ thu thập không được lưu vào số liệu thống kê và không được liên kết với ID cài đặt.</li><li>Số liệu thống kê đã nhận được lưu giữ trong thời gian cần thiết để cải thiện Ứng dụng (tối đa 2 năm) rồi bị xóa.</li></ul>
+<h2>2. Thông tin được lưu trên máy Mac của người dùng</h2>
+<table><thead><tr><th>Mục</th><th>Vị trí</th></tr></thead><tbody><tr><td>Ảnh, video, bài giới thiệu (소개.md), ghi chú (메모.md)</td><td><code>~/Pictures/주말 사진첩</code> (thư mục do người dùng chọn)</td></tr><tr><td>Thông tin album (danh sách, lựa chọn, ảnh bìa, bài Insta, kết quả tìm bài hát, tên người chụp)</td><td><code>.album</code> bên trong thư mục album</td></tr><tr><td>Mã thông báo đăng nhập Google</td><td><code>~/Library/Application Support/WeekendAlbum</code>, <code>.../PhotoOffload</code> (quyền 600, chỉ chính bạn đọc được)</td></tr><tr><td>Lịch sử sao lưu, cài đặt</td><td><code>~/Library/Application Support/PhotoOffload</code></td></tr><tr><td>Nhật ký thao tác (đường dẫn, kích thước, MD5 của các tệp đã di chuyển hoặc xóa)</td><td><code>~/Library/Application Support/Baryon/작업기록</code></td></tr><tr><td>Số lần sử dụng chưa gửi, trạng thái bật/tắt thống kê</td><td><code>~/Library/Application Support/WeekendAlbum/usage.json</code></td></tr></tbody></table>
+<p>Trong khi Ứng dụng đang chạy, giao diện chỉ được mở tại địa chỉ nội bộ của Mac (127.0.0.1), và một giá trị bí mật được tạo mới mỗi lần khởi chạy sẽ chặn các yêu cầu thao tác từ chương trình hoặc trang web khác.</p>
+<h2>3. Thông tin được gửi đến dịch vụ bên ngoài khi người dùng thực hiện</h2>
+<p>Những gì được gửi đến Google (lấy ảnh, sao lưu Drive), Apple (tìm kiếm nghe thử bài hát: chỉ tên bài hát và ca sĩ), Anthropic (Claude — chỉ khi bạn nhờ viết bài), Hugging Face (tải mô hình Laya, chỉ tải về), Apple Maps (khi viết bài giới thiệu: vị trí ảnh → tên khu phố, bản đồ nhỏ trong PDF), và những gì AI xử lý, đều được ghi đầy đủ theo từng chức năng trong 「Hướng dẫn về dữ liệu &amp; AI」. Thông tin này được gửi trực tiếp đến từng dịch vụ <b>bằng tài khoản của người dùng</b>, không phải qua Công ty, và chịu sự điều chỉnh của điều khoản và chính sách quyền riêng tư của từng dịch vụ. Nếu bạn không dùng chức năng tương ứng thì sẽ không có gì được gửi đi.</p>
+<h2>4. Thông tin của người khác</h2>
+<p>Ảnh do người khác chụp, người xuất hiện trong ảnh và tên "người chụp" chỉ được lưu trên máy Mac của người dùng. Khi chia sẻ những thông tin này (PDF, v.v.), xin hãy có được sự đồng ý của người liên quan.</p>
+<h2>5. Xóa thông tin</h2>
+<ul><li>Khi bạn tắt thống kê sử dụng trong màn hình 「Thông tin」, các bản ghi còn lại trên Mac sẽ bị xóa ngay. Đối với số liệu thống kê đã được nhận, nếu bạn gửi ID cài đặt (hiển thị trong màn hình 「Thông tin」) đến hello@baryon.ai, chúng tôi sẽ xóa cho bạn.</li><li>Ảnh và dữ liệu trong Ứng dụng có thể được xóa bằng chức năng xóa của Ứng dụng (chuyển vào Thùng rác) hoặc trong Finder.</li><li>Có thể ngắt kết nối Google bằng "Đăng xuất" trong Ứng dụng hoặc tại "Quyền truy cập của ứng dụng bên thứ ba" trong cài đặt tài khoản Google; nếu xóa các tệp mã thông báo ở mục 2 trên, thông tin đăng nhập còn lại trên Mac cũng sẽ biến mất.</li><li>Khi gỡ Ứng dụng, nếu xóa luôn các thư mục nêu trên thì toàn bộ thông tin do Ứng dụng tạo ra sẽ bị xóa.</li></ul>
+<h2>6. Thông tin cá nhân của trẻ em</h2>
+<p>Ảnh gia đình có thể có trẻ em. Ứng dụng không gửi những ảnh này ra bên ngoài, nhưng khi dùng chức năng AI hoặc chức năng chia sẻ, xin bạn hãy cân nhắc thận trọng với tư cách là người giám hộ.</p>
+<h2>7. Thay đổi</h2>
+<p>Nếu chính sách này thay đổi, chúng tôi sẽ đăng trong màn hình 「Thông tin」 của phiên bản Ứng dụng mới.</p>
+<h2>8. Liên hệ</h2>
+<p>Thắc mắc, yêu cầu xem hoặc xóa liên quan đến thông tin cá nhân và thống kê sử dụng: Baryon Labs, hello@baryon.ai</p>
+<p class="top">Baryon Labs · hello@baryon.ai</p>
+</main>
+</body>
+</html>

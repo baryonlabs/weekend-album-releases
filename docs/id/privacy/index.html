@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kebijakan Privasi</title>
+<link rel="canonical" href="https://baryonlabs.github.io/weekend-album-releases/id/privacy/">
+<style>
+:root{--bg:#fbf8f3;--ink:#2b2622;--muted:#6f655c;--line:#e7dfd4;--accent:#c4553a}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#171513;--ink:#ece6df;--muted:#a79d93;--line:#34302b;--accent:#e58a6f}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.75 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Segoe UI",sans-serif;padding:0 16px}
+main{max-width:760px;margin:0 auto;padding:32px 0 64px}
+a{color:var(--accent)} h1{font-size:28px;line-height:1.3} h2{font-size:20px;margin-top:32px} code{font-size:.9em;background:var(--line);padding:1px 5px;border-radius:4px}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:14px} th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+.top{font-size:14px;color:var(--muted)} .top a{margin-right:12px}
+</style>
+</head>
+<body>
+<main>
+<p class="top"><a href="../../id/">← 주말 사진첩 · Weekend Album</a> <a href="../../privacy/" lang="ko">ko</a> <a href="../../en/privacy/" lang="en">en</a> <a href="../../ja/privacy/" lang="ja">ja</a> <a href="../../id/privacy/" lang="id">id</a> <a href="../../th/privacy/" lang="th">th</a> <a href="../../vi/privacy/" lang="vi">vi</a> <a href="../../zh/privacy/" lang="zh">zh</a> <a href="../../zh-tw/privacy/" lang="zh-tw">zh-tw</a></p>
+<h1>Kebijakan Privasi</h1>
+<p>Ini adalah terjemahan untuk kemudahan. Jika ada perbedaan, naskah asli berbahasa Korea yang berlaku.</p>
+<p>Tanggal berlaku: 2 Oktober 2026 · Versi 1.0.0</p>
+<p>Baryon Labs (바리온랩스, selanjutnya "Perusahaan") memperlakukan dengan hati-hati informasi pribadi orang yang menggunakan <b>Album Akhir Pekan</b> dan <b>Photo Offload</b> (selanjutnya "Aplikasi").</p>
+<h2>1. Informasi yang diterima Perusahaan: hanya statistik penggunaan anonim</h2>
+<p>Perusahaan hanya menerima <b>statistik penggunaan anonim</b> (ID instalasi acak, versi aplikasi, versi macOS, dan jumlah penggunaan fitur per tanggal). Perusahaan tidak menerima foto, video, nama file atau album, tulisan atau catatan, akun, email, nama orang, maupun lokasi, dan tidak ada fitur iklan atau pelacakan.</p>
+<ul><li>Tujuan: memahami penggunaan fitur dan menyempurnakan Aplikasi. Tidak digunakan untuk tujuan lain, tidak diberikan kepada pihak ketiga, dan tidak dijual.</li><li>Isi yang dikirim dapat Anda lihat kata demi kata di layar "Info" Aplikasi, dan dapat dimatikan kapan saja (jika dimatikan, catatan yang belum terkirim juga dihapus).</li><li>Alamat IP yang sampai ke server pengumpul tidak disimpan dalam statistik dan tidak dikaitkan dengan ID instalasi.</li><li>Statistik yang diterima disimpan selama periode yang diperlukan untuk menyempurnakan Aplikasi (paling lama 2 tahun), lalu dihapus.</li></ul>
+<h2>2. Informasi yang disimpan di Mac Anda</h2>
+<table><thead><tr><th>Item</th><th>Lokasi</th></tr></thead><tbody><tr><td>Foto, video, tulisan pengantar (소개.md), catatan (메모.md)</td><td><code>~/Pictures/주말 사진첩</code> (folder yang Anda tentukan)</td></tr><tr><td>Informasi album (daftar, pilihan, sampul, teks Insta, hasil pencarian lagu, nama pemotret)</td><td><code>.album</code> di dalam folder album</td></tr><tr><td>Token login Google</td><td><code>~/Library/Application Support/WeekendAlbum</code>, <code>.../PhotoOffload</code> (izin 600, hanya dapat dibaca oleh Anda)</td></tr><tr><td>Catatan pencadangan, pengaturan</td><td><code>~/Library/Application Support/PhotoOffload</code></td></tr><tr><td>Log aktivitas (jalur, ukuran, dan MD5 file yang dipindahkan atau dihapus)</td><td><code>~/Library/Application Support/Baryon/작업기록</code></td></tr><tr><td>Jumlah penggunaan yang belum terkirim, statistik aktif/nonaktif</td><td><code>~/Library/Application Support/WeekendAlbum/usage.json</code></td></tr></tbody></table>
+<p>Selama Aplikasi berjalan, layarnya hanya dibuka di alamat internal Mac (127.0.0.1), dan nilai rahasia yang dibuat baru setiap kali Aplikasi dijalankan mencegah permintaan manipulasi dari program atau situs web lain.</p>
+<h2>3. Informasi yang dikirim ke layanan eksternal saat Anda menjalankannya</h2>
+<p>Apa yang dikirim ke Google (mengambil foto, cadangan Drive), Apple (pencarian pratinjau lagu: hanya judul lagu dan penyanyi), Anthropic (Claude — hanya saat Anda memintanya menulis), Hugging Face (mengunduh model Laya, hanya mengunduh), dan Apple Maps (lokasi foto → nama lingkungan saat menulis tulisan pengantar, peta kecil di PDF), serta apa yang diproses AI, dijelaskan per fitur tanpa ada yang terlewat dalam "Panduan Data &amp; AI". Informasi ini dikirim langsung ke setiap layanan <b>dengan akun Anda</b>, bukan oleh Perusahaan, dan berlaku ketentuan serta kebijakan privasi masing-masing layanan. Jika Anda tidak menggunakan fitur tersebut, tidak ada yang dikirim.</p>
+<h2>4. Informasi orang lain</h2>
+<p>Foto yang diambil orang lain, orang dalam foto, dan nama "pemotret" hanya disimpan di Mac Anda. Saat membagikannya (PDF, dan sebagainya), mohon minta persetujuan orang yang bersangkutan.</p>
+<h2>5. Penghapusan informasi</h2>
+<ul><li>Jika Anda mematikan statistik penggunaan di layar "Info", catatan yang tersisa di Mac langsung dihapus. Untuk statistik yang sudah diterima, beri tahu kami ID instalasi Anda (ditampilkan di layar "Info") melalui hello@baryon.ai dan kami akan menghapusnya.</li><li>Foto dan materi di dalam Aplikasi dapat dihapus dengan fitur hapus Aplikasi (dipindahkan ke Tempat Sampah) atau melalui Finder.</li><li>Koneksi Google dapat diputus dengan "Keluar" di Aplikasi atau di "Akses aplikasi pihak ketiga" pada pengaturan akun Google, dan dengan menghapus file token pada butir 2 di atas, informasi login yang tersisa di Mac juga hilang.</li><li>Jika Anda menghapus folder di atas saat menghapus Aplikasi, semua informasi yang dibuat Aplikasi akan terhapus.</li></ul>
+<h2>6. Informasi pribadi anak</h2>
+<p>Foto keluarga dapat memuat anak-anak. Aplikasi tidak mengirimkannya ke luar, tetapi saat Anda menggunakan fitur AI atau fitur berbagi, mohon pertimbangkan dengan cermat sebagai wali.</p>
+<h2>7. Perubahan</h2>
+<p>Jika kebijakan ini berubah, perubahannya akan diumumkan di layar "Info" pada versi baru Aplikasi.</p>
+<h2>8. Kontak</h2>
+<p>Pertanyaan serta permintaan akses atau penghapusan terkait informasi pribadi dan statistik penggunaan: Baryon Labs, hello@baryon.ai</p>
+<p class="top">Baryon Labs · hello@baryon.ai</p>
+</main>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>プライバシーポリシー</title>
+<link rel="canonical" href="https://baryonlabs.github.io/weekend-album-releases/ja/privacy/">
+<style>
+:root{--bg:#fbf8f3;--ink:#2b2622;--muted:#6f655c;--line:#e7dfd4;--accent:#c4553a}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#171513;--ink:#ece6df;--muted:#a79d93;--line:#34302b;--accent:#e58a6f}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.75 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Segoe UI",sans-serif;padding:0 16px}
+main{max-width:760px;margin:0 auto;padding:32px 0 64px}
+a{color:var(--accent)} h1{font-size:28px;line-height:1.3} h2{font-size:20px;margin-top:32px} code{font-size:.9em;background:var(--line);padding:1px 5px;border-radius:4px}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:14px} th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+.top{font-size:14px;color:var(--muted)} .top a{margin-right:12px}
+</style>
+</head>
+<body>
+<main>
+<p class="top"><a href="../../ja/">← 주말 사진첩 · Weekend Album</a> <a href="../../privacy/" lang="ko">ko</a> <a href="../../en/privacy/" lang="en">en</a> <a href="../../ja/privacy/" lang="ja">ja</a> <a href="../../id/privacy/" lang="id">id</a> <a href="../../th/privacy/" lang="th">th</a> <a href="../../vi/privacy/" lang="vi">vi</a> <a href="../../zh/privacy/" lang="zh">zh</a> <a href="../../zh-tw/privacy/" lang="zh-tw">zh-tw</a></p>
+<h1>プライバシーポリシー</h1>
+<p>この文書は便宜上の翻訳です。内容に相違がある場合は韓国語の原文が優先されます。</p>
+<p>施行日: 2026年10月2日 · バージョン 1.0.0</p>
+<p>Baryon Labs(바리온랩스、以下「当社」)は、<b>週末アルバム</b> と <b>Photo Offload</b>(以下「本アプリ」)をご利用の方の個人情報を大切に扱います。</p>
+<h2>1. 当社が受け取る情報: 匿名の利用統計のみ</h2>
+<p>当社は <b>匿名の利用統計</b>(ランダムなインストールID、アプリのバージョン、macOSのバージョン、日付ごとの機能の使用回数)のみを受け取ります。写真・動画、ファイル名・アルバム名、文章・メモ、アカウント・メールアドレス・人の名前・位置は受け取らず、広告・トラッキング機能はありません。</p>
+<ul><li>目的: 機能の利用状況の把握と本アプリの改善。他の目的での利用・第三者への提供・販売はありません。</li><li>送る内容は本アプリの「情報」画面で一字一句そのまま確認でき、いつでもオフにできます(オフにすると未送信の記録も削除)。</li><li>収集サーバーに伝わるIPアドレスは、統計に保存したりインストールIDと結び付けたりしません。</li><li>受け取った統計は、本アプリの改善に必要な期間(最長2年)保管した後に削除します。</li></ul>
+<h2>2. 利用者のMacに保存される情報</h2>
+<table><thead><tr><th>項目</th><th>場所</th></tr></thead><tbody><tr><td>写真・動画、紹介文(소개.md)、メモ(메모.md)</td><td><code>~/Pictures/주말 사진첩</code>(利用者が決めたフォルダ)</td></tr><tr><td>アルバム情報(リスト、選択、表紙、インスタの文章、曲の検索結果、撮影者の名前)</td><td>アルバムフォルダ内の <code>.album</code></td></tr><tr><td>Googleのログイントークン</td><td><code>~/Library/Application Support/WeekendAlbum</code>、<code>.../PhotoOffload</code>(本人のみ読み取れる権限600)</td></tr><tr><td>バックアップ記録、設定</td><td><code>~/Library/Application Support/PhotoOffload</code></td></tr><tr><td>作業記録(移動または削除したファイルのパス・サイズ・MD5)</td><td><code>~/Library/Application Support/Baryon/작업기록</code></td></tr><tr><td>送信前の使用回数、統計のオン/オフ</td><td><code>~/Library/Application Support/WeekendAlbum/usage.json</code></td></tr></tbody></table>
+<p>本アプリの起動中、画面はMac内部のアドレス(127.0.0.1)でのみ開かれ、起動するたびに新たに生成する秘密の値によって、他のプログラムやWebサイトからの操作要求を防ぎます。</p>
+<h2>3. 利用者が実行したときに外部サービスへ送る情報</h2>
+<p>Google(写真の取り込み・Driveバックアップ)、Apple(曲の試聴の検索: 曲名・アーティストのみ)、Anthropic(Claude — 文章を書くよう依頼したときのみ)、Hugging Face(Layaモデルのダウンロード、ダウンロードのみ)、Appleマップ(紹介文を書くときの写真の位置 → 地区名、PDFの小さな地図)へ何を送り、AIが何を処理するかは、「データ・AIのご案内」に機能ごとに漏れなく記載しました。これらの情報は当社ではなく <b>利用者のアカウントで</b> 各サービスに直接送信され、各サービスの規約とプライバシーポリシーが適用されます。当該機能を使わなければ送りません。</p>
+<h2>4. 他人の情報</h2>
+<p>他人が撮影した写真、写真の中の人物、「撮影者」の名前は利用者のMacにのみ保存されます。これらを共有(PDFなど)するときは、本人の同意を得てください。</p>
+<h2>5. 情報の削除</h2>
+<ul><li>利用統計は「情報」画面でオフにすると、Macに残った記録がすぐに削除されます。すでに受け取った統計は、インストールID(「情報」画面に表示)を hello@baryon.ai までお知らせいただければ削除します。</li><li>本アプリ内の写真・資料は、本アプリの削除機能(ゴミ箱へ移動)またはFinderで削除できます。</li><li>Googleとの連携は、本アプリの「ログアウト」またはGoogleアカウント設定の「サードパーティ製アプリとのアクセス」で解除でき、上記2項のトークンファイルを削除するとMacに残ったログイン情報も消えます。</li><li>本アプリを削除するときに上記のフォルダも一緒に削除すると、本アプリが作成したすべての情報が削除されます。</li></ul>
+<h2>6. 児童の個人情報</h2>
+<p>家族写真には児童が含まれることがあります。本アプリはこれを外部に送りませんが、利用者がAI機能や共有機能を使うときは、保護者として慎重に判断してください。</p>
+<h2>7. 変更</h2>
+<p>本ポリシーが変更された場合は、新しいバージョンの本アプリの「情報」画面に掲示します。</p>
+<h2>8. お問い合わせ先</h2>
+<p>個人情報と利用統計に関するお問い合わせ・閲覧・削除の依頼: Baryon Labs、hello@baryon.ai</p>
+<p class="top">Baryon Labs · hello@baryon.ai</p>
+</main>
+</body>
+</html>

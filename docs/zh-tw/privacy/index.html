@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-tw">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>隱私權政策</title>
+<link rel="canonical" href="https://baryonlabs.github.io/weekend-album-releases/zh-tw/privacy/">
+<style>
+:root{--bg:#fbf8f3;--ink:#2b2622;--muted:#6f655c;--line:#e7dfd4;--accent:#c4553a}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#171513;--ink:#ece6df;--muted:#a79d93;--line:#34302b;--accent:#e58a6f}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.75 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Segoe UI",sans-serif;padding:0 16px}
+main{max-width:760px;margin:0 auto;padding:32px 0 64px}
+a{color:var(--accent)} h1{font-size:28px;line-height:1.3} h2{font-size:20px;margin-top:32px} code{font-size:.9em;background:var(--line);padding:1px 5px;border-radius:4px}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:14px} th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+.top{font-size:14px;color:var(--muted)} .top a{margin-right:12px}
+</style>
+</head>
+<body>
+<main>
+<p class="top"><a href="../../zh-tw/">← 주말 사진첩 · Weekend Album</a> <a href="../../privacy/" lang="ko">ko</a> <a href="../../en/privacy/" lang="en">en</a> <a href="../../ja/privacy/" lang="ja">ja</a> <a href="../../id/privacy/" lang="id">id</a> <a href="../../th/privacy/" lang="th">th</a> <a href="../../vi/privacy/" lang="vi">vi</a> <a href="../../zh/privacy/" lang="zh">zh</a> <a href="../../zh-tw/privacy/" lang="zh-tw">zh-tw</a></p>
+<h1>隱私權政策</h1>
+<p>本文件為方便閱讀的譯文。如有不一致，以韓文原文為準。</p>
+<p>施行日：2026 年 10 月 2 日 · 版本 1.0.0</p>
+<p>Baryon Labs（바리온랩스，以下稱「公司」）珍視使用 <b>週末相簿</b> 與 <b>Photo Offload</b>（以下稱「本 app」）的使用者的個人資料。</p>
+<h2>1. 公司接收的資訊：僅限匿名使用統計</h2>
+<p>公司只接收 <b>匿名使用統計</b>（隨機安裝 ID、app 版本、macOS 版本、每日各功能使用次數）。公司不接收照片、影片、檔案或相簿名稱、文字或記事、帳號、電子郵件、人名或位置，也沒有廣告或追蹤功能。</p>
+<ul><li>目的：了解功能使用情形並改善 app。不會用於其他目的、不會提供給第三方，也不會出售。</li><li>傳送的內容可在 app 的「資訊」畫面逐字確認，並可隨時關閉（關閉後，尚未傳送的紀錄也會刪除）。</li><li>傳到收集伺服器的 IP 位址，不會存入統計，也不會與安裝 ID 連結。</li><li>收到的統計會在改善 app 所需的期間內（最長 2 年）保存，之後刪除。</li></ul>
+<h2>2. 儲存在使用者 Mac 上的資訊</h2>
+<table><thead><tr><th>項目</th><th>位置</th></tr></thead><tbody><tr><td>照片、影片、介紹文（소개.md）、記事（메모.md）</td><td><code>~/Pictures/주말 사진첩</code>（使用者指定的資料夾）</td></tr><tr><td>相簿資訊（清單、選取、封面、Insta 文字、歌曲搜尋結果、拍攝者姓名）</td><td>相簿資料夾內的 <code>.album</code></td></tr><tr><td>Google 登入權杖</td><td><code>~/Library/Application Support/WeekendAlbum</code>、<code>.../PhotoOffload</code>（僅本人可讀取的權限 600）</td></tr><tr><td>備份紀錄、設定</td><td><code>~/Library/Application Support/PhotoOffload</code></td></tr><tr><td>操作紀錄（已搬移或刪除檔案的路徑、大小、MD5）</td><td><code>~/Library/Application Support/Baryon/작업기록</code></td></tr><tr><td>傳送前的使用次數、統計開啟／關閉</td><td><code>~/Library/Application Support/WeekendAlbum/usage.json</code></td></tr></tbody></table>
+<p>app 開啟期間，畫面只會在 Mac 內部位址（127.0.0.1）上開啟，並以每次啟動時新產生的密鑰，阻擋其他程式或網站的操作要求。</p>
+<h2>3. 使用者執行功能時傳送到外部服務的資訊</h2>
+<p>傳送到 Google（匯入照片、Drive 備份）、Apple（歌曲試聽搜尋：僅歌名與歌手）、Anthropic（Claude — 僅在要求撰寫文字時）、Hugging Face（下載 Laya 模型，僅下載）、Apple 地圖（撰寫介紹文時將照片位置轉為地區名稱、PDF 中的小地圖）的內容，以及 AI 處理哪些內容，都依功能完整寫在《資料與 AI 說明》中。這些資訊不是經由公司，而是 <b>以使用者的帳號</b> 直接傳送到各服務，並適用各服務的條款與隱私權政策。不使用該功能就不會傳送。</p>
+<h2>4. 他人的資訊</h2>
+<p>他人拍攝的照片、照片中的人物，以及「拍攝者」姓名，只會儲存在使用者的 Mac 上。分享這些內容（PDF 等）時，請先取得當事人的同意。</p>
+<h2>5. 資訊的刪除</h2>
+<ul><li>使用統計在「資訊」畫面關閉後，Mac 上留下的紀錄會立即刪除。已收到的統計，只要將安裝 ID（顯示於「資訊」畫面）告知 hello@baryon.ai，我們就會為你刪除。</li><li>app 內的照片與資料，可用 app 的刪除功能（移到垃圾桶）或在 Finder 中刪除。</li><li>Google 連結可透過 app 的「登出」，或 Google 帳號設定中的「第三方應用程式存取權」解除；刪除上述第 2 項的權杖檔案，Mac 上留下的登入資訊也會一併消失。</li><li>刪除 app 時一併刪除上述資料夾，app 產生的所有資訊就會刪除。</li></ul>
+<h2>6. 兒童的個人資料</h2>
+<p>家庭照片中可能包含兒童。本 app 不會將其傳送到外部，但使用者在使用 AI 功能或分享功能時，請以監護人的身分審慎判斷。</p>
+<h2>7. 變更</h2>
+<p>本政策如有變更，將刊登於新版本 app 的「資訊」畫面。</p>
+<h2>8. 聯絡窗口</h2>
+<p>關於個人資料與使用統計的問題，以及查閱、刪除的要求：Baryon Labs，hello@baryon.ai</p>
+<p class="top">Baryon Labs · hello@baryon.ai</p>
+</main>
+</body>
+</html>

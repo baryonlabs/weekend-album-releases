@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy</title>
+<link rel="canonical" href="https://baryonlabs.github.io/weekend-album-releases/en/privacy/">
+<style>
+:root{--bg:#fbf8f3;--ink:#2b2622;--muted:#6f655c;--line:#e7dfd4;--accent:#c4553a}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#171513;--ink:#ece6df;--muted:#a79d93;--line:#34302b;--accent:#e58a6f}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.75 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Segoe UI",sans-serif;padding:0 16px}
+main{max-width:760px;margin:0 auto;padding:32px 0 64px}
+a{color:var(--accent)} h1{font-size:28px;line-height:1.3} h2{font-size:20px;margin-top:32px} code{font-size:.9em;background:var(--line);padding:1px 5px;border-radius:4px}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:14px} th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+.top{font-size:14px;color:var(--muted)} .top a{margin-right:12px}
+</style>
+</head>
+<body>
+<main>
+<p class="top"><a href="../../en/">← 주말 사진첩 · Weekend Album</a> <a href="../../privacy/" lang="ko">ko</a> <a href="../../en/privacy/" lang="en">en</a> <a href="../../ja/privacy/" lang="ja">ja</a> <a href="../../id/privacy/" lang="id">id</a> <a href="../../th/privacy/" lang="th">th</a> <a href="../../vi/privacy/" lang="vi">vi</a> <a href="../../zh/privacy/" lang="zh">zh</a> <a href="../../zh-tw/privacy/" lang="zh-tw">zh-tw</a></p>
+<h1>Privacy Policy</h1>
+<p>This is a translation for convenience. If there is any difference, the Korean original prevails.</p>
+<p>Effective date: October 2, 2026 · Version 1.0.0</p>
+<p>Baryon Labs (바리온랩스, the "Company") treats with care the personal information of those who use <b>Weekend Album</b> and <b>Photo Offload</b> (the "App").</p>
+<h2>1. Information the Company receives: anonymous usage statistics only</h2>
+<p>The Company receives only <b>anonymous usage statistics</b> (a random install ID, app version, macOS version, and counts of feature use per day). It does not receive photos, videos, file or album names, text or notes, accounts, email, people's names or location, and there are no advertising or tracking features.</p>
+<ul><li>Purpose: understanding feature usage and improving the App. No use for other purposes, no provision to third parties, no sale.</li><li>You can see exactly what is sent, word for word, in the App's "Info" screen, and turn it off at any time (turning it off also deletes records not yet sent).</li><li>The IP address passed to the collection server is not stored in the statistics or linked to the install ID.</li><li>Statistics received are kept for the period needed to improve the App (up to 2 years) and then deleted.</li></ul>
+<h2>2. Information stored on your Mac</h2>
+<table><thead><tr><th>Item</th><th>Location</th></tr></thead><tbody><tr><td>Photos, videos, intros (소개.md), notes (메모.md)</td><td><code>~/Pictures/주말 사진첩</code> (a folder you choose)</td></tr><tr><td>Album information (lists, selections, covers, Insta text, song search results, names of who took the photos)</td><td><code>.album</code> inside the album folder</td></tr><tr><td>Google login tokens</td><td><code>~/Library/Application Support/WeekendAlbum</code>, <code>.../PhotoOffload</code> (permission 600, readable only by you)</td></tr><tr><td>Backup records, settings</td><td><code>~/Library/Application Support/PhotoOffload</code></td></tr><tr><td>Activity log (paths, sizes and MD5 of moved or deleted files)</td><td><code>~/Library/Application Support/Baryon/작업기록</code></td></tr><tr><td>Usage counts not yet sent, statistics on/off</td><td><code>~/Library/Application Support/WeekendAlbum/usage.json</code></td></tr></tbody></table>
+<p>While the App is running, its screen opens only at the Mac's internal address (127.0.0.1), and a secret value newly generated at each launch blocks manipulation requests from other programs or websites.</p>
+<h2>3. Information sent to external services when you run them</h2>
+<p>What is sent to Google (photo import, Drive backup), Apple (song preview search: title and artist only), Anthropic (Claude — only when you ask it to write), Hugging Face (Laya model download, download only) and Apple Maps (photo location → neighborhood name when writing intros, small maps in PDFs), and what the AI processes, is described feature by feature, without omission, in the "Data &amp; AI Notice". This information is sent directly to each service <b>with your account</b>, not by the Company, and each service's terms and privacy policy apply. If you do not use the feature, nothing is sent.</p>
+<h2>4. Other people's information</h2>
+<p>Photos taken by other people, people in photos, and "taken by" names are stored only on your Mac. When sharing them (PDF, etc.), please obtain the consent of the persons concerned.</p>
+<h2>5. Deletion of information</h2>
+<ul><li>If you turn off usage statistics in the "Info" screen, the records remaining on the Mac are deleted immediately. For statistics already received, let us know your install ID (shown in the "Info" screen) at hello@baryon.ai and we will delete them.</li><li>Photos and materials in the App can be deleted with the App's delete feature (moves to the Trash) or in Finder.</li><li>The Google connection can be removed with "Log out" in the App or under "Third-party apps with account access" in your Google account settings, and deleting the token files in item 2 above also removes the login information remaining on the Mac.</li><li>If you delete the folders above when you delete the App, all information created by the App is deleted.</li></ul>
+<h2>6. Children's personal information</h2>
+<p>Family photos may include children. The App does not send them externally, but when you use the AI features or sharing features, please judge carefully as a guardian.</p>
+<h2>7. Changes</h2>
+<p>If this policy changes, it will be posted in the "Info" screen of a new version of the App.</p>
+<h2>8. Contact</h2>
+<p>Inquiries and requests for access or deletion regarding personal information and usage statistics: Baryon Labs, hello@baryon.ai</p>
+<p class="top">Baryon Labs · hello@baryon.ai</p>
+</main>
+</body>
+</html>

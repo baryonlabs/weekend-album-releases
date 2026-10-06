@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>개인정보 처리방침</title>
+<link rel="canonical" href="https://baryonlabs.github.io/weekend-album-releases/privacy/">
+<style>
+:root{--bg:#fbf8f3;--ink:#2b2622;--muted:#6f655c;--line:#e7dfd4;--accent:#c4553a}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#171513;--ink:#ece6df;--muted:#a79d93;--line:#34302b;--accent:#e58a6f}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.75 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Segoe UI",sans-serif;padding:0 16px}
+main{max-width:760px;margin:0 auto;padding:32px 0 64px}
+a{color:var(--accent)} h1{font-size:28px;line-height:1.3} h2{font-size:20px;margin-top:32px} code{font-size:.9em;background:var(--line);padding:1px 5px;border-radius:4px}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:14px} th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+.top{font-size:14px;color:var(--muted)} .top a{margin-right:12px}
+</style>
+</head>
+<body>
+<main>
+<p class="top"><a href="../">← 주말 사진첩 · Weekend Album</a> <a href="../privacy/" lang="ko">ko</a> <a href="../en/privacy/" lang="en">en</a> <a href="../ja/privacy/" lang="ja">ja</a> <a href="../id/privacy/" lang="id">id</a> <a href="../th/privacy/" lang="th">th</a> <a href="../vi/privacy/" lang="vi">vi</a> <a href="../zh/privacy/" lang="zh">zh</a> <a href="../zh-tw/privacy/" lang="zh-tw">zh-tw</a></p>
+<h1>개인정보 처리방침</h1>
+<p>시행일: 2026년 10월 2일 · 버전 1.0.0</p>
+<p>Baryon Labs(바리온랩스, 이하 "회사")는 <b>주말 사진첩</b>과 <b>Photo Offload</b>(이하 "앱")를 이용하는 분의 개인정보를 소중히 다룹니다.</p>
+<h2>1. 회사가 받는 정보: 익명 사용량 통계뿐</h2>
+<p>회사는 <b>익명 사용량 통계</b>(무작위 설치 ID, 앱 버전, macOS 버전, 날짜별 기능 사용 횟수)만 받습니다. 사진·동영상, 파일·앨범 이름, 글·메모, 계정·이메일·사람 이름·위치는 받지 않으며, 광고·추적 기능은 없습니다.</p>
+<ul><li>목적: 기능 사용 현황 파악과 앱 개선. 다른 목적 이용·제3자 제공·판매 없음.</li><li>보내는 내용은 앱 「정보」 화면에서 글자 그대로 확인할 수 있고, 언제든 끌 수 있습니다(끄면 보내지 않은 기록도 삭제).</li><li>수집 서버에 전달되는 IP 주소는 통계에 저장하거나 설치 ID와 연결하지 않습니다.</li><li>받은 통계는 앱 개선에 필요한 기간(최대 2년) 동안 보관한 뒤 지웁니다.</li></ul>
+<h2>2. 이용자의 Mac에 저장되는 정보</h2>
+<table><thead><tr><th>항목</th><th>위치</th></tr></thead><tbody><tr><td>사진·동영상, 소개 글(소개.md), 메모(메모.md)</td><td><code>~/Pictures/주말 사진첩</code> (이용자가 정한 폴더)</td></tr><tr><td>사진첩 정보(목록, 선택, 표지, 인스타 글, 노래 검색 결과, 찍은 사람 이름)</td><td>사진첩 폴더 안 <code>.album</code></td></tr><tr><td>Google 로그인 토큰</td><td><code>~/Library/Application Support/WeekendAlbum</code>, <code>.../PhotoOffload</code> (본인만 읽을 수 있는 권한 600)</td></tr><tr><td>백업 기록, 설정</td><td><code>~/Library/Application Support/PhotoOffload</code></td></tr><tr><td>작업 기록(옮기거나 지운 파일의 경로·크기·MD5)</td><td><code>~/Library/Application Support/Baryon/작업기록</code></td></tr><tr><td>보내기 전 사용 횟수, 통계 켜기/끄기</td><td><code>~/Library/Application Support/WeekendAlbum/usage.json</code></td></tr></tbody></table>
+<p>앱이 켜져 있는 동안 화면은 Mac 내부 주소(127.0.0.1)에서만 열리며, 실행할 때마다 새로 만드는 비밀 값으로 다른 프로그램이나 웹사이트의 조작 요청을 막습니다.</p>
+<h2>3. 이용자가 실행할 때 외부 서비스로 보내는 정보</h2>
+<p>Google(사진 가져오기·Drive 백업), Apple(노래 미리듣기 검색: 곡명·가수만), Anthropic(Claude — 글을 써 달라고 할 때만), Hugging Face(Laya 모델 받기, 받기만 함), Apple 지도(소개 글을 쓸 때 사진 위치 → 동네 이름, PDF의 작은 지도)로 무엇을 보내고 AI가 무엇을 처리하는지는 「데이터·AI 안내」에 기능별로 빠짐없이 적었습니다. 이 정보는 회사가 아니라 <b>이용자의 계정으로</b> 각 서비스에 직접 전송되며, 각 서비스의 약관과 개인정보 처리방침이 적용됩니다. 해당 기능을 쓰지 않으면 보내지 않습니다.</p>
+<h2>4. 다른 사람의 정보</h2>
+<p>다른 사람이 찍은 사진, 사진 속 인물, "찍은 사람" 이름은 이용자의 Mac에만 저장됩니다. 이를 공유(PDF 등)할 때는 당사자의 동의를 받아 주세요.</p>
+<h2>5. 정보의 삭제</h2>
+<ul><li>사용 통계는 「정보」 화면에서 끄면 Mac에 남은 기록이 바로 지워집니다. 이미 받은 통계는 설치 ID(「정보」 화면에 표시)를 hello@baryon.ai로 알려 주시면 지워 드립니다.</li><li>앱 안의 사진·자료는 앱의 삭제 기능(휴지통으로 이동) 또는 Finder에서 지울 수 있습니다.</li><li>Google 연결은 앱의 "로그아웃" 또는 Google 계정 설정의 "타사 앱 액세스"에서 해제할 수 있고, 위 2항의 토큰 파일을 지우면 Mac에 남은 로그인 정보도 사라집니다.</li><li>앱을 지울 때 위 폴더를 함께 지우면 앱이 만든 모든 정보가 삭제됩니다.</li></ul>
+<h2>6. 아동의 개인정보</h2>
+<p>가족 사진에 아동이 포함될 수 있습니다. 앱은 이를 외부로 보내지 않지만, 이용자가 AI 기능이나 공유 기능을 쓸 때는 보호자로서 신중히 판단해 주세요.</p>
+<h2>7. 변경</h2>
+<p>이 방침이 바뀌면 새 버전 앱의 「정보」 화면에 게시합니다.</p>
+<h2>8. 문의처</h2>
+<p>개인정보와 사용 통계에 관한 문의·열람·삭제 요청: Baryon Labs, hello@baryon.ai</p>
+<p class="top">Baryon Labs · hello@baryon.ai</p>
+</main>
+</body>
+</html>
