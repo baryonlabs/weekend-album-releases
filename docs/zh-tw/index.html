@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="韓國製造的 Mac App：把家人的週末照片整理成一個週末一本相簿，還配上 K-pop 背景音樂。Made by Baryon Labs.">
+<meta property="og:title" content="週末相簿">
+<meta property="og:description" content="全家的週六週日，集集都像韓劇 — 免費下載 Mac App，支援繁體中文">
+<meta property="og:image" content="https://baryonlabs.github.io/weekend-album-releases/illus/hero.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://baryonlabs.github.io/weekend-album-releases/zh-tw/">
+<meta property="og:locale" content="zh_TW">
+<link rel="canonical" href="https://baryonlabs.github.io/weekend-album-releases/zh-tw/">
+<link rel="alternate" hreflang="ko" href="https://baryonlabs.github.io/weekend-album-releases/">
+<link rel="alternate" hreflang="en" href="https://baryonlabs.github.io/weekend-album-releases/en/">
+<link rel="alternate" hreflang="ja" href="https://baryonlabs.github.io/weekend-album-releases/ja/">
+<link rel="alternate" hreflang="id" href="https://baryonlabs.github.io/weekend-album-releases/id/">
+<link rel="alternate" hreflang="th" href="https://baryonlabs.github.io/weekend-album-releases/th/">
+<link rel="alternate" hreflang="vi" href="https://baryonlabs.github.io/weekend-album-releases/vi/">
+<link rel="alternate" hreflang="zh-Hans" href="https://baryonlabs.github.io/weekend-album-releases/zh/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://baryonlabs.github.io/weekend-album-releases/zh-tw/">
+<link rel="alternate" hreflang="x-default" href="https://baryonlabs.github.io/weekend-album-releases/">
+<style>html{color-scheme:light dark}body{margin:0;-webkit-font-smoothing:antialiased}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>週末相簿</title>
+<style>
+  /* Layout: 한국 달력의 토(파랑)·일(빨강)을 축으로 — 주간 달력 띠 히어로 → 기능 → 설치 순서 → 연결 → 데이터 안내 */
+  :root {
+    --bg: #f7f8fb; --paper: #ffffff; --ink: #1c2233; --muted: #626b80; --line: #dfe3ec;
+    --sat: #2f5bd3; --sun: #d9443a; --sat-soft: #e6ecfb; --sun-soft: #fbe9e7; --code: #eef1f7;
+    --display: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    --body: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    --mono: ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #12151d; --paper: #1a1f2b; --ink: #e9ecf4; --muted: #9aa3b8; --line: #2b3242;
+      --sat: #7d9cff; --sun: #ff7a6e; --sat-soft: #1f2a4a; --sun-soft: #3a2020; --code: #222838; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #12151d; --paper: #1a1f2b; --ink: #e9ecf4; --muted: #9aa3b8; --line: #2b3242;
+    --sat: #7d9cff; --sun: #ff7a6e; --sat-soft: #1f2a4a; --sun-soft: #3a2020; --code: #222838; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.7 var(--body); padding-inline: 20px; }
+  .wrap { max-width: 980px; margin: 0 auto; padding-block: 40px 56px; display: grid; gap: 72px; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 400; text-wrap: balance; margin: 0; line-height: 1.2; }
+  h1 { font-size: clamp(44px, 8vw, 76px); letter-spacing: -0.01em; }
+  h2 { font-size: clamp(28px, 4.4vw, 38px); }
+  h3 { font-size: 22px; }
+  p { margin: 0; }
+  a { color: var(--sat); }
+  .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  .muted { color: var(--muted); }
+  code, .mono { font-family: var(--mono); font-size: .9em; }
+  :focus-visible { outline: 3px solid var(--sat); outline-offset: 3px; border-radius: 6px; }
+
+  /* 中文：PingFang 은 Do Hyeon 같은 디스플레이 서체가 없어 굵기로 제목을 세운다 */
+  h1, h2, h3 { font-weight: 600; letter-spacing: 0; }
+  .brand b { font-weight: 600; }
+  .eyebrow { letter-spacing: .08em; }
+  .region { font-size: 13px; line-height: 1.6; color: var(--muted); max-width: 46em; border-left: 3px solid var(--line); padding-left: 12px; margin-top: -12px; }
+  .region b { color: var(--ink); font-weight: 500; }
+
+  /* Hero */
+  .hero { display: grid; gap: 28px; }
+  /* 언어 전환 */
+  .langs { justify-self: end; display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 4px 2px; max-width: 100%;
+    font-size: 13px; color: var(--muted); margin-bottom: -12px; }
+  .langs a { color: var(--muted); text-decoration: none; padding: 3px 10px; border-radius: 999px; border: 1px solid transparent; white-space: nowrap; }
+  .langs a:hover { color: var(--ink); border-color: var(--line); }
+  .langs a[aria-current="page"] { color: var(--ink); background: var(--paper); border-color: var(--line); font-weight: 500; }
+  @media (max-width: 560px) { .langs { justify-self: stretch; justify-content: flex-start; margin-bottom: -4px; } .langs a { padding: 3px 8px; } }
+
+  .brand { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .brand b { font-family: var(--display); font-weight: 400; font-size: 20px; }
+  .hero h1 .sat { color: var(--sat); } .hero h1 .sun { color: var(--sun); }
+  .lede { font-size: 19px; max-width: 34em; color: var(--muted); }
+  .lede strong { color: var(--ink); font-weight: 500; }
+
+  .week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; max-width: 560px; }
+  .day { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 8px 6px 10px; text-align: center; min-width: 0; }
+  .day span { display: block; font-size: 12px; color: var(--muted); }
+  .day b { font-family: var(--display); font-weight: 400; font-size: 26px; font-variant-numeric: tabular-nums; }
+  .day.sat { background: var(--sat-soft); border-color: transparent; } .day.sat b, .day.sat span { color: var(--sat); }
+  .day.sun { background: var(--sun-soft); border-color: transparent; } .day.sun b, .day.sun span { color: var(--sun); }
+  .folder { font-family: var(--mono); font-size: 13px; color: var(--muted); overflow-x: auto; white-space: nowrap; }
+  .folder em { font-style: normal; color: var(--ink); }
+
+  .get { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; background: var(--sat); color: var(--paper); text-decoration: none;
+    font-weight: 700; font-size: 18px; padding: 15px 24px; border-radius: 14px; box-shadow: 0 6px 20px color-mix(in srgb, var(--sat) 30%, transparent); }
+  .btn:hover { filter: brightness(1.06); }
+  .btn svg { width: 20px; height: 20px; }
+  .get small { color: var(--muted); font-size: 14px; line-height: 1.5; }
+
+  /* Features */
+  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px 32px; }
+  .feature { display: grid; gap: 6px; padding-top: 14px; border-top: 2px solid var(--line); min-width: 0; }
+  .feature:nth-child(3n+1) { border-top-color: var(--sat); }
+  .feature:nth-child(3n+2) { border-top-color: var(--sun); }
+  .feature p { color: var(--muted); font-size: 15px; }
+  .section { display: grid; gap: 26px; }
+  .section > header { display: grid; gap: 8px; max-width: 40em; }
+
+  /* Install steps */
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; counter-reset: s; }
+  .steps li { counter-increment: s; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 4px 14px; background: var(--paper);
+    border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+  .steps li::before { content: counter(s); grid-row: span 3; font-family: var(--display); font-size: 30px; color: var(--sat); line-height: 1; }
+  .steps li > * { min-width: 0; }
+  .steps p { color: var(--muted); font-size: 15px; }
+  .cmd { display: flex; gap: 8px; align-items: stretch; margin-top: 8px; }
+  .cmd pre { flex: 1; min-width: 0; margin: 0; background: var(--code); border-radius: 10px; padding: 10px 12px; font: 13px/1.5 var(--mono); overflow-x: auto; white-space: pre; }
+  .copy { font: 500 13px var(--body); border: 1px solid var(--line); background: var(--paper); color: var(--ink); border-radius: 10px; padding: 0 12px; cursor: pointer; white-space: nowrap; }
+  .copy:hover { border-color: var(--sat); }
+
+  /* Google connect */
+  .connect { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 28px; align-items: start; }
+  .flow { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+  .flow li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 12px; align-items: baseline; }
+  .flow li span { font-family: var(--mono); font-size: 12px; color: var(--sun); border: 1px solid currentColor; border-radius: 999px; padding: 1px 8px; }
+  .mail { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 20px; display: grid; gap: 10px; }
+  .mail .addr { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .mail .addr b { font-family: var(--mono); font-size: 18px; font-weight: 500; user-select: all; }
+
+  /* Optional tools + data */
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th, td { text-align: left; padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-weight: 500; color: var(--muted); font-size: 13px; }
+  td:first-child { font-weight: 500; white-space: nowrap; }
+  .data { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .data div { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; display: grid; gap: 6px; min-width: 0; }
+  .data b { font-weight: 700; }
+  .data p { color: var(--muted); font-size: 14px; }
+
+  /* Screenshots */
+  .shots { display: grid; gap: 18px; }
+  .shots figure { margin: 0; display: grid; gap: 8px; min-width: 0; }
+  .shots img { width: 100%; height: auto; display: block; border-radius: 12px; border: 1px solid var(--line);
+    box-shadow: 0 18px 40px -24px color-mix(in srgb, var(--ink) 45%, transparent); background: var(--paper); }
+  .shots figcaption { font-size: 14px; color: var(--muted); }
+  .shots figcaption b { color: var(--ink); font-weight: 500; }
+  .shot-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px 18px; }
+  .demo-note { font-size: 13px; color: var(--muted); }
+
+  /* Comics & stories */
+  .comic { margin: 0; display: grid; gap: 8px; }
+  .comic img { width: 100%; height: auto; display: block; border-radius: 18px; border: 1px solid var(--line); background: var(--paper); }
+  .comic-wide { max-width: 760px; }
+  .comic figcaption { font-size: 14px; color: var(--muted); }
+  .stories { display: grid; gap: 40px; }
+  .story { display: grid; grid-template-columns: minmax(200px, 340px) minmax(0, 1fr); gap: 28px; align-items: center; }
+  .story.flip { grid-template-columns: minmax(0, 1fr) minmax(200px, 340px); }
+  .story.flip img { order: 2; }
+  .story img { width: 100%; height: auto; display: block; border-radius: 20px; border: 1px solid var(--line); background: var(--paper);
+    box-shadow: 0 18px 40px -26px color-mix(in srgb, var(--ink) 50%, transparent); transform: rotate(-1deg); }
+  .story.flip img { transform: rotate(1deg); }
+  .story > div { display: grid; gap: 10px; min-width: 0; }
+  .story p { color: var(--muted); } .story p b { color: var(--ink); font-weight: 500; }
+  .story ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 15px; }
+  .tag { justify-self: start; font-size: 13px; font-weight: 700; border-radius: 999px; padding: 3px 12px; }
+  .tag.sat { background: var(--sat-soft); color: var(--sat); } .tag.sun { background: var(--sun-soft); color: var(--sun); }
+  @media (max-width: 720px) {
+    .story, .story.flip { grid-template-columns: 1fr; gap: 16px; }
+    .story img, .story.flip img { order: 0; max-width: 300px; transform: none; }
+  }
+  @media (prefers-reduced-motion: no-preference) { .story img { transition: transform .3s ease; } .story img:hover { transform: rotate(0) scale(1.02); } }
+
+  /* 대상별로 바뀌는 첫 문장 */
+  .rotator { display: grid; }
+  .rotator .slide { grid-area: 1 / 1; display: grid; gap: 18px; align-content: start; opacity: 0; visibility: hidden; transform: translateY(6px);
+    transition: opacity .7s ease, transform .7s ease, visibility 0s linear .7s; }
+  .rotator .slide.on { opacity: 1; visibility: visible; transform: none; transition: opacity .7s ease, transform .7s ease; }
+  .who { justify-self: start; font-size: 13px; font-weight: 700; color: var(--sun); background: var(--sun-soft); border-radius: 999px; padding: 4px 12px; }
+  .slide[data-who="travel"] .who { color: var(--sat); background: var(--sat-soft); }
+  .slide[data-who="space"] .who { color: var(--ink); background: var(--line); }
+  .who-dots { display: flex; gap: 8px; margin-top: -8px; }
+  .who-dots button { width: 28px; height: 6px; border-radius: 999px; border: 0; background: var(--line); cursor: pointer; padding: 0; }
+  .who-dots button.on { background: var(--ink); }
+  @media (prefers-reduced-motion: reduce) { .rotator .slide { transition: none; } }
+
+  footer { border-top: 1px solid var(--line); padding-top: 22px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; font-size: 14px; color: var(--muted); }
+  footer b { color: var(--ink); }
+
+  @media (max-width: 720px) {
+    .connect { grid-template-columns: 1fr; }
+    .wrap { gap: 56px; padding-block: 24px 40px; }
+    .day b { font-size: 20px; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .day.sat, .day.sun { animation: lift .6s ease-out both; }
+    .day.sun { animation-delay: .12s; }
+    @keyframes lift { from { transform: translateY(6px); } to { transform: none; } }
+  }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <nav class="langs" aria-label="語言">
+      <a href="../" lang="ko" hreflang="ko">한국어</a><a href="../en/" lang="en" hreflang="en">English</a><a href="../ja/" lang="ja" hreflang="ja">日本語</a><a href="../id/" lang="id" hreflang="id">Bahasa Indonesia</a><a href="../th/" lang="th" hreflang="th">ไทย</a><a href="../vi/" lang="vi" hreflang="vi">Tiếng Việt</a><a href="../zh/" lang="zh-Hans" hreflang="zh-Hans">简体中文</a><a href="./" lang="zh-Hant-TW" aria-current="page">繁體中文</a>
+    </nav>
+    <div class="brand">
+      <b>週末相簿</b>
+      <span class="eyebrow">Mac App · v1.14.0 · Made in Korea by Baryon Labs</span>
+    </div>
+
+    <div class="rotator" id="rotator" aria-live="polite">
+      <div class="slide on" data-who="family">
+        <span class="who">給全家一起追韓劇的你</span>
+        <h1>全家的<span class="sat">週六</span>和<span class="sun">週日</span>，<br>集集都像韓劇。</h1>
+        <p class="lede">每個週末塞爆手機的小孩照片，自動整理成<strong>一個週末一本相簿</strong>，還能做成像韓劇回憶片段一樣的相片書。你一句話，Claude 就幫你寫下那天的故事，<strong>地點和時間都對得上</strong>，再一鍵匯出 PDF 傳給阿公阿嬤。</p>
+      </div>
+      <div class="slide" data-who="travel">
+        <span class="who">給 K-pop 粉絲</span>
+        <h1>週末發文，<br>BGM 當然要 K-pop。</h1>
+        <p class="lede">App 裡有個只給自己看的 Instagram 風動態 <strong>My Insta</strong>：Mac 本機的 AI 幫你挑出最好看的照片、配好主題標籤，再從<strong>韓文歌曲庫</strong>選一首背景音樂，IU、BTS、NewJeans、DAY6、TWICE 都在裡面。30 秒試聽片段輕輕播放，你的照片哪裡也不去。</p>
+      </div>
+      <div class="slide" data-who="space">
+        <span class="who">韓國製造，會說中文</span>
+        <h1>韓國製造，<br>也懂中秋烤肉。</h1>
+        <p class="lede">App 介面支援<strong>繁體中文</strong>，相簿故事認得<strong>春節、清明、端午、中秋和雙十國慶</strong>。剛好，春節和中秋也正是韓國人返鄉團圓的설날和추석（秋夕）。Mac 空間也順便騰出來：原始檔搬到外接硬碟，Mac 上只留預覽，<strong>隨時都能復原</strong>。</p>
+      </div>
+    </div>
+    <div class="who-dots" role="tablist" aria-label="這個 App 適合誰？">
+      <button type="button" role="tab" data-go="0" aria-label="全家一起追韓劇"></button>
+      <button type="button" role="tab" data-go="1" aria-label="K-pop 粉絲"></button>
+      <button type="button" role="tab" data-go="2" aria-label="韓國製造，會說中文"></button>
+    </div>
+
+    <div class="week" aria-label="週末相簿收集的日子：週六和週日">
+      <div class="day"><span>週一</span><b>10</b></div>
+      <div class="day"><span>週二</span><b>11</b></div>
+      <div class="day"><span>週三</span><b>12</b></div>
+      <div class="day"><span>週四</span><b>13</b></div>
+      <div class="day"><span>週五</span><b>14</b></div>
+      <div class="day sat"><span>週六</span><b>15</b></div>
+      <div class="day sun"><span>週日</span><b>16</b></div>
+    </div>
+    <p class="folder">~/Pictures/주말 사진첩/<em>2026-08 3째주 (8.15~8.16)</em>/20260815_101530_IMG_1234.HEIC</p>
+
+    <div class="get">
+      <a class="btn" href="https://github.com/baryonlabs/weekend-album-releases/releases/latest/download/WeekendAlbum-1.14.0.dmg">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+        下載 Mac 版
+      </a>
+      <small>WeekendAlbum-1.14.0.dmg · 約 700 MB（內含在 Mac 本機執行的 AI 模型）<br>Apple 晶片（M1 或更新）· macOS 15 或更新 · 支援繁體中文 ·
+        <a href="https://github.com/baryonlabs/weekend-album-releases/releases/tag/v1.14.0">版本說明</a></small>
+    </div>
+    <figure class="comic comic-wide">
+      <img src="../illus/hero.jpg" width="1500" height="1000" alt="三格漫畫：一家人週末拍的照片飛進筆電，出來變成一本相簿">
+      <figcaption>週末隨手拍 → App 自動收好 → 留成一本相簿</figcaption>
+    </figure>
+  </section>
+
+
+  <section class="section" id="screens">
+    <header>
+      <span class="eyebrow">先睹為快</span>
+      <h2>長這個樣子</h2>
+      <p class="demo-note">下面是用範例圖片（Unsplash、Lorem Picsum）做的展示相簿。App 支援繁體中文、简体中文、韓文、英文、日文、印尼文、泰文和越南文。</p>
+    </header>
+    <div class="shots">
+      <figure>
+        <img src="../shots/home.jpg" width="1600" height="1075" alt="週末相簿首頁：依月份排列的週末、平日和旅行相簿卡片">
+        <figcaption><b>首頁</b> · 每個月的週末、平日和旅行相簿，排成整整齊齊的卡片。</figcaption>
+      </figure>
+      <div class="shot-grid">
+        <figure>
+          <img src="../shots/album.jpg" width="1600" height="1075" alt="一個週末的相簿：開頭故事、筆記、按天排列的照片和標了愛心的收藏" loading="lazy">
+          <figcaption><b>一個週末，一本相簿</b> · 一小段故事、自己的筆記，還有你按了愛心的照片</figcaption>
+        </figure>
+        <figure>
+          <img src="../shots/book.jpg" width="1600" height="1075" alt="相片書畫面：大張封面照片上疊著故事標題" loading="lazy">
+          <figcaption><b>相片書</b> · 喜歡的照片和故事合成一本書，可以匯出 PDF 分享</figcaption>
+        </figure>
+        <figure>
+          <img src="../shots/insta.jpg" width="1600" height="1075" alt="My Insta：個人頁和貼文格狀排列，一個週末一則" loading="lazy">
+          <figcaption><b>My Insta</b> · 每個週末最好看的照片，排成只屬於你的動態</figcaption>
+        </figure>
+        <figure>
+          <img src="../shots/post.jpg" width="1600" height="1075" alt="My Insta 貼文：照片輪播、文案、主題標籤，以及附音量滑桿的推薦歌曲" loading="lazy">
+          <figcaption><b>貼文</b> · 文案、主題標籤，每則配一首不一樣的韓文歌</figcaption>
+        </figure>
+        <figure>
+          <img src="../shots/notes.jpg" width="1600" height="1075" alt="筆記：和相簿連動的待辦和筆記清單" loading="lazy">
+          <figcaption><b>筆記</b> · 想寫進相簿的事，還有該辦的事</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section" id="stories">
+    <header>
+      <span class="eyebrow">不只是相簿</span>
+      <h2>照片越多，煩惱越多。分一點給我們。</h2>
+      <p class="muted">相機記憶卡、手機、外接硬碟、塞爆的 Mac。<b>沒核對清楚</b>，什麼都不刪；每一步都能復原。</p>
+    </header>
+    <div class="stories">
+      <article class="story">
+        <img src="../illus/sdcard.jpg" width="900" height="900" loading="lazy" alt="漫畫：相機和行車記錄器 SD 卡裡的照片經過筆電存進外接硬碟，接著出現綠色勾勾">
+        <div>
+          <span class="tag sat">SD 卡備份</span>
+          <h3>插卡就好，什麼時候可以安心格式化，會告訴你。</h3>
+          <p>插入相機或行車記錄器的 SD 卡，選好外接硬碟。卡裡的資料夾原封不動複製過去，再<b>從硬碟重新讀一次，確認和原檔一模一樣</b>。全部對上了，就會看到：<b>「✅ 這張卡可以清除了。」</b></p>
+          <ul>
+            <li>一張卡對應一個資料夾。下次插同一張卡，只補新的檔案</li>
+            <li>卡上的隱藏資料夾和垃圾桶也一起複製，一個不漏</li>
+            <li>好幾張卡排隊備份：「退出並備份下一張卡」</li>
+          </ul>
+        </div>
+      </article>
+      <article class="story flip">
+        <img src="../illus/phone.jpg" width="900" height="900" loading="lazy" alt="漫畫：照片和文件順著傳輸線從 Android 手機滑進外接硬碟，手機鬆了一口氣">
+        <div>
+          <span class="tag sun">手機備份</span>
+          <h3>下載和聊天檔案搬出手機，空間回來了</h3>
+          <p>用傳輸線接上 Android 手機，選好資料夾（下載、相機、<b>LINE</b> 存下的照片，還有 KakaoTalk 等），搬到外接硬碟。兩邊逐一比對後，想要的話<b>只刪除核對過的檔案</b>。新照片會<b>自動放進週末相簿</b>，原始檔留在硬碟上，幾乎不占 Mac 空間。</p>
+          <ul>
+            <li>複製後又有變動的檔案，絕對不會被刪</li>
+            <li>手機上開一次「USB 偵錯」就好</li>
+            <li>用 iPhone？在 Mac 上用「影像擷取」或「照片」透過傳輸線匯入；只存在 iCloud 的原始檔，從「照片」App 輸出 · <a href="guide/">依手機和電腦分類的匯入方法 →</a></li>
+          </ul>
+        </div>
+      </article>
+      <article class="story">
+        <img src="../illus/clean.jpg" width="900" height="900" loading="lazy" alt="前後對比漫畫：塞滿重複照片的亂櫃子，變成整齊的架子，旁邊放著復原箱">
+        <div>
+          <span class="tag sat">整理硬碟</span>
+          <h3>外接硬碟亂成一團？先給你一份報告。</h3>
+          <p>掃描硬碟後，在動任何檔案之前，先讓你看到<b>重複檔案、垃圾檔、空資料夾，以及每個資料夾占了多少空間</b>。選好要留的，其餘移到暫存資料夾；零散的照片和影片按<b>年／月資料夾</b>收好。</p>
+          <ul>
+            <li>只有每個位元組都相同的檔案才算重複</li>
+            <li>每次整理都能一鍵復原</li>
+            <li>SD 卡備份資料夾和 Time Machine 磁碟不會被動到</li>
+          </ul>
+        </div>
+      </article>
+      <article class="story flip">
+        <img src="../illus/mac.jpg" width="900" height="900" loading="lazy" alt="漫畫：被照片和影片壓得喘不過氣的筆電用放大鏡找出大資料夾，搬到外接硬碟後一身輕鬆">
+        <div>
+          <span class="tag sun">備份 · 釋放空間</span>
+          <h3>Mac 滿了？相簿還在，重量沒了。</h3>
+          <p>先把相簿備份到外接硬碟，再按<b>清出 Mac 空間</b>。只有核對過的原始檔會從 Mac 刪除，<b>預覽照樣留著</b>；只要接上硬碟，原始檔和影片隨時打開。個人資料夾裡的大型照片、影片資料夾，也可以挑出來搬到硬碟。</p>
+          <ul>
+            <li>刪除前最後一刻，再讀一次硬碟上的副本</li>
+            <li>想要的時候隨時「放回 Mac」</li>
+            <li>照片圖庫、程式專案和相簿資料夾從不搬動</li>
+            <li>垃圾桶還沒清空之前都能復原</li>
+            <li>也能備份到 Google 雲端硬碟，順便整理</li>
+          </ul>
+        </div>
+      </article>
+      <article class="story">
+        <img src="../illus/log.jpg" width="900" height="900" loading="lazy" alt="漫畫：小孩拿著放大鏡檢查一本上了鎖的筆記本，出現綠色勾勾">
+        <div>
+          <span class="tag sat">操作紀錄</span>
+          <h3>什麼搬到哪裡去了？幾個月後也答得出來。</h3>
+          <p>每一次搬移和刪除都記錄到<b>每一個檔案</b>。之後按一下<b>重新確認結果</b>，就能確認檔案都還在硬碟上，紀錄本身也沒被改過、沒有缺頁。</p>
+          <ul>
+            <li>每個檔案的原位置、新位置、大小和 MD5</li>
+            <li>紀錄之間用雜湊串起來，竄改或缺漏一查就知道</li>
+            <li>紀錄只存在你的 Mac 上</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <header>
+      <span class="eyebrow">做相簿</span>
+      <h2>你只要挑照片</h2>
+    </header>
+    <div class="features">
+      <div class="feature"><h3>一個週末一本相簿</h3><p>週六週日的照片按週末分組（「8 月第 3 週」），平日的照片按月收好（「9 月平日」）。旅行和活動也能另外成冊。</p></div>
+      <div class="feature"><h3>從哪裡來的都可以</h3><p>可以從 Google 相簿挑，也可以把朋友在 LINE 傳來的照片直接拖進來。App 讀取拍攝日期，把每張照片放到對的位置，連是誰拍的都能記下來。</p></div>
+      <div class="feature"><h3>故事裡有時間也有地點</h3><p>地名、日期、時刻，春節、中秋這樣的節日，連招牌上的字都串成那天的行程；你請它寫，Claude 就寫成一篇日記。再改幾筆，就是你自己的故事。</p></div>
+      <div class="feature"><h3>相片書和 PDF</h3><p>挑幾張最愛的，就是一本相片書。好幾個週末合成一個 PDF，直接丟到家族群組。</p></div>
+      <div class="feature"><h3>My Insta · Mac 本機 AI</h3><p><b>在你 Mac 上執行的 AI</b>（Apple Vision · Laya）幾秒內挑出最佳照片、主題標籤和合適的歌，照片不會傳到任何地方。歌曲來自韓文歌曲庫，以 30 秒片段輕輕播放。</p></div>
+      <div class="feature"><h3>重複更少，空間更多</h3><p>聊天裡收到兩次的同一張照片，找出來把副本移到垃圾桶；已備份的原始檔也整理一下，幫 Mac 騰出空間。</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="install">
+    <header>
+      <span class="eyebrow">安裝</span>
+      <h2>三個步驟搞定</h2>
+      <p class="muted">這個 App 不是從 App Store 下載的，所以 Mac 會請你確認一次，只有第一次。</p>
+    </header>
+    <ol class="steps">
+      <li>
+        <h3>下載並打開 DMG</h3>
+        <p>按上面的<b>下載 Mac 版</b>，再點兩下下載好的檔案。</p>
+      </li>
+      <li>
+        <h3>拖進「應用程式」</h3>
+        <p>在打開的視窗裡，把週末相簿的圖示（名稱顯示為「주말 사진첩」）拖到旁邊的「應用程式」資料夾。</p>
+      </li>
+      <li>
+        <h3>第一次打開，按「強制打開」</h3>
+        <p>如果 macOS 說無法驗證 App 或開發者，打開<b>系統設定 → 隱私權與安全性</b>，捲到最下面，按<b>強制打開</b>。
+          如果出現 App「已損毀，無法打開」，把下面這行貼到「終端機」執行，再打開 App。</p>
+        <div class="cmd">
+          <pre id="xattrCmd">xattr -dr com.apple.quarantine "/Applications/주말 사진첩.app"</pre>
+          <button class="copy" type="button" data-copy="xattrCmd">拷貝</button>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="section" id="google">
+    <div class="connect">
+      <div style="display:grid;gap:16px;min-width:0">
+        <span class="eyebrow">Google 相簿（選用）</span>
+        <h2>想用 Google 相簿？寄一封信就好。</h2>
+        <p class="muted">這個 App 還在 Google 的測試階段，只有登記過的帳號才能連接 Google 相簿。直接拖放照片不用連接，現在就能用。</p>
+        <ul class="flow">
+          <li><span>你</span><p>寄一封信，寫上你用 Google 相簿的 Gmail 地址。</p></li>
+          <li><span>Baryon Labs</span><p>我們登記你的帳號，回覆一個 App 連接檔（.json）。</p></li>
+          <li><span>你</span><p>在 App 的<b>備份 · 釋放空間</b>分頁，用<b>選擇下載的 JSON</b>選取這個檔案。連上了。</p></li>
+        </ul>
+      </div>
+      <div class="mail">
+        <span class="eyebrow">寄到</span>
+        <div class="addr"><b id="mailAddr">hello@baryon.ai</b><button class="copy" type="button" data-copy="mailAddr">拷貝地址</button></div>
+        <p class="muted" style="font-size:14px">主旨範例：週末相簿 Google 連接申請<br>內容：你用 Google 相簿的 Gmail 地址</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="extras">
+    <header>
+      <span class="eyebrow">附加工具</span>
+      <h2>沒有這些，App 一樣打得開</h2>
+      <p class="muted">Mac 上有裝這些程式，對應的功能就會亮起來；沒裝，也只是那一項功能不能用。</p>
+    </header>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>程式</th><th>開啟的功能</th><th>安裝</th></tr></thead>
+        <tbody>
+          <tr><td>Google Chrome</td><td>Google 相簿選照片視窗、製作 PDF</td><td><a href="https://www.google.com/chrome/">google.com/chrome</a></td></tr>
+          <tr><td>ffmpeg</td><td>讀取影片日期、剪片段、把一格畫面存成照片</td><td><code>brew install ffmpeg</code></td></tr>
+          <tr><td>adb（Android 工具）</td><td>手機備份：讀取和搬移 Android 手機上的檔案</td><td><code>brew install --cask android-platform-tools</code></td></tr>
+          <tr><td>Claude Code</td><td>撰寫和潤飾相簿故事、寫 My Insta 文案（用你自己的 Claude 帳號）。沒有它，挑照片和配歌照樣能用</td><td><a href="https://claude.com/claude-code">claude.com/claude-code</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <section class="section" id="feedback">
+    <div class="connect">
+      <div style="display:grid;gap:14px;min-width:0">
+        <span class="eyebrow">意見回饋</span>
+        <h2>哪裡卡卡的？想要什麼功能？</h2>
+        <p class="muted">按 App 上方的 <b>💬 傳送意見</b>，會打開一封已經填好主旨和簡單範本的信。還沒裝 App？用下面的按鈕也可以。只要驗證 email、不用註冊就能留言的留言板，即將推出。</p>
+      </div>
+      <div class="mail">
+        <span class="eyebrow">寄到</span>
+        <div class="addr"><b id="fbAddr">hello@baryon.ai</b><button class="copy" type="button" data-copy="fbAddr">拷貝地址</button></div>
+        <a class="btn" style="justify-self:start;font-size:16px;padding:11px 18px" href="mailto:hello@baryon.ai?subject=%5B%E9%80%B1%E6%9C%AB%E7%9B%B8%E7%B0%BF%20%E6%84%8F%E8%A6%8B%5D%20&body=%E2%96%A0%20%E9%A1%9E%E5%9E%8B%EF%BC%9A%EF%BC%88%E5%95%8F%E9%A1%8C/%E9%8C%AF%E8%AA%A4%20/%20%E5%8A%9F%E8%83%BD%E9%BB%9E%E5%AD%90%20/%20%E7%A8%B1%E8%AE%9A/%E5%85%B6%E4%BB%96%EF%BC%89%0A%0A%E2%96%A0%20%E8%A9%B3%E7%B4%B0%E5%85%A7%E5%AE%B9%0A%0A%0A%E2%96%A0%20App%20%E7%89%88%E6%9C%AC%20%C2%B7%20Mac%EF%BC%9A">用 email 傳送意見</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="privacy">
+    <header>
+      <span class="eyebrow">照片與隱私</span>
+      <h2>你的相簿，住在你的 Mac 上</h2>
+    </header>
+    <div class="data">
+      <div><b>不經過我們的伺服器</b><p>相簿建在你 Mac 的「圖片」資料夾裡。Baryon Labs 從不接收你的照片、故事或筆記。只有你自己選擇時，照片才會離開 Mac，例如備份到你自己的 Google 雲端硬碟。</p></div>
+      <div><b>大部分在 Mac 上完成</b><p>挑照片、主題標籤和配歌由你 Mac 上的 AI 處理。只有在你請它寫的時候，幾張選好的照片和「何時何地」的摘要（大約到區、里一級）才會傳到你自己的 Claude 帳號。原始檔、檔名和 GPS 座標不會傳送。</p></div>
+      <div><b>每一步都有紀錄</b><p>每個被搬移或刪除的檔案，位置、大小和 MD5 只存在這台 Mac 上，之後隨時能核對是否完好。</p></div>
+      <div><b>只有匿名使用次數</b><p>Baryon Labs 只收到哪些功能被用了、用了幾次的匿名統計。會傳送什麼、怎麼關閉，都能在 App 的「ⓘ 資訊」裡看到。</p></div>
+    </div>
+    <p class="muted" style="font-size:14px">詳情請見 App 內「ⓘ 資訊」→ 資料與 AI 說明、使用條款和隱私權政策。週末相簿供個人與家庭非商業使用。</p>
+  </section>
+
+  <footer>
+    <span>Made in Korea by <b>Baryon Labs</b> · © 2026 Baryon Labs. All rights reserved.</span>
+    <span>聯絡 <span class="mono" style="user-select:all">hello@baryon.ai</span> · <a href="https://github.com/baryonlabs/weekend-album-releases/releases">所有版本</a></span>
+  </footer>
+</div>
+
+<script>
+  document.querySelectorAll("[data-copy]").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const el = document.getElementById(btn.dataset.copy);
+      const text = el.textContent.trim();
+      const label = btn.textContent;
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.textContent = "已拷貝！";
+      } catch {
+        const range = document.createRange();
+        range.selectNodeContents(el);
+        const sel = window.getSelection();
+        sel.removeAllRanges(); sel.addRange(range);
+        btn.textContent = "已選取 · ⌘C";
+      }
+      setTimeout(() => { btn.textContent = label; }, 1800);
+    });
+  });
+
+  // Audience-specific headline: random on each visit, then rotates every few seconds (fixed when Reduce Motion is on)
+  (() => {
+    const slides = [...document.querySelectorAll("#rotator .slide")];
+    const dots = [...document.querySelectorAll(".who-dots button")];
+    if (!slides.length) return;
+    let i = Math.floor(Math.random() * slides.length), timer = 0, paused = false;
+    const show = (n) => { i = (n + slides.length) % slides.length;
+      slides.forEach((s, k) => { s.classList.toggle("on", k === i); s.setAttribute("aria-hidden", k !== i); });
+      dots.forEach((d, k) => { d.classList.toggle("on", k === i); d.setAttribute("aria-selected", k === i); }); };
+    const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const tick = () => { clearTimeout(timer); if (!calm) timer = setTimeout(() => { if (!paused && !document.hidden) show(i + 1); tick(); }, 5500); };
+    dots.forEach((d, k) => d.addEventListener("click", () => { show(k); tick(); }));
+    const box = document.getElementById("rotator");
+    box.addEventListener("mouseenter", () => { paused = true; });
+    box.addEventListener("mouseleave", () => { paused = false; });
+    show(i); tick();
+  })();
+</script>
+
+</body>
+</html>

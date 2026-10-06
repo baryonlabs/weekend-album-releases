@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="韩国制造的 Mac 应用：把家人的周末照片整理成一个周末一本相册，还配上 K-pop 背景音乐。Made by Baryon Labs.">
+<meta property="og:title" content="从手机导入照片 · 周末相册">
+<meta property="og:description" content="一家人的周六周日，每集都像韩剧 — 免费下载 Mac 应用，支持简体中文">
+<meta property="og:image" content="https://baryonlabs.github.io/weekend-album-releases/illus/hero.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://baryonlabs.github.io/weekend-album-releases/zh/guide/">
+<meta property="og:locale" content="zh_CN">
+<link rel="canonical" href="https://baryonlabs.github.io/weekend-album-releases/zh/guide/">
+<link rel="alternate" hreflang="ko" href="https://baryonlabs.github.io/weekend-album-releases/">
+<link rel="alternate" hreflang="en" href="https://baryonlabs.github.io/weekend-album-releases/en/">
+<link rel="alternate" hreflang="ja" href="https://baryonlabs.github.io/weekend-album-releases/ja/">
+<link rel="alternate" hreflang="id" href="https://baryonlabs.github.io/weekend-album-releases/id/">
+<link rel="alternate" hreflang="th" href="https://baryonlabs.github.io/weekend-album-releases/th/">
+<link rel="alternate" hreflang="vi" href="https://baryonlabs.github.io/weekend-album-releases/vi/">
+<link rel="alternate" hreflang="zh-Hans" href="https://baryonlabs.github.io/weekend-album-releases/zh/guide/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://baryonlabs.github.io/weekend-album-releases/zh-tw/">
+<link rel="alternate" hreflang="x-default" href="https://baryonlabs.github.io/weekend-album-releases/">
+<style>html{color-scheme:light dark}body{margin:0;-webkit-font-smoothing:antialiased}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<style>
+  :root { --bg:#faf6ef; --paper:#fffdf8; --ink:#2b2620; --muted:#8a7f72; --line:#ece4d6; --accent:#d9734e; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#1b1916; --paper:#24211d; --ink:#f1ebe2; --muted:#a39887; --line:#36312a; --accent:#ee8a63; } }
+  body { background:var(--bg); color:var(--ink); font:16px/1.65 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Hiragino Sans",sans-serif; }
+  .g { max-width:860px; margin:0 auto; padding:28px 16px 64px; }
+  .g a.back { color:var(--muted); text-decoration:none; font-size:14px; }
+  .g h1 { font-size:clamp(26px,4vw,34px); margin:12px 0 6px; letter-spacing:-.02em; }
+  .g .lead { color:var(--muted); margin:0 0 14px; }
+  .toc { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 8px; }
+  .toc a { border:1px solid var(--line); background:var(--paper); border-radius:999px; padding:4px 12px; font-size:13px; color:var(--ink); text-decoration:none; }
+  h2.os { margin:30px 0 10px; font-size:20px; }
+  .note { color:var(--muted); font-size:14px; margin:-4px 0 10px; }
+  .card { display:grid; grid-template-columns:200px 1fr; gap:18px; background:var(--paper); border:1px solid var(--line);
+          border-radius:16px; padding:16px; margin:0 0 14px; box-shadow:0 1px 2px rgba(60,40,20,.06),0 8px 24px rgba(60,40,20,.06); }
+  .card img { width:200px; height:200px; border-radius:12px; object-fit:cover; }
+  .card h3 { margin:2px 0 6px; font-size:18px; }
+  .card ol { margin:0 0 8px; padding-left:20px; }
+  .card li { margin:3px 0; }
+  .tip { background:var(--bg); border-radius:10px; padding:8px 12px; font-size:14px; margin:0; }
+  .tip .tl { color:var(--accent); font-weight:700; margin-right:6px; }
+  code { font-size:13px; background:var(--bg); border-radius:6px; padding:1px 5px; word-break:break-all; }
+  @media (max-width:640px) { .card { grid-template-columns:1fr; } .card img { width:140px; height:140px; } }
+</style>
+<div class="g">
+  <a class="back" href="../">← 返回</a>
+  <h1>从手机导入照片</h1>
+  <p class="lead">方法因手机和电脑而异，找到你的情况照着做就行。导入的文件夹用周末相册的 <b>上传收到的照片</b> 放进去，就会按日期整理好。</p>
+  <nav class="toc"><a href="#iphone-mac">iPhone → Mac（数据线）</a><a href="#iphone-icloud">iPhone · iCloud 照片 → Mac</a><a href="#android-mac">安卓 → Mac</a><a href="#google-photos">存在 Google 相册里的照片（iPhone、安卓通用）</a><a href="#iphone-windows">iPhone → Windows 电脑</a><a href="#android-windows">安卓 → Windows 电脑</a></nav>
+  <h2 class="os">Mac</h2><article class="card" id="iphone-mac">
+  <img src="../../howto/iphone-mac.jpg" alt="iPhone → Mac（数据线）" width="200" height="200" loading="lazy">
+  <div><h3>iPhone → Mac（数据线）</h3><ol><li>用数据线连接，解锁 iPhone，在 <b>要信任此电脑吗？</b> 提示中点信任。</li><li>在 Mac 的 <b>图像捕捉</b>（或 <b>照片</b> App → 导入）中选择 iPhone。</li><li>选好保存的文件夹，点 <b>全部下载</b>。</li><li>在周末相册里用 <b>上传收到的照片</b> 放入这个文件夹。</li></ol><p class="tip"><span class="tl">提示</span> iPhone 设置 → 照片 →“传输到 Mac 或 PC”选 <b>保留原片</b>，就会以 HEIC 原样传过来（“自动”会转成 JPG）。实况照片会变成照片和视频两个文件。</p></div>
+</article><article class="card" id="iphone-icloud">
+  <img src="../../howto/iphone-icloud.jpg" alt="iPhone · iCloud 照片 → Mac" width="200" height="200" loading="lazy">
+  <div><h3>iPhone · iCloud 照片 → Mac</h3><ol><li>如果 iCloud 照片开着 <b>优化 iPhone 储存空间</b>，手机里只有缩小的副本，原图在 iCloud 上。</li><li>在 Mac 的 <b>系统设置 → Apple 账户 → iCloud → 照片</b> 打开（同一个 Apple 账户），然后在 <b>照片</b> App 里选好照片。</li><li>文件 → 导出 → <b>导出未修改的原件</b>，导出到一个文件夹。</li><li>用 <b>上传收到的照片</b> 放入这个文件夹。</li></ol><p class="tip"><span class="tl">提示</span> Mac 空间不够的话，也可以在 iCloud.com → 照片 里挑选后下载。</p></div>
+</article><article class="card" id="android-mac">
+  <img src="../../howto/android-mac.jpg" alt="安卓 → Mac" width="200" height="200" loading="lazy">
+  <div><h3>安卓 → Mac</h3><ol><li>第一次：在“终端”里运行 <code>brew install --cask android-platform-tools</code>，并在手机的开发者选项里打开 <b>USB 调试</b>。</li><li>用数据线连接，在手机上点 <b>允许 USB 调试</b>。</li><li>在周末相册的 <b>手机备份</b> 标签页选好文件夹（相机、下载、微信等）然后搬移——新拍的照片会自动放进相册。</li><li>需要的话，只把核对过的文件 <b>从手机删除</b>。</li></ol><p class="tip"><span class="tl">提示</span> 只要照片的话：把手机通知里的 USB 模式设为 <b>传输照片（PTP）</b>，用 Mac 的图像捕捉导入也可以。</p></div>
+</article><article class="card" id="google-photos">
+  <img src="../../howto/google-photos.jpg" alt="存在 Google 相册里的照片（iPhone、安卓通用）" width="200" height="200" loading="lazy">
+  <div><h3>存在 Google 相册里的照片（iPhone、安卓通用）</h3><ol><li>点周末相册的 <b>从 Google 相册导入照片</b>。</li><li>在打开的 Google 相册窗口里选好要导入的照片。</li><li>只下载选中的照片，并按日期整理进相册。</li></ol><p class="tip"><span class="tl">提示</span> 按照 Google 的政策，第三方应用只能接收用户亲手选的照片。数量很多的话，请用 Google 导出（Takeout）下载。</p></div>
+</article><h2 class="os">Windows PC</h2><p class="note">周末相册目前只有 Mac 版（Windows 版准备中）。在 Windows 上，请先把照片导入电脑。</p><article class="card" id="iphone-windows">
+  <img src="../../howto/iphone-windows.jpg" alt="iPhone → Windows 电脑" width="200" height="200" loading="lazy">
+  <div><h3>iPhone → Windows 电脑</h3><ol><li>从 Microsoft Store 安装 <b>Apple 设备</b> 应用（iPhone 连接驱动）。</li><li>用数据线连接，在 iPhone 上点 <b>信任</b>。</li><li>用 Windows 的 <b>照片</b> 应用 → 导入 → 从连接的设备，或在文件资源管理器 → Apple iPhone → Internal Storage → <b>DCIM</b> 里复制。</li></ol><p class="tip"><span class="tl">提示</span> 如果用 iCloud 照片，请用 <b>适用于 Windows 的 iCloud</b> 下载原图。HEIC 打不开的话，安装 Microsoft Store 里的“HEIF 图像扩展”，或把 iPhone 的传输设置改成“自动”（JPG）。</p></div>
+</article><article class="card" id="android-windows">
+  <img src="../../howto/android-windows.jpg" alt="安卓 → Windows 电脑" width="200" height="200" loading="lazy">
+  <div><h3>安卓 → Windows 电脑</h3><ol><li>用数据线连接，在手机通知的 USB 模式里选 <b>文件传输（MTP）</b>。</li><li>打开文件资源管理器 → 手机名称 → 内部存储。</li><li>把 <b>DCIM/Camera</b>（相机照片）、<b>Pictures</b> 里的微信（WeiXin）等聊天应用文件夹、<b>Download</b>（下载）复制到电脑。</li></ol><p class="tip"><span class="tl">提示</span> 也可以用 Windows <b>照片</b> 应用的导入、<b>手机连接（Phone Link）</b>，三星手机还能用 <b>Smart Switch</b>。</p></div>
+</article>
+</div>
+</body>
+</html>
