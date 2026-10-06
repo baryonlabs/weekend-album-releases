@@ -88,6 +88,8 @@
     font-weight: 700; font-size: 18px; padding: 15px 24px; border-radius: 14px; box-shadow: 0 6px 20px color-mix(in srgb, var(--sat) 30%, transparent); }
   .btn:hover { filter: brightness(1.06); }
   .btn svg { width: 20px; height: 20px; }
+  .btn-win { background: transparent; color: var(--ink, inherit); border: 1.5px solid currentColor; }
+  .btn-win svg { width: 18px; height: 18px; }
   .get small { color: var(--muted); font-size: 14px; line-height: 1.5; }
 
   /* Features */
@@ -177,6 +179,7 @@
   .who-dots button.on { background: var(--ink); }
   @media (prefers-reduced-motion: reduce) { .rotator .slide { transition: none; } }
 
+  .pro-link { font-size: 14px; color: var(--muted); margin-top: -10px; }
   footer { border-top: 1px solid var(--line); padding-top: 22px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; font-size: 14px; color: var(--muted); }
   footer b { color: var(--ink); }
 
@@ -201,7 +204,7 @@
     </nav>
     <div class="brand">
       <b>Weekend Album</b>
-      <span class="eyebrow">Mac app · v1.14.1 · Made by Baryon Labs</span>
+      <span class="eyebrow">Mac app · v1.15.0 · Made by Baryon Labs</span>
     </div>
 
     <div class="rotator" id="rotator" aria-live="polite">
@@ -239,13 +242,18 @@
     <p class="folder">~/Pictures/주말 사진첩/<em>2026-08 3째주 (8.15~8.16)</em>/20260815_101530_IMG_1234.HEIC</p>
 
     <div class="get">
-      <a class="btn" href="https://github.com/baryonlabs/weekend-album-releases/releases/latest/download/WeekendAlbum-1.14.1.dmg">
+      <a class="btn" href="https://github.com/baryonlabs/weekend-album-releases/releases/latest/download/WeekendAlbum-1.15.0.dmg">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
         Download for Mac
       </a>
-      <small>WeekendAlbum-1.14.1.dmg · about 700 MB (includes on-Mac AI models)<br>Apple Silicon (M1 or later) · macOS 15 or later · Available in English, 日本語, Bahasa Indonesia, ไทย, Tiếng Việt, 简体中文, 繁體中文 ·
-        <a href="https://github.com/baryonlabs/weekend-album-releases/releases/tag/v1.14.1">Release notes</a></small>
+      <a class="btn btn-win" href="https://github.com/baryonlabs/weekend-album-releases/releases/latest/download/WeekendAlbum-1.15.0-Setup.exe">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10.5 4.4v7H3zM11.5 4.3 21 3v8.4h-9.5zM3 12.6h7.5v7L3 18.5zM11.5 12.6H21V21l-9.5-1.3z"/></svg>
+        Download for Windows
+      </a>
+      <small>WeekendAlbum-1.15.0.dmg · about 700 MB (includes on-Mac AI models)<br>Apple Silicon (M1 or later) · macOS 15 or later · Available in English, 日本語, Bahasa Indonesia, ไทย, Tiếng Việt, 简体中文, 繁體中文 ·
+        <a href="https://github.com/baryonlabs/weekend-album-releases/releases/tag/v1.15.0">Release notes</a><br><span class="win-note">WeekendAlbum-1.15.0-Setup.exe · about 46 MB · Windows 10/11 (64-bit) · If “Windows protected your PC” appears, click <b>More info → Run anyway</b></span></small>
     </div>
+    <p class="pro-link">Using it for work? <a href="pro/">See the 🗂 Professional view →</a></p>
       <figure class="comic comic-wide">
       <img src="../illus/hero.jpg" width="1500" height="1000" alt="A three-panel comic: a family's weekend photos fly into a laptop and come out as a single photo album">
       <figcaption>Shoot on the weekend → the app gathers → one album to keep</figcaption>
@@ -475,7 +483,7 @@
       <div><b>Every action is logged</b><p>The location, size, and MD5 of every file moved or deleted is kept on this Mac only, so you can check later that everything is still intact.</p></div>
       <div><b>Anonymous usage counts only</b><p>Baryon Labs receives only anonymous counts of which features were used how often. You can see exactly what would be sent, and turn it off, under “ⓘ Info” in the app.</p></div>
     </div>
-    <p class="muted" style="font-size:14px">For details, see “ⓘ Info” in the app → data &amp; AI notes, Terms of Use, and Privacy Policy. Weekend Album is meant for personal and family, non-commercial use.</p>
+    <p class="muted" style="font-size:14px">For details, see “ⓘ Info” in the app → data &amp; AI notes, Terms of Use, and Privacy Policy. Weekend Album is free for personal, family and work use.</p>
   </section>
 
   <footer>

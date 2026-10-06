@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="현장·작업 사진, 영수증·문서, 스크린샷을 날짜·종류별로 보고, 복사 없는 링크 모음으로 묶고, SD 카드·폰·외장하드를 검증하며 백업하는 Mac 앱의 프로페셔널 보기. Made by Baryon Labs.">
+<meta name="theme-color" content="#111317">
+<meta property="og:title" content="주말 사진첩 프로 — 업무 사진첩">
+<meta property="og:description" content="현장·작업 사진, 영수증·문서, 스크린샷을 날짜·종류별로 보고, 복사 없는 링크 모음으로 묶고, SD 카드·폰·외장하드를 검증하며 백업하는 Mac 앱의 프로페셔널 보기. Made by Baryon Labs.">
+<meta property="og:image" content="https://baryonlabs.github.io/weekend-album-releases/pro-img/hero.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://baryonlabs.github.io/weekend-album-releases/pro/">
+<meta property="og:locale" content="ko_KR">
+<link rel="canonical" href="https://baryonlabs.github.io/weekend-album-releases/pro/">
+<link rel="alternate" hreflang="ko" href="https://baryonlabs.github.io/weekend-album-releases/pro/">
+<link rel="alternate" hreflang="en" href="https://baryonlabs.github.io/weekend-album-releases/en/pro/">
+<link rel="alternate" hreflang="x-default" href="https://baryonlabs.github.io/weekend-album-releases/pro/">
+<style>html{color-scheme:dark;background:#111317}body{margin:0;-webkit-font-smoothing:antialiased}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>주말 사진첩 프로 — 업무 사진첩</title>
+<style>
+  /* 프로페셔널 보기 소개: 앱의 🗂 프로페셔널 화면과 같은 어두운 색 — 항상 다크 */
+  :root {
+    --bg: #111317; --panel: #1a1d22; --panel-2: #15181c; --ink: #e6e8eb; --muted: #9aa1ab; --line: #2b3038;
+    --accent: #5b8def; --accent-soft: rgba(91, 141, 239, .14); --ok: #4fbf8f;
+    --body: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Segoe UI", "Malgun Gothic", system-ui, sans-serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--bg); }
+  body { background: var(--bg); color: var(--ink); font: 15px/1.65 var(--body); padding-inline: 16px; margin: 0; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding-block: 28px 48px; display: grid; gap: 64px; min-width: 0; }
+  :lang(ko) h1, :lang(ko) h2, :lang(ko) h3, :lang(ko) .lede { word-break: keep-all; }
+  h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; text-wrap: balance; }
+  h1 { font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-size: clamp(22px, 3.2vw, 30px); }
+  h3 { font-size: 17px; }
+  p { margin: 0; }
+  a { color: var(--accent); }
+  .muted { color: var(--muted); }
+  .eyebrow { font: 600 11.5px var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+  code, .mono { font-family: var(--mono); font-size: .9em; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+  /* Top bar */
+  .top { display: flex; align-items: center; justify-content: space-between; gap: 10px 16px; flex-wrap: wrap; font-size: 13.5px; }
+  .top .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+  .top .brand i { font-style: normal; font: 600 11px var(--mono); color: var(--accent); border: 1px solid var(--accent); border-radius: 4px; padding: 1px 6px; letter-spacing: .08em; }
+  .top nav { display: flex; gap: 4px; flex-wrap: wrap; }
+  .top nav a { color: var(--muted); text-decoration: none; padding: 4px 10px; border-radius: 6px; border: 1px solid transparent; white-space: nowrap; }
+  .top nav a:hover { color: var(--ink); border-color: var(--line); }
+  .top nav a[aria-current="page"] { color: var(--ink); background: var(--panel); border-color: var(--line); }
+
+  /* Hero */
+  .hero { display: grid; gap: 22px; }
+  .hero-img { width: 100%; height: auto; aspect-ratio: 960 / 266; object-fit: cover; display: block; border-radius: 12px; border: 1px solid var(--line); background: var(--panel); }
+  .hero-text { display: grid; gap: 14px; max-width: 46em; }
+  .lede { font-size: 17px; color: var(--muted); }
+  .lede b { color: var(--ink); font-weight: 600; }
+  .get { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: #fff; text-decoration: none; font-weight: 700;
+    font-size: 16px; padding: 12px 20px; border-radius: 8px; box-shadow: 0 8px 24px -10px rgba(91, 141, 239, .7); }
+  .btn:hover { filter: brightness(1.08); }
+  .btn svg { width: 18px; height: 18px; }
+  .btn-win { background: transparent; color: var(--ink, inherit); border: 1.5px solid currentColor; }
+  .btn-win svg { width: 18px; height: 18px; }
+  .get small { color: var(--muted); font-size: 13px; line-height: 1.55; }
+  .switch { display: flex; gap: 10px; align-items: baseline; background: var(--panel); border: 1px solid var(--line); border-left: 3px solid var(--accent);
+    border-radius: 8px; padding: 12px 14px; font-size: 14px; color: var(--muted); }
+  .switch b { color: var(--ink); font-weight: 600; }
+
+  /* Use cases */
+  .uses { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+  .use { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; gap: 4px; min-width: 0; }
+  .use b { font-size: 14.5px; }
+  .use span { font-size: 13px; color: var(--muted); }
+  .use em { font-style: normal; font-size: 18px; }
+
+  /* Feature sections */
+  .section { display: grid; gap: 20px; min-width: 0; }
+  .section > header { display: grid; gap: 8px; max-width: 46em; }
+  .feats { display: grid; gap: 34px; }
+  .feat { display: grid; gap: 14px; min-width: 0; }
+  .strip { width: 100%; height: auto; aspect-ratio: 6.5 / 1; object-fit: cover; display: block; border-radius: 10px; border: 1px solid var(--line); background: var(--panel); }
+  .feat-body { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 10px 32px; align-items: start; }
+  .feat-head { display: grid; gap: 4px; }
+  .feat-head .eyebrow { color: var(--accent); }
+  .feat ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+  .feat li { position: relative; padding-left: 18px; color: var(--muted); }
+  .feat li::before { content: ""; position: absolute; left: 2px; top: .68em; width: 6px; height: 6px; border-radius: 2px; background: var(--accent); }
+  .feat li b { color: var(--ink); font-weight: 600; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+  .chips span { font-size: 12.5px; color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; }
+
+  /* Import squares */
+  .sources { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+  .sources a { display: grid; gap: 6px; text-decoration: none; color: var(--muted); font-size: 13px; min-width: 0; }
+  .sources img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; display: block; border-radius: 10px; border: 1px solid var(--line); background: var(--panel); }
+  .sources a:hover { color: var(--ink); }
+
+  /* Data & privacy */
+  .data { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
+  .data div { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; display: grid; gap: 6px; align-content: start; min-width: 0; }
+  .data div.out { border-color: rgba(91, 141, 239, .45); }
+  .data b { font-size: 14.5px; }
+  .data p { color: var(--muted); font-size: 13.5px; }
+  .tag { justify-self: start; font: 600 11px var(--mono); letter-spacing: .06em; border-radius: 4px; padding: 1px 7px; }
+  .tag.in { color: var(--ok); background: rgba(79, 191, 143, .12); }
+  .tag.out { color: var(--accent); background: var(--accent-soft); }
+  .note { font-size: 13px; color: var(--muted); background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; }
+
+  /* Install */
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; counter-reset: s; }
+  .steps li { counter-increment: s; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 4px 12px; background: var(--panel);
+    border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+  .steps li::before { content: counter(s, decimal-leading-zero); grid-row: span 3; font: 600 15px var(--mono); color: var(--accent); line-height: 1.5; }
+  .steps li > * { min-width: 0; }
+  .steps p { color: var(--muted); font-size: 14px; }
+  .cmd { display: flex; gap: 8px; align-items: stretch; margin-top: 8px; min-width: 0; }
+  .cmd pre { flex: 1; min-width: 0; margin: 0; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 9px 12px; font: 12.5px/1.5 var(--mono); overflow-x: auto; white-space: pre; }
+  .copy { font: 600 12.5px var(--body); border: 1px solid var(--line); background: var(--panel-2); color: var(--ink); border-radius: 8px; padding: 0 12px; cursor: pointer; white-space: nowrap; }
+  .copy:hover { border-color: var(--accent); }
+  .req { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--muted); }
+  .req b { color: var(--ink); font-weight: 600; }
+
+  footer { border-top: 1px solid var(--line); padding-top: 20px; display: grid; gap: 14px; font-size: 13.5px; color: var(--muted); }
+  footer .row { display: flex; flex-wrap: wrap; gap: 8px 22px; justify-content: space-between; }
+  footer .back { font-weight: 600; text-decoration: none; }
+  footer b { color: var(--ink); }
+
+  @media (max-width: 760px) {
+    .wrap { gap: 48px; padding-block: 20px 36px; }
+    .feat-body { grid-template-columns: 1fr; }
+    .strip { aspect-ratio: 4 / 1; }
+    .sources { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <span class="brand">주말 사진첩 <i>PRO</i></span>
+    <nav aria-label="보기와 언어">
+      <a href="../">🏠 가족 사진첩</a><a href="./" lang="ko" aria-current="page">한국어</a><a href="../en/pro/" lang="en" hreflang="en">English</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <img class="hero-img" src="../pro-img/hero.jpg" width="960" height="266" alt="어두운 화면의 노트북에 날짜별 사진 격자가 떠 있고, 옆으로 사진책과 사람·동물별 모음 카드가 놓인 장면">
+    <div class="hero-text">
+      <span class="eyebrow">🗂 프로페셔널 보기 · Mac 앱 · v1.15.0</span>
+      <h1>사진을 업무 자료처럼.<br>찾고, 묶고, 확인하며 백업합니다</h1>
+      <p class="lede">현장·작업 사진, 영수증과 문서, 스크린샷까지 <b>날짜와 종류로 한 화면에</b>. 사진을 복사하지 않는 <b>링크 모음</b>으로 거래처·프로젝트별로 나누고, SD 카드·폰·외장하드는 <b>다시 읽어 확인한 뒤</b> 옮깁니다. 모든 작업은 검증 가능한 기록으로 남습니다.</p>
+    </div>
+    <div class="get">
+      <a class="btn" href="https://github.com/baryonlabs/weekend-album-releases/releases/latest/download/WeekendAlbum-1.15.0.dmg">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+        Mac용 다운로드
+      </a>
+      <a class="btn btn-win" href="https://github.com/baryonlabs/weekend-album-releases/releases/latest/download/WeekendAlbum-1.15.0-Setup.exe">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10.5 4.4v7H3zM11.5 4.3 21 3v8.4h-9.5zM3 12.6h7.5v7L3 18.5zM11.5 12.6H21V21l-9.5-1.3z"/></svg>
+        Windows용 다운로드
+      </a>
+      <small>WeekendAlbum-1.15.0.dmg · 약 700MB (Mac 안 AI 모델 포함)<br>Apple Silicon(M1 이상) · macOS 15 이상 · 화면 언어 8개 ·
+        <a href="https://github.com/baryonlabs/weekend-album-releases/releases/tag/v1.15.0">릴리스 페이지</a><br><span class="win-note">WeekendAlbum-1.15.0-Setup.exe · 약 46MB · Windows 10/11 (64비트) · 처음 실행 때 'Windows의 PC 보호'가 뜨면 <b>추가 정보 → 실행</b></span></small>
+    </div>
+    <p class="switch"><span aria-hidden="true">🎨</span><span>같은 앱입니다. 처음 열 때 <b>가족</b>과 <b>프로페셔널</b> 중 고르고, 언제든 위쪽 <b>🎨</b>로 바꿀 수 있어요. 사진 폴더는 그대로입니다.</span></p>
+  </section>
+
+  <section class="section" id="uses">
+    <header>
+      <span class="eyebrow">이런 일에</span>
+      <h2>흩어진 사진을 일하는 방식대로</h2>
+    </header>
+    <div class="uses">
+      <div class="use"><em aria-hidden="true">🏗</em><b>현장·작업 사진 기록</b><span>날짜별로 쌓고, 현장·공정별 모음으로</span></div>
+      <div class="use"><em aria-hidden="true">🧾</em><b>영수증·문서 정리</b><span>찍어 둔 영수증·서류를 자동으로 골라 모음</span></div>
+      <div class="use"><em aria-hidden="true">🖥</em><b>스크린샷 관리</b><span>화면 크기·이름별로 자동 분류</span></div>
+      <div class="use"><em aria-hidden="true">📁</em><b>거래처·프로젝트별 모음</b><span>한 장을 여러 모음에, 복사 없이</span></div>
+      <div class="use"><em aria-hidden="true">🔐</em><b>안전한 백업 기록</b><span>확인하며 옮기고, 해시 체인으로 남김</span></div>
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <header>
+      <span class="eyebrow">프로페셔널 메뉴</span>
+      <h2>보고, 묶고, 옮기고, 남기기</h2>
+      <p class="muted">프로페셔널 보기의 메뉴 순서대로 소개합니다. 사진을 고르고 분류하는 일은 Mac 안의 AI(Apple Vision 등)가 합니다.</p>
+    </header>
+
+    <div class="feats">
+      <article class="feat">
+        <img class="strip" src="../pro-img/work.jpg" width="1300" height="200" alt="" loading="lazy">
+        <div class="feat-body">
+          <div class="feat-head"><span class="eyebrow">01 · 🗂 업무 사진첩</span><h3>모든 사진을 날짜순으로, 종류별로 걸러 보기</h3></div>
+          <ul>
+            <li>사진첩 폴더의 <b>모든 사진·동영상을 날짜순</b>으로 한 화면에 — 주말이 아닌 날도 빠짐없이.</li>
+            <li>종류로 바로 거르기:
+              <div class="chips"><span>사진</span><span>동영상</span><span>문서·영수증</span><span>스크린샷</span><span>사람</span><span>동물</span></div></li>
+            <li><b>PDF·Word로 공유</b>하고, 필요하면 Mac의 <b>사진 앱에도 보이게</b> 넣을 수 있어요.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="feat">
+        <img class="strip" src="../pro-img/collections.jpg" width="1300" height="200" alt="" loading="lazy">
+        <div class="feat-body">
+          <div class="feat-head"><span class="eyebrow">02 · 📚 모음 · 🙂 얼굴로 묶기</span><h3>복사하지 않는 링크 모음, 한 장이 여러 모음에</h3></div>
+          <ul>
+            <li>모음은 <b>링크</b>라 원본을 복사하지 않아요. 같은 사진이 거래처 모음과 프로젝트 모음에 동시에 들어가도 용량은 그대로.</li>
+            <li><b>자동 모음</b>(Mac 안 AI): 사람 · 동물 · 캐릭터·그림 · 문서·영수증 · 스크린샷(화면 크기·이름별) · 동영상. 직접 만드는 <b>수동 모음</b>도.</li>
+            <li><b>얼굴로 묶기</b>: 비슷한 얼굴을 Mac에서 묶어 보여 주고, 이름을 붙이면 <b>👤 사람 모음</b>이 됩니다. 묶음은 추정이라 확인 후 쓰세요.</li>
+            <li>얼굴 데이터는 <b>사진첩 폴더 안에만</b> 저장되고 어디로도 보내지 않아요.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="feat">
+        <img class="strip" src="../pro-img/sd.jpg" width="1300" height="200" alt="" loading="lazy">
+        <div class="feat-body">
+          <div class="feat-head"><span class="eyebrow">03 · SD 카드 백업</span><h3>카메라 카드 → 외장하드, 확인까지</h3></div>
+          <ul>
+            <li>SD 카드의 사진·영상을 외장하드로 복사한 뒤 <b>다시 읽어 원본과 같은지 검증</b>합니다.</li>
+            <li>검증이 끝나면 <b>이제 카드를 지워도 되는지</b> 알려 줘요. 앱이 카드를 대신 지우지는 않습니다.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="feat">
+        <img class="strip" src="../pro-img/phone.jpg" width="1300" height="200" alt="" loading="lazy">
+        <div class="feat-body">
+          <div class="feat-head"><span class="eyebrow">04 · 폰 백업</span><h3>안드로이드 폰 → 외장하드, 메신저 사진까지</h3></div>
+          <ul>
+            <li>USB로 연결한 안드로이드 폰의 사진·동영상을 외장하드로 옮겨요 (adb 필요, Mac과 폰 사이에서만 동작).</li>
+            <li>카메라 앨범뿐 아니라 <b>카카오톡 · LINE · WhatsApp · WeChat · Zalo</b>로 받은 사진·파일도.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="feat">
+        <img class="strip" src="../pro-img/clean.jpg" width="1300" height="200" alt="" loading="lazy">
+        <div class="feat-body">
+          <div class="feat-head"><span class="eyebrow">05 · 외장하드 정리</span><h3>중복·잡파일을 걸러 연·월별로</h3></div>
+          <ul>
+            <li><b>중복</b>과 쓸모없는 <b>잡파일</b>을 찾아 보여 주고, 남길 것은 <b>연도·월 폴더</b>로 정리합니다.</li>
+            <li>정리한 작업은 기록이 남아 <b>되돌릴 수 있어요</b>.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="feat">
+        <img class="strip" src="../pro-img/backup.jpg" width="1300" height="200" alt="" loading="lazy">
+        <div class="feat-body">
+          <div class="feat-head"><span class="eyebrow">06 · 백업 · 공간 확보</span><h3>먼저 백업, 확인한 다음 Mac 비우기</h3></div>
+          <ul>
+            <li>원본을 <b>외장하드</b> 또는 내 <b>Google Drive</b>로 올린 뒤, Mac의 공간을 확보합니다.</li>
+            <li>원본은 <b>검증이 끝난 뒤에만 휴지통으로</b> 옮겨요 — 바로 지우지 않습니다.</li>
+            <li>Google Drive를 고르면 그 파일은 내 Google 계정으로 올라갑니다 (아래 데이터 안내 참고).</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="feat">
+        <img class="strip" src="../pro-img/log.jpg" width="1300" height="200" alt="" loading="lazy">
+        <div class="feat-body">
+          <div class="feat-head"><span class="eyebrow">07 · 작업 기록</span><h3>옮기고 지운 모든 파일, 검증 가능한 기록으로</h3></div>
+          <ul>
+            <li>옮기거나 지운 파일의 <b>경로·크기·MD5</b>를 남기고, 기록끼리 <b>해시 체인</b>으로 이어 중간에 고쳐지면 드러나게 했어요.</li>
+            <li>나중에 파일이 그대로인지 다시 확인할 수 있고, 기록은 <b>이 Mac에만</b> 저장됩니다.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="feat">
+        <img class="strip" src="../pro-img/album.jpg" width="1300" height="200" alt="" loading="lazy">
+        <div class="feat-body">
+          <div class="feat-head"><span class="eyebrow">08 · 가져오기</span><h3>Google 포토 · Mac 사진 앱에서</h3></div>
+          <ul>
+            <li><b>Mac 사진 앱</b>에서 선택한 사진, 앨범, 또는 <b>보관함 전체에서 기간</b>을 정해 가져오기.</li>
+            <li><b>Google 포토</b>에서는 Google 화면에서 직접 고른 사진만 받아요. 지금은 시범 운영이라 계정 등록이 필요합니다 (<span class="mono">hello@baryon.ai</span>).</li>
+            <li>폰·컴퓨터별 가져오는 방법은 <a href="../guide/">가이드</a>에 정리돼 있어요.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="feat">
+        <img class="strip" src="../pro-img/memo.jpg" width="1300" height="200" alt="" loading="lazy">
+        <div class="feat-body">
+          <div class="feat-head"><span class="eyebrow">09 · 공유 · 글</span><h3>PDF·Word로 내보내고, 글은 요청할 때만</h3></div>
+          <ul>
+            <li>앨범을 <b>PDF</b>나 <b>Word 문서</b>로 만들어 보고서·공유용으로 (Mac 안에서 변환).</li>
+            <li>소개 글은 <b>누를 때만</b> 내 Claude 계정의 Claude가 초안을 씁니다. 쓰지 않으면 아무것도 보내지 않아요.</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+    <div class="sources">
+      <a href="../guide/"><img src="../pro-img/howto-google-photos.jpg" width="480" height="480" alt="" loading="lazy">Google 포토에서</a>
+      <a href="../guide/"><img src="../pro-img/howto-iphone-mac.jpg" width="480" height="480" alt="" loading="lazy">아이폰 → Mac</a>
+      <a href="../guide/"><img src="../pro-img/howto-iphone-icloud.jpg" width="480" height="480" alt="" loading="lazy">아이폰 iCloud 원본</a>
+      <a href="../guide/"><img src="../pro-img/howto-android-mac.jpg" width="480" height="480" alt="" loading="lazy">안드로이드 → Mac</a>
+    </div>
+  </section>
+
+  <section class="section" id="privacy">
+    <header>
+      <span class="eyebrow">데이터 · 개인정보</span>
+      <h2>무엇이 Mac 안에 남고, 무엇이 나가는지</h2>
+      <p class="muted">과장 없이 적었습니다. 전체 목록은 앱의 「ⓘ 정보」 → 데이터·AI 안내에 있어요.</p>
+    </header>
+    <div class="data">
+      <div><span class="tag in">MAC 안</span><b>사진·분류·얼굴</b><p>사진은 내 Mac과 연결한 외장하드에만 있습니다. 종류 분류·자동 모음·얼굴 묶기는 Mac 안의 AI(Apple Vision)가 하고, 얼굴 데이터는 사진첩 폴더에만 저장돼요.</p></div>
+      <div><span class="tag in">MAC 안</span><b>백업·정리·작업 기록</b><p>SD 카드·폰 백업, 외장하드 정리, 작업 기록은 Mac과 연결한 기기 안에서만 처리하며 파일 내용·이름을 보내지 않아요.</p></div>
+      <div class="out"><span class="tag out">밖으로</span><b>Google Drive 백업 · Google 포토</b><p>내가 고를 때만, 내 Google 계정과 주고받습니다. Drive에는 고른 파일이 올라가요.</p></div>
+      <div class="out"><span class="tag out">밖으로</span><b>Claude 글쓰기</b><p>누를 때만 고른 사진 몇 장의 축소본과 '언제·어디서' 요약(동네 이름까지)이 내 Claude 계정으로 갑니다. 원본·파일 이름·GPS 좌표는 보내지 않아요.</p></div>
+      <div class="out"><span class="tag out">밖으로</span><b>익명 사용 횟수</b><p>Baryon Labs는 기능을 몇 번 썼는지만 익명으로 받아요. 「ⓘ 정보」에서 보낼 내용을 보고 끌 수 있습니다.</p></div>
+      <div><span class="tag in">참고</span><b>사진 앱에도 보이기</b><p>Mac 사진 앱에서 iCloud 사진을 켜 두었다면 넣은 사진이 내 iCloud로 올라갈 수 있어요(사진 앱 설정을 따름).</p></div>
+    </div>
+    <p class="note">AI 분류와 얼굴 묶기는 추정이라 틀릴 수 있어요. 중요한 자료는 확인 후 쓰세요. 업무용(회사·사업장)으로도 <b>무료</b>로 쓸 수 있어요. 재배포·판매만 안 돼요 — 자세한 건 이용 허락(라이선스)을 보세요.</p>
+  </section>
+
+  <section class="section" id="install">
+    <header>
+      <span class="eyebrow">설치</span>
+      <h2>3단계</h2>
+      <div class="req"><span><b>Apple Silicon</b> Mac (M1 이상)</span><span><b>macOS 15</b> 이상</span><span>약 700MB</span><span><b>Windows 10/11</b> (64비트) 약 46MB</span></div>
+    </header>
+    <ol class="steps">
+      <li>
+        <h3>DMG를 내려받아 엽니다</h3>
+        <p>위의 <b>Mac용 다운로드</b>를 누르고, 받은 파일을 더블클릭하세요.</p>
+      </li>
+      <li>
+        <h3>Applications 폴더로 끌어다 놓습니다</h3>
+        <p>열린 창에서 「주말 사진첩」 아이콘을 옆의 Applications 폴더 위로 옮기면 설치됩니다. 처음 열 때 <b>🗂 프로페셔널</b>을 고르세요.</p>
+      </li>
+      <li>
+        <h3>처음 한 번 "그래도 열기"</h3>
+        <p>"확인되지 않은 개발자" 안내가 나오면 <b>시스템 설정 → 개인정보 보호 및 보안</b> 맨 아래의 <b>그래도 열기</b>를 누르세요.
+          "손상되었기 때문에 열 수 없습니다"라고 나오면 터미널에 아래 한 줄을 붙여 넣고 다시 여세요.</p>
+        <div class="cmd">
+          <pre id="xattrCmd">xattr -dr com.apple.quarantine "/Applications/주말 사진첩.app"</pre>
+          <button class="copy" type="button" data-copy="xattrCmd">복사</button>
+        </div>
+      </li>
+      <li>
+        <h3>Windows에서는 설치 파일을 실행합니다</h3>
+        <p>위의 <b>Windows용 다운로드</b>로 받은 <span class="mono">WeekendAlbum-1.15.0-Setup.exe</span>를 실행하세요 (Windows 10/11 64비트, 관리자 권한 필요 없음).
+          "Windows의 PC 보호" 창이 뜨면 <b>추가 정보 → 실행</b>을 누르세요. 동영상 기능을 쓰려면 PowerShell에서 <span class="mono">winget install Gyan.FFmpeg</span>.</p>
+      </li>
+    </ol>
+  </section>
+
+  <footer>
+    <div class="row">
+      <a class="back" href="../">가족 사진첩 보기 →</a>
+      <span><a href="../en/pro/" lang="en" hreflang="en">English</a> · <a href="https://github.com/baryonlabs/weekend-album-releases/releases">모든 버전</a></span>
+    </div>
+    <div class="row">
+      <span>Made by <b>Baryon Labs</b> (바리온랩스) · © 2026 Baryon Labs. All rights reserved.</span>
+      <span>문의 <span class="mono" style="user-select:all">hello@baryon.ai</span></span>
+    </div>
+  </footer>
+</div>
+
+<script>
+  document.querySelectorAll("[data-copy]").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const el = document.getElementById(btn.dataset.copy);
+      const text = el.textContent.trim();
+      const label = btn.textContent;
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.textContent = "복사했어요";
+      } catch {
+        const range = document.createRange();
+        range.selectNodeContents(el);
+        const sel = window.getSelection();
+        sel.removeAllRanges(); sel.addRange(range);
+        btn.textContent = "선택됨 · ⌘C";
+      }
+      setTimeout(() => { btn.textContent = label; }, 1800);
+    });
+  });
+</script>
+
+</body>
+</html>

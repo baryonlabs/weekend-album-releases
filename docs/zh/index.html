@@ -92,6 +92,8 @@
     font-weight: 700; font-size: 18px; padding: 15px 24px; border-radius: 14px; box-shadow: 0 6px 20px color-mix(in srgb, var(--sat) 30%, transparent); }
   .btn:hover { filter: brightness(1.06); }
   .btn svg { width: 20px; height: 20px; }
+  .btn-win { background: transparent; color: var(--ink, inherit); border: 1.5px solid currentColor; }
+  .btn-win svg { width: 18px; height: 18px; }
   .get small { color: var(--muted); font-size: 14px; line-height: 1.5; }
 
   /* Features */
@@ -205,7 +207,7 @@
     </nav>
     <div class="brand">
       <b>周末相册</b>
-      <span class="eyebrow">Mac 应用 · v1.14.1 · Made in Korea by Baryon Labs</span>
+      <span class="eyebrow">Mac 应用 · v1.15.0 · Made in Korea by Baryon Labs</span>
     </div>
 
     <div class="rotator" id="rotator" aria-live="polite">
@@ -243,12 +245,16 @@
     <p class="folder">~/Pictures/주말 사진첩/<em>2026-08 3째주 (8.15~8.16)</em>/20260815_101530_IMG_1234.HEIC</p>
 
     <div class="get">
-      <a class="btn" href="https://github.com/baryonlabs/weekend-album-releases/releases/latest/download/WeekendAlbum-1.14.1.dmg">
+      <a class="btn" href="https://github.com/baryonlabs/weekend-album-releases/releases/latest/download/WeekendAlbum-1.15.0.dmg">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
         下载 Mac 版
       </a>
-      <small>WeekendAlbum-1.14.1.dmg · 约 700 MB（含在 Mac 本机运行的 AI 模型）<br>Apple 芯片（M1 或更新）· macOS 15 或更新 · 支持简体中文 ·
-        <a href="https://github.com/baryonlabs/weekend-album-releases/releases/tag/v1.14.1">更新说明</a></small>
+      <a class="btn btn-win" href="https://github.com/baryonlabs/weekend-album-releases/releases/latest/download/WeekendAlbum-1.15.0-Setup.exe">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10.5 4.4v7H3zM11.5 4.3 21 3v8.4h-9.5zM3 12.6h7.5v7L3 18.5zM11.5 12.6H21V21l-9.5-1.3z"/></svg>
+        下载 Windows 版
+      </a>
+      <small>WeekendAlbum-1.15.0.dmg · 约 700 MB（含在 Mac 本机运行的 AI 模型）<br>Apple 芯片（M1 或更新）· macOS 15 或更新 · 支持简体中文 ·
+        <a href="https://github.com/baryonlabs/weekend-album-releases/releases/tag/v1.15.0">更新说明</a><br><span class="win-note">WeekendAlbum-1.15.0-Setup.exe · 约 46MB · Windows 10/11（64 位）· 若出现“Windows 已保护你的电脑”，请点 <b>更多信息 → 仍要运行</b></span></small>
     </div>
     <p class="region">在中国大陆使用：<b>Google 相册、Google 云端硬盘备份</b>和 <b>Claude 写故事</b>这几项，需要你所在的网络能访问这些服务；歌曲试听来自 Apple 的 iTunes 预览，需要联网。按周末整理、相册书与 PDF、SD 卡和手机备份、去重、腾空间这些，都在 Mac 上离线完成。</p>
     <figure class="comic comic-wide">
@@ -480,7 +486,7 @@
       <div><b>每一步都有记录</b><p>每个被搬移或删除的文件，其位置、大小和 MD5 只保存在这台 Mac 上，以后随时能核对是否完好。</p></div>
       <div><b>只有匿名使用次数</b><p>Baryon Labs 只收到哪些功能被用了、用了几次的匿名统计。具体会发送什么、以及如何关闭，都在应用的“ⓘ 信息”里看得到。</p></div>
     </div>
-    <p class="muted" style="font-size:14px">详情见应用内“ⓘ 信息”→ 数据与 AI 说明、使用条款和隐私政策。周末相册供个人和家庭非商业使用。</p>
+    <p class="muted" style="font-size:14px">详情见应用内“ⓘ 信息”→ 数据与 AI 说明、使用条款和隐私政策。周末相册可免费用于个人、家庭以及工作。</p>
   </section>
 
   <footer>

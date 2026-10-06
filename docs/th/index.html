@@ -88,6 +88,8 @@
     font-weight: 700; font-size: 18px; padding: 15px 24px; border-radius: 14px; box-shadow: 0 6px 20px color-mix(in srgb, var(--sat) 30%, transparent); }
   .btn:hover { filter: brightness(1.06); }
   .btn svg { width: 20px; height: 20px; }
+  .btn-win { background: transparent; color: var(--ink, inherit); border: 1.5px solid currentColor; }
+  .btn-win svg { width: 18px; height: 18px; }
   .get small { color: var(--muted); font-size: 14px; line-height: 1.5; }
 
   /* Features */
@@ -201,7 +203,7 @@
     </nav>
     <div class="brand">
       <b>อัลบั้มสุดสัปดาห์</b>
-      <span class="eyebrow">แอป Mac · v1.14.1 · Made in Korea by Baryon Labs</span>
+      <span class="eyebrow">แอป Mac · v1.15.0 · Made in Korea by Baryon Labs</span>
     </div>
 
     <div class="rotator" id="rotator" aria-live="polite">
@@ -239,12 +241,16 @@
     <p class="folder">~/Pictures/주말 사진첩/<em>2026-08 3째주 (8.15~8.16)</em>/20260815_101530_IMG_1234.HEIC</p>
 
     <div class="get">
-      <a class="btn" href="https://github.com/baryonlabs/weekend-album-releases/releases/latest/download/WeekendAlbum-1.14.1.dmg">
+      <a class="btn" href="https://github.com/baryonlabs/weekend-album-releases/releases/latest/download/WeekendAlbum-1.15.0.dmg">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
         ดาวน์โหลดสำหรับ Mac
       </a>
-      <small>WeekendAlbum-1.14.1.dmg · ประมาณ 700 MB (รวมโมเดล AI ที่ทำงานบน Mac)<br>Apple Silicon (M1 ขึ้นไป) · macOS 15 ขึ้นไป · มีภาษาไทย ·
-        <a href="https://github.com/baryonlabs/weekend-album-releases/releases/tag/v1.14.1">บันทึกประจำรุ่น</a></small>
+      <a class="btn btn-win" href="https://github.com/baryonlabs/weekend-album-releases/releases/latest/download/WeekendAlbum-1.15.0-Setup.exe">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10.5 4.4v7H3zM11.5 4.3 21 3v8.4h-9.5zM3 12.6h7.5v7L3 18.5zM11.5 12.6H21V21l-9.5-1.3z"/></svg>
+        ดาวน์โหลดสำหรับ Windows
+      </a>
+      <small>WeekendAlbum-1.15.0.dmg · ประมาณ 700 MB (รวมโมเดล AI ที่ทำงานบน Mac)<br>Apple Silicon (M1 ขึ้นไป) · macOS 15 ขึ้นไป · มีภาษาไทย ·
+        <a href="https://github.com/baryonlabs/weekend-album-releases/releases/tag/v1.15.0">บันทึกประจำรุ่น</a><br><span class="win-note">WeekendAlbum-1.15.0-Setup.exe · ประมาณ 46MB · Windows 10/11 (64 บิต) · ถ้าขึ้น “Windows ได้ปกป้องพีซีของคุณ” ให้กด <b>ข้อมูลเพิ่มเติม → เรียกใช้</b></span></small>
     </div>
       <figure class="comic comic-wide">
       <img src="../illus/hero.jpg" width="1500" height="1000" alt="การ์ตูนสามช่อง: รูปสุดสัปดาห์ของครอบครัวลอยเข้าไปในแล็ปท็อป แล้วออกมาเป็นอัลบั้มรูปหนึ่งเล่ม">
@@ -475,7 +481,7 @@
       <div><b>ทุกการกระทำมีบันทึก</b><p>ตำแหน่ง ขนาด และ MD5 ของทุกไฟล์ที่ย้ายหรือลบ เก็บไว้บน Mac เครื่องนี้เท่านั้น จึงตรวจได้ภายหลังว่าทุกอย่างยังอยู่ครบ</p></div>
       <div><b>มีแค่สถิติการใช้งานแบบไม่ระบุตัวตน</b><p>Baryon Labs ได้รับแค่จำนวนครั้งแบบไม่ระบุตัวตนว่าฟีเจอร์ไหนถูกใช้บ่อยแค่ไหน ดูได้ว่าจะส่งอะไรบ้าง และปิดได้ที่ “ⓘ ข้อมูล” ในแอป</p></div>
     </div>
-    <p class="muted" style="font-size:14px">ดูรายละเอียดได้ที่ “ⓘ ข้อมูล” ในแอป → หมายเหตุเรื่องข้อมูลและ AI ข้อกำหนดการใช้งาน และนโยบายความเป็นส่วนตัว อัลบั้มสุดสัปดาห์มีไว้สำหรับใช้ส่วนตัวและในครอบครัว ไม่ใช่เชิงพาณิชย์</p>
+    <p class="muted" style="font-size:14px">ดูรายละเอียดได้ที่ “ⓘ ข้อมูล” ในแอป → หมายเหตุเรื่องข้อมูลและ AI ข้อกำหนดการใช้งาน และนโยบายความเป็นส่วนตัว อัลบั้มสุดสัปดาห์ใช้ได้ฟรีทั้งส่วนตัว ครอบครัว และการทำงาน</p>
   </section>
 
   <footer>

@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="The Professional view of a Mac app: see site photos, receipts, documents and screenshots by date and type, group them in link-based collections, and back up SD cards, phones and drives with verification. Made by Baryon Labs.">
+<meta name="theme-color" content="#111317">
+<meta property="og:title" content="Weekend Album Pro — work photo library">
+<meta property="og:description" content="The Professional view of a Mac app: see site photos, receipts, documents and screenshots by date and type, group them in link-based collections, and back up SD cards, phones and drives with verification. Made by Baryon Labs.">
+<meta property="og:image" content="https://baryonlabs.github.io/weekend-album-releases/pro-img/hero.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://baryonlabs.github.io/weekend-album-releases/en/pro/">
+<meta property="og:locale" content="en_US">
+<link rel="canonical" href="https://baryonlabs.github.io/weekend-album-releases/en/pro/">
+<link rel="alternate" hreflang="ko" href="https://baryonlabs.github.io/weekend-album-releases/pro/">
+<link rel="alternate" hreflang="en" href="https://baryonlabs.github.io/weekend-album-releases/en/pro/">
+<link rel="alternate" hreflang="x-default" href="https://baryonlabs.github.io/weekend-album-releases/pro/">
+<style>html{color-scheme:dark;background:#111317}body{margin:0;-webkit-font-smoothing:antialiased}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Weekend Album Pro — work photo library</title>
+<style>
+  /* Professional view intro: same dark palette as the app's 🗂 Professional screen — always dark */
+  :root {
+    --bg: #111317; --panel: #1a1d22; --panel-2: #15181c; --ink: #e6e8eb; --muted: #9aa1ab; --line: #2b3038;
+    --accent: #5b8def; --accent-soft: rgba(91, 141, 239, .14); --ok: #4fbf8f;
+    --body: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Segoe UI", "Malgun Gothic", system-ui, sans-serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--bg); }
+  body { background: var(--bg); color: var(--ink); font: 15px/1.65 var(--body); padding-inline: 16px; margin: 0; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding-block: 28px 48px; display: grid; gap: 64px; min-width: 0; }
+  h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; text-wrap: balance; }
+  h1 { font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-size: clamp(22px, 3.2vw, 30px); }
+  h3 { font-size: 17px; }
+  p { margin: 0; }
+  a { color: var(--accent); }
+  .muted { color: var(--muted); }
+  .eyebrow { font: 600 11.5px var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+  code, .mono { font-family: var(--mono); font-size: .9em; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+  /* Top bar */
+  .top { display: flex; align-items: center; justify-content: space-between; gap: 10px 16px; flex-wrap: wrap; font-size: 13.5px; }
+  .top .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+  .top .brand i { font-style: normal; font: 600 11px var(--mono); color: var(--accent); border: 1px solid var(--accent); border-radius: 4px; padding: 1px 6px; letter-spacing: .08em; }
+  .top nav { display: flex; gap: 4px; flex-wrap: wrap; }
+  .top nav a { color: var(--muted); text-decoration: none; padding: 4px 10px; border-radius: 6px; border: 1px solid transparent; white-space: nowrap; }
+  .top nav a:hover { color: var(--ink); border-color: var(--line); }
+  .top nav a[aria-current="page"] { color: var(--ink); background: var(--panel); border-color: var(--line); }
+
+  /* Hero */
+  .hero { display: grid; gap: 22px; }
+  .hero-img { width: 100%; height: auto; aspect-ratio: 960 / 266; object-fit: cover; display: block; border-radius: 12px; border: 1px solid var(--line); background: var(--panel); }
+  .hero-text { display: grid; gap: 14px; max-width: 46em; }
+  .lede { font-size: 17px; color: var(--muted); }
+  .lede b { color: var(--ink); font-weight: 600; }
+  .get { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: #fff; text-decoration: none; font-weight: 700;
+    font-size: 16px; padding: 12px 20px; border-radius: 8px; box-shadow: 0 8px 24px -10px rgba(91, 141, 239, .7); }
+  .btn:hover { filter: brightness(1.08); }
+  .btn svg { width: 18px; height: 18px; }
+  .btn-win { background: transparent; color: var(--ink, inherit); border: 1.5px solid currentColor; }
+  .btn-win svg { width: 18px; height: 18px; }
+  .get small { color: var(--muted); font-size: 13px; line-height: 1.55; }
+  .switch { display: flex; gap: 10px; align-items: baseline; background: var(--panel); border: 1px solid var(--line); border-left: 3px solid var(--accent);
+    border-radius: 8px; padding: 12px 14px; font-size: 14px; color: var(--muted); }
+  .switch b { color: var(--ink); font-weight: 600; }
+
+  /* Use cases */
+  .uses { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+  .use { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; gap: 4px; min-width: 0; }
+  .use b { font-size: 14.5px; }
+  .use span { font-size: 13px; color: var(--muted); }
+  .use em { font-style: normal; font-size: 18px; }
+
+  /* Feature sections */
+  .section { display: grid; gap: 20px; min-width: 0; }
+  .section > header { display: grid; gap: 8px; max-width: 46em; }
+  .feats { display: grid; gap: 34px; }
+  .feat { display: grid; gap: 14px; min-width: 0; }
+  .strip { width: 100%; height: auto; aspect-ratio: 6.5 / 1; object-fit: cover; display: block; border-radius: 10px; border: 1px solid var(--line); background: var(--panel); }
+  .feat-body { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 10px 32px; align-items: start; }
+  .feat-head { display: grid; gap: 4px; }
+  .feat-head .eyebrow { color: var(--accent); }
+  .feat ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+  .feat li { position: relative; padding-left: 18px; color: var(--muted); }
+  .feat li::before { content: ""; position: absolute; left: 2px; top: .68em; width: 6px; height: 6px; border-radius: 2px; background: var(--accent); }
+  .feat li b { color: var(--ink); font-weight: 600; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+  .chips span { font-size: 12.5px; color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; }
+
+  /* Import squares */
+  .sources { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+  .sources a { display: grid; gap: 6px; text-decoration: none; color: var(--muted); font-size: 13px; min-width: 0; }
+  .sources img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; display: block; border-radius: 10px; border: 1px solid var(--line); background: var(--panel); }
+  .sources a:hover { color: var(--ink); }
+
+  /* Data & privacy */
+  .data { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
+  .data div { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; display: grid; gap: 6px; align-content: start; min-width: 0; }
+  .data div.out { border-color: rgba(91, 141, 239, .45); }
+  .data b { font-size: 14.5px; }
+  .data p { color: var(--muted); font-size: 13.5px; }
+  .tag { justify-self: start; font: 600 11px var(--mono); letter-spacing: .06em; border-radius: 4px; padding: 1px 7px; }
+  .tag.in { color: var(--ok); background: rgba(79, 191, 143, .12); }
+  .tag.out { color: var(--accent); background: var(--accent-soft); }
+  .note { font-size: 13px; color: var(--muted); background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; }
+
+  /* Install */
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; counter-reset: s; }
+  .steps li { counter-increment: s; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 4px 12px; background: var(--panel);
+    border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+  .steps li::before { content: counter(s, decimal-leading-zero); grid-row: span 3; font: 600 15px var(--mono); color: var(--accent); line-height: 1.5; }
+  .steps li > * { min-width: 0; }
+  .steps p { color: var(--muted); font-size: 14px; }
+  .cmd { display: flex; gap: 8px; align-items: stretch; margin-top: 8px; min-width: 0; }
+  .cmd pre { flex: 1; min-width: 0; margin: 0; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 9px 12px; font: 12.5px/1.5 var(--mono); overflow-x: auto; white-space: pre; }
+  .copy { font: 600 12.5px var(--body); border: 1px solid var(--line); background: var(--panel-2); color: var(--ink); border-radius: 8px; padding: 0 12px; cursor: pointer; white-space: nowrap; }
+  .copy:hover { border-color: var(--accent); }
+  .req { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--muted); }
+  .req b { color: var(--ink); font-weight: 600; }
+
+  footer { border-top: 1px solid var(--line); padding-top: 20px; display: grid; gap: 14px; font-size: 13.5px; color: var(--muted); }
+  footer .row { display: flex; flex-wrap: wrap; gap: 8px 22px; justify-content: space-between; }
+  footer .back { font-weight: 600; text-decoration: none; }
+  footer b { color: var(--ink); }
+
+  @media (max-width: 760px) {
+    .wrap { gap: 48px; padding-block: 20px 36px; }
+    .feat-body { grid-template-columns: 1fr; }
+    .strip { aspect-ratio: 4 / 1; }
+    .sources { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <span class="brand">Weekend Album <i>PRO</i></span>
+    <nav aria-label="View and language">
+      <a href="../">🏠 Family album</a><a href="../../pro/" lang="ko" hreflang="ko">한국어</a><a href="./" lang="en" aria-current="page">English</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <img class="hero-img" src="../../pro-img/hero.jpg" width="960" height="266" alt="A laptop with a dark interface showing a date-ordered photo grid, next to printed photo books and cards grouping people and pets">
+    <div class="hero-text">
+      <span class="eyebrow">🗂 Professional view · Mac app · v1.15.0</span>
+      <h1>Treat your photos like work files.<br>Find, group, and back up — verified</h1>
+      <p class="lede">Site and job photos, receipts and documents, screenshots — <b>all on one screen, by date and by type</b>. Split them by client or project with <b>link-based collections</b> that never copy a file, and move SD cards, phones, and external drives <b>only after reading the copy back to verify it</b>. Every action leaves a verifiable record.</p>
+    </div>
+    <div class="get">
+      <a class="btn" href="https://github.com/baryonlabs/weekend-album-releases/releases/latest/download/WeekendAlbum-1.15.0.dmg">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+        Download for Mac
+      </a>
+      <a class="btn btn-win" href="https://github.com/baryonlabs/weekend-album-releases/releases/latest/download/WeekendAlbum-1.15.0-Setup.exe">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10.5 4.4v7H3zM11.5 4.3 21 3v8.4h-9.5zM3 12.6h7.5v7L3 18.5zM11.5 12.6H21V21l-9.5-1.3z"/></svg>
+        Download for Windows
+      </a>
+      <small>WeekendAlbum-1.15.0.dmg · about 700 MB (includes on-Mac AI models)<br>Apple Silicon (M1 or later) · macOS 15 or later · 8 interface languages ·
+        <a href="https://github.com/baryonlabs/weekend-album-releases/releases/tag/v1.15.0">Release notes</a><br><span class="win-note">WeekendAlbum-1.15.0-Setup.exe · about 46 MB · Windows 10/11 (64-bit) · If “Windows protected your PC” appears, click <b>More info → Run anyway</b></span></small>
+    </div>
+    <p class="switch"><span aria-hidden="true">🎨</span><span>It's the same app. On first launch, choose <b>Family</b> or <b>Professional</b> — and switch any time with <b>🎨</b> at the top. Your photo folder stays the same.</span></p>
+  </section>
+
+  <section class="section" id="uses">
+    <header>
+      <span class="eyebrow">Built for</span>
+      <h2>Scattered photos, organized the way you work</h2>
+    </header>
+    <div class="uses">
+      <div class="use"><em aria-hidden="true">🏗</em><b>Site &amp; job records</b><span>Stacked by date, grouped by site or stage</span></div>
+      <div class="use"><em aria-hidden="true">🧾</em><b>Receipts &amp; documents</b><span>Photographed paperwork picked out automatically</span></div>
+      <div class="use"><em aria-hidden="true">🖥</em><b>Screenshot management</b><span>Sorted by screen size and name</span></div>
+      <div class="use"><em aria-hidden="true">📁</em><b>Per client &amp; project</b><span>One photo in many collections, no copies</span></div>
+      <div class="use"><em aria-hidden="true">🔐</em><b>Backups you can prove</b><span>Verified moves, hash-chained log</span></div>
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <header>
+      <span class="eyebrow">Professional menu</span>
+      <h2>See, group, move, record</h2>
+      <p class="muted">In the order of the Professional view's menu. Picking and sorting photos is done by AI on your Mac (Apple Vision and others).</p>
+    </header>
+
+    <div class="feats">
+      <article class="feat">
+        <img class="strip" src="../../pro-img/work.jpg" width="1300" height="200" alt="" loading="lazy">
+        <div class="feat-body">
+          <div class="feat-head"><span class="eyebrow">01 · 🗂 Work Library</span><h3>Every photo by date, filtered by type</h3></div>
+          <ul>
+            <li><b>Every photo and video in the album folder, by date</b>, on one screen — weekdays included.</li>
+            <li>Filter in one click:
+              <div class="chips"><span>Photos</span><span>Videos</span><span>Documents &amp; receipts</span><span>Screenshots</span><span>People</span><span>Animals</span></div></li>
+            <li><b>Share as PDF or Word</b>, and optionally <b>show them in the Mac Photos app</b> too.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="feat">
+        <img class="strip" src="../../pro-img/collections.jpg" width="1300" height="200" alt="" loading="lazy">
+        <div class="feat-body">
+          <div class="feat-head"><span class="eyebrow">02 · 📚 Collections · 🙂 Group by face</span><h3>Link-based collections — one photo, many places</h3></div>
+          <ul>
+            <li>Collections are <b>links</b>, so originals are never copied. The same photo can sit in a client collection and a project collection at no extra space.</li>
+            <li><b>Automatic collections</b> (on-Mac AI): people · animals · characters &amp; drawings · documents &amp; receipts · screenshots (by screen size and name) · videos. Plus <b>manual collections</b> you build yourself.</li>
+            <li><b>Group by face</b>: similar faces are grouped on your Mac; name a group and it becomes a <b>👤 person collection</b>. Groups are an estimate — check before relying on them.</li>
+            <li>Face data is stored <b>only inside the album folder</b> and never sent anywhere.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="feat">
+        <img class="strip" src="../../pro-img/sd.jpg" width="1300" height="200" alt="" loading="lazy">
+        <div class="feat-body">
+          <div class="feat-head"><span class="eyebrow">03 · SD Card Backup</span><h3>Camera card → external drive, verified</h3></div>
+          <ul>
+            <li>Copies photos and videos from the SD card to an external drive, then <b>reads them back to verify they match</b>.</li>
+            <li>When verification passes, it <b>tells you the card is safe to erase</b>. The app never erases the card for you.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="feat">
+        <img class="strip" src="../../pro-img/phone.jpg" width="1300" height="200" alt="" loading="lazy">
+        <div class="feat-body">
+          <div class="feat-head"><span class="eyebrow">04 · Phone Backup</span><h3>Android → external drive, messenger photos included</h3></div>
+          <ul>
+            <li>Moves photos and videos from a USB-connected Android phone to an external drive (needs adb; runs only between your Mac and the phone).</li>
+            <li>Not just the camera roll — also photos and files received in <b>KakaoTalk · LINE · WhatsApp · WeChat · Zalo</b>.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="feat">
+        <img class="strip" src="../../pro-img/clean.jpg" width="1300" height="200" alt="" loading="lazy">
+        <div class="feat-body">
+          <div class="feat-head"><span class="eyebrow">05 · Drive Cleanup</span><h3>Weed out duplicates and junk, sort by year and month</h3></div>
+          <ul>
+            <li>Finds <b>duplicates</b> and <b>junk files</b>, and sorts what you keep into <b>year/month folders</b>.</li>
+            <li>Every cleanup is logged, so it <b>can be undone</b>.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="feat">
+        <img class="strip" src="../../pro-img/backup.jpg" width="1300" height="200" alt="" loading="lazy">
+        <div class="feat-body">
+          <div class="feat-head"><span class="eyebrow">06 · Backup &amp; Free Up Space</span><h3>Back up first, verify, then free your Mac</h3></div>
+          <ul>
+            <li>Sends originals to an <b>external drive</b> or your own <b>Google Drive</b>, then frees space on your Mac.</li>
+            <li>Originals go to the <b>Trash only after verification</b> — never deleted outright.</li>
+            <li>If you choose Google Drive, those files are uploaded to your Google account (see the data notes below).</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="feat">
+        <img class="strip" src="../../pro-img/log.jpg" width="1300" height="200" alt="" loading="lazy">
+        <div class="feat-body">
+          <div class="feat-head"><span class="eyebrow">07 · Activity Log</span><h3>Every file moved or deleted, on a verifiable record</h3></div>
+          <ul>
+            <li>Records the <b>path, size, and MD5</b> of every file moved or deleted, with entries linked in a <b>hash chain</b> so later tampering shows.</li>
+            <li>Re-check any time that files are still intact. The log is stored <b>only on this Mac</b>.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="feat">
+        <img class="strip" src="../../pro-img/album.jpg" width="1300" height="200" alt="" loading="lazy">
+        <div class="feat-body">
+          <div class="feat-head"><span class="eyebrow">08 · Import</span><h3>From Google Photos and the Mac Photos app</h3></div>
+          <ul>
+            <li>From the <b>Mac Photos app</b>: your selection, an album, or a <b>date range across the whole library</b>.</li>
+            <li>From <b>Google Photos</b>: only the photos you pick in Google's own picker. While the app is in Google's testing phase, your account needs to be registered (<span class="mono">hello@baryon.ai</span>).</li>
+            <li>Step-by-step for each phone and computer is in the <a href="../guide/">guide</a>.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="feat">
+        <img class="strip" src="../../pro-img/memo.jpg" width="1300" height="200" alt="" loading="lazy">
+        <div class="feat-body">
+          <div class="feat-head"><span class="eyebrow">09 · Share · Writing</span><h3>Export to PDF or Word; text only when you ask</h3></div>
+          <ul>
+            <li>Turn an album into a <b>PDF</b> or <b>Word document</b> for reports and sharing (converted on your Mac).</li>
+            <li>Claude, through your own Claude account, drafts a description <b>only when you click</b>. If you don't, nothing is sent.</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+    <div class="sources">
+      <a href="../guide/"><img src="../../pro-img/howto-google-photos.jpg" width="480" height="480" alt="" loading="lazy">From Google Photos</a>
+      <a href="../guide/"><img src="../../pro-img/howto-iphone-mac.jpg" width="480" height="480" alt="" loading="lazy">iPhone → Mac</a>
+      <a href="../guide/"><img src="../../pro-img/howto-iphone-icloud.jpg" width="480" height="480" alt="" loading="lazy">iPhone iCloud originals</a>
+      <a href="../guide/"><img src="../../pro-img/howto-android-mac.jpg" width="480" height="480" alt="" loading="lazy">Android → Mac</a>
+    </div>
+  </section>
+
+  <section class="section" id="privacy">
+    <header>
+      <span class="eyebrow">Data &amp; privacy</span>
+      <h2>What stays on your Mac, and what leaves</h2>
+      <p class="muted">Stated plainly. The full list is in the app under “ⓘ Info” → data &amp; AI notes.</p>
+    </header>
+    <div class="data">
+      <div><span class="tag in">ON MAC</span><b>Photos, sorting, faces</b><p>Photos live only on your Mac and the drives you connect. Type sorting, automatic collections, and face grouping are done by on-Mac AI (Apple Vision); face data stays in the album folder.</p></div>
+      <div><span class="tag in">ON MAC</span><b>Backup, cleanup, activity log</b><p>SD card and phone backup, drive cleanup, and the activity log run only between your Mac and connected devices. File contents and names are not sent.</p></div>
+      <div class="out"><span class="tag out">LEAVES</span><b>Google Drive backup · Google Photos</b><p>Only when you choose, and only with your own Google account. Files you pick are uploaded to your Drive.</p></div>
+      <div class="out"><span class="tag out">LEAVES</span><b>Writing with Claude</b><p>Only when you click: small previews of a few chosen photos and a “when &amp; where” summary (down to the neighborhood name) go to your Claude account. No originals, file names, or GPS coordinates.</p></div>
+      <div class="out"><span class="tag out">LEAVES</span><b>Anonymous usage counts</b><p>Baryon Labs receives only anonymous counts of feature use. See exactly what's sent, and turn it off, under “ⓘ Info”.</p></div>
+      <div><span class="tag in">NOTE</span><b>Show in Photos app</b><p>If iCloud Photos is on in the Mac Photos app, photos you add there may upload to your iCloud (per your Photos settings).</p></div>
+    </div>
+    <p class="note">AI sorting and face grouping are estimates and can be wrong — check important material. It is <b>free for work use</b> too (companies and businesses) — only redistribution and resale are not allowed; see the license for details.</p>
+  </section>
+
+  <section class="section" id="install">
+    <header>
+      <span class="eyebrow">Install</span>
+      <h2>Three steps</h2>
+      <div class="req"><span><b>Apple Silicon</b> Mac (M1 or later)</span><span><b>macOS 15</b> or later</span><span>about 700 MB</span><span><b>Windows 10/11</b> (64-bit) about 46 MB</span></div>
+    </header>
+    <ol class="steps">
+      <li>
+        <h3>Download and open the DMG</h3>
+        <p>Click <b>Download for Mac</b> above, then double-click the downloaded file.</p>
+      </li>
+      <li>
+        <h3>Drag it to Applications</h3>
+        <p>In the window that opens, drag the “주말 사진첩” (Weekend Album) icon onto the Applications folder. On first launch, choose <b>🗂 Professional</b>.</p>
+      </li>
+      <li>
+        <h3>The first time, “Open Anyway”</h3>
+        <p>If macOS says it can't verify the app or its developer, go to <b>System Settings → Privacy &amp; Security</b>, scroll to the bottom, and click <b>Open Anyway</b>.
+          If it says the app “is damaged and can't be opened,” paste the line below into Terminal and open the app again.</p>
+        <div class="cmd">
+          <pre id="xattrCmd">xattr -dr com.apple.quarantine "/Applications/주말 사진첩.app"</pre>
+          <button class="copy" type="button" data-copy="xattrCmd">Copy</button>
+        </div>
+      </li>
+      <li>
+        <h3>On Windows, run the installer</h3>
+        <p>Run <span class="mono">WeekendAlbum-1.15.0-Setup.exe</span> from <b>Download for Windows</b> above (Windows 10/11 64-bit, no admin rights needed).
+          If “Windows protected your PC” appears, click <b>More info → Run anyway</b>. For video features, run <span class="mono">winget install Gyan.FFmpeg</span> in PowerShell.</p>
+      </li>
+    </ol>
+  </section>
+
+  <footer>
+    <div class="row">
+      <a class="back" href="../">See the Family album →</a>
+      <span><a href="../../pro/" lang="ko" hreflang="ko">한국어</a> · <a href="https://github.com/baryonlabs/weekend-album-releases/releases">All versions</a></span>
+    </div>
+    <div class="row">
+      <span>Made by <b>Baryon Labs</b> · © 2026 Baryon Labs. All rights reserved.</span>
+      <span>Contact <span class="mono" style="user-select:all">hello@baryon.ai</span></span>
+    </div>
+  </footer>
+</div>
+
+<script>
+  document.querySelectorAll("[data-copy]").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const el = document.getElementById(btn.dataset.copy);
+      const text = el.textContent.trim();
+      const label = btn.textContent;
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.textContent = "Copied!";
+      } catch {
+        const range = document.createRange();
+        range.selectNodeContents(el);
+        const sel = window.getSelection();
+        sel.removeAllRanges(); sel.addRange(range);
+        btn.textContent = "Selected · ⌘C";
+      }
+      setTimeout(() => { btn.textContent = label; }, 1800);
+    });
+  });
+</script>
+
+</body>
+</html>
